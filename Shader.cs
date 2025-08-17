@@ -99,7 +99,19 @@ namespace LearnOpenTK
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-    }
 
+        public void SetInt(string name , int value)
+        {
+            int location = GL.GetUniformLocation(Handle, name);
+            GL.Uniform1(location, value);
+        }
+
+        void SetFloat(string name, float value)
+        {
+            int location = GL.GetUniformLocation(Handle, name);
+            GL.Uniform1(location, value);
+        }
+
+    }
 
 }

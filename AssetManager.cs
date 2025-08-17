@@ -39,8 +39,8 @@ namespace LearnOpenTK
 
             Shader shader = new Shader("C:\\programming\\LearnOpenTK\\basic_shader.vert", "C:\\programming\\LearnOpenTK\\basic_shader.frag");
 
-
             Texture texture = new Texture("C:\\programming\\LearnOpenTK\\container.jpg");
+            Texture awesomeFace = new Texture("C:\\programming\\LearnOpenTK\\awesomeface.png");
 
             AddMesh("triangle", new Mesh(triangleVertices, triangleIndices));
             AddMesh("quad", new Mesh(quadVertices, quadIndices));
@@ -48,7 +48,7 @@ namespace LearnOpenTK
             AddShader("basic", shader);
 
             AddTexture("container", texture);
-
+            AddTexture("awesomeface", awesomeFace);
         }
 
         public static void AddMesh(string name, Mesh mesh)
