@@ -21,7 +21,7 @@ namespace LearnOpenTK
         public Matrix4 GetTransformMatrix()
         {
             var translationMatrix = Matrix4.CreateTranslation(position);
-            var scaleMatrix = Matrix4.CreateScale(this.scale);
+            var scaleMatrix = Matrix4.CreateScale(scale);
             
             var rotationX = Matrix4.CreateRotationX(MathHelper.DegreesToRadians(rotation.X));
             var rotationY = Matrix4.CreateRotationY(MathHelper.DegreesToRadians(rotation.Y));

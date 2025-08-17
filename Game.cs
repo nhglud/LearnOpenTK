@@ -12,13 +12,11 @@ namespace LearnOpenTK
     public class Game : GameWindow
     {
 
-        private Mesh mesh;
         private Shader shader;
         private Texture texture;
         private Texture texture2;
 
-        private Transform transform;
-
+        private Camera camera;
         private Entity entity;
 
         public Game(int width, int height, string title) : 
@@ -31,28 +29,30 @@ namespace LearnOpenTK
         {
             base.OnLoad();
 
-            GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+            GL.ClearColor(0.2f, 0.3f, 0.33f, 1.0f);
 
             AssetManager.LoadAssets();
 
-            mesh = AssetManager.GetMesh("cube");
+            Mesh mesh = AssetManager.GetMesh("cube");
             shader = AssetManager.GetShader("basic");
             texture = AssetManager.GetTexture("container");
             texture2 = AssetManager.GetTexture("awesomeface");
 
-            transform = new Transform(new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 32.0f, 54.0f), new Vector3(1.0f, 1.0f, 1.0f));
 
-            entity = new Entity();
+            camera = new Camera(new Transform(new Vector3(0.0f, 0.0f, 3.0f), new Vector3(0.0f), new Vector3(1.0f)));
 
-            entity.transform = transform;
-
-            entity.AddComponent(mesh);
 
             shader.Use();
             shader.SetInt("texture0", 0);
             shader.SetInt("texture1", 1);
 
             GL.Enable(EnableCap.DepthTest);
+
+
+            entity = new Entity();
+            entity.transform = new Transform(new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 32.0f, 54.0f), new Vector3(1.0f, 1.0f, 1.0f));
+            entity.AddComponent(mesh);
+            entity.AddComponent(new Renderer(entity, shader));
 
         }
 
@@ -68,27 +68,21 @@ namespace LearnOpenTK
 
         protected override void OnRenderFrame(FrameEventArgs e)
         {
-
-            Matrix4 view = Matrix4.LookAt(
-                new Vector3(0.0f, 0.0f, 3.0f),
-                new Vector3(0.0f, 0.0f, 0.0f),
-                new Vector3(0.0f, 1.0f, 0.0f));
-
-            Matrix4 projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(45.0f), (float)ClientSize.X / (float)ClientSize.Y, 0.1f, 100.0f);
-
             base.OnRenderFrame(e);
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
             shader.Use();
-            shader.SetMat4("model", entity.transform.GetTransformMatrix());
-            shader.SetMat4("view", view);
-            shader.SetMat4("projection", projection);
+
+            shader.SetMat4("view", camera.GetViewMatrix());
+            shader.SetMat4("projection", camera.GetProjectionMatrix((float)ClientSize.X / (float)ClientSize.Y));
+
 
             texture.Use(TextureUnit.Texture0);
             texture2.Use(TextureUnit.Texture1);
 
-            entity.GetComponent<Mesh>().Draw();
+
+            entity.GetComponent<Renderer>().Render();
 
             SwapBuffers();
         }
