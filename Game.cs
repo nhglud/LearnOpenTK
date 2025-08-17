@@ -18,7 +18,8 @@ namespace LearnOpenTK
         private Texture texture2;
 
         private Transform transform;
-        
+
+        private Entity entity;
 
         public Game(int width, int height, string title) : 
             base(GameWindowSettings.Default, new NativeWindowSettings() { ClientSize = (width, height), Title = title }) 
@@ -40,6 +41,12 @@ namespace LearnOpenTK
             texture2 = AssetManager.GetTexture("awesomeface");
 
             transform = new Transform(new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 32.0f, 54.0f), new Vector3(1.0f, 1.0f, 1.0f));
+
+            entity = new Entity();
+
+            entity.transform = transform;
+
+            entity.AddComponent(mesh);
 
             shader.Use();
             shader.SetInt("texture0", 0);
@@ -74,14 +81,14 @@ namespace LearnOpenTK
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
             shader.Use();
-            shader.SetMat4("model", transform.GetTransformMatrix());
+            shader.SetMat4("model", entity.transform.GetTransformMatrix());
             shader.SetMat4("view", view);
             shader.SetMat4("projection", projection);
 
             texture.Use(TextureUnit.Texture0);
             texture2.Use(TextureUnit.Texture1);
 
-            mesh.Draw();
+            entity.GetComponent<Mesh>().Draw();
 
             SwapBuffers();
         }
