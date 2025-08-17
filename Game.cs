@@ -14,6 +14,8 @@ namespace LearnOpenTK
 
         private Mesh mesh;
         private Shader shader;
+        private Texture texture;
+        
 
         public Game(int width, int height, string title) : 
             base(GameWindowSettings.Default, new NativeWindowSettings() { ClientSize = (width, height), Title = title }) 
@@ -31,6 +33,8 @@ namespace LearnOpenTK
 
             mesh = AssetManager.GetMesh("quad");
             shader = AssetManager.GetShader("basic");
+            texture = AssetManager.GetTexture("container");
+
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -51,6 +55,7 @@ namespace LearnOpenTK
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
             shader.Use();
+            texture.Use();
             mesh.Draw();
 
             SwapBuffers();
