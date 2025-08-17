@@ -21,12 +21,7 @@ namespace LearnOpenTK
 
         public Shader(string vertexPath, string fragmentPath)
         {
-
-            
-
             SetUpShader(vertexPath, fragmentPath);
-
-            //SetUpShader(projectDirectory + "\\" + "vertexPath", projectDirectory + "\\" + fragmentPath);
         }
 
         ~Shader()

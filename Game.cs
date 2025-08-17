@@ -12,13 +12,13 @@ namespace LearnOpenTK
     public class Game : GameWindow
     {
 
-        private Mesh TriangleMesh;
+        private Mesh mesh;
         private Shader shader;
 
         public Game(int width, int height, string title) : 
             base(GameWindowSettings.Default, new NativeWindowSettings() { ClientSize = (width, height), Title = title }) 
-        { 
-            
+        {
+           
         }
 
         protected override void OnLoad()
@@ -27,19 +27,10 @@ namespace LearnOpenTK
 
             GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
-            float[] vertices = {
-                  -0.5f, -0.5f, 0.0f, //Bottom-left vertex
-                   0.5f, -0.5f, 0.0f, //Bottom-right vertex
-                   0.0f,  0.5f, 0.0f  //Top vertex
-            };
+            AssetManager.LoadAssets();
 
-            TriangleMesh = new Mesh(vertices);
-
-            //string workingDirectory = Environment.CurrentDirectory;
-            //string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-            //Console.WriteLine(projectDirectory);
-            shader = new Shader("C:\\programming\\LearnOpenTK\\basic_shader.vert", "C:\\programming\\LearnOpenTK\\basic_shader.frag");
-
+            mesh = AssetManager.GetMesh("quad");
+            shader = AssetManager.GetShader("basic");
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -60,8 +51,7 @@ namespace LearnOpenTK
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
             shader.Use();
-            TriangleMesh.Draw();
-
+            mesh.Draw();
 
             SwapBuffers();
         }

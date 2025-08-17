@@ -17,11 +17,14 @@ namespace LearnOpenTK
     public class Mesh
     {
         private float[] vertices;
+        private int[] indices;
         private int VertexArrayObject;
 
-        public Mesh(float[] vertices) 
+        public Mesh(float[] vertices, int[] indices) 
         { 
             this.vertices = vertices;
+            this.indices = indices;
+
             SetUpMesh();
         }   
 
@@ -38,12 +41,15 @@ namespace LearnOpenTK
             GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
             GL.EnableVertexAttribArray(0);
 
+            int ElementBufferObject = GL.GenBuffer();
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, ElementBufferObject);
+            GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(uint), indices, BufferUsageHint.StaticDraw);
         }
 
         public void Draw()
         {
             GL.BindVertexArray(VertexArrayObject);
-            GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
+            GL.DrawElements(PrimitiveType.Triangles, indices.Length, DrawElementsType.UnsignedInt, 0);
         }
 
     }
