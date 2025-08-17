@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LearnOpenTK
+﻿namespace LearnOpenTK
 {
     public static class AssetManager
     {
@@ -37,6 +31,59 @@ namespace LearnOpenTK
                 1, 2, 3    // second triangle
             };
 
+
+            float[] cubeVertices = {
+                 -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+                  0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+                  0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+                  0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+                 -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+                 -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+
+                 -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+                  0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+                  0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+                  0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+                 -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+                 -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+                 -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+                 -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+                 -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+                 -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+                 -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+                 -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+                  0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+                  0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+                  0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+                  0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+                  0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+                  0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+                 -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+                  0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+                  0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+                  0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+                 -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+                 -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+                 -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+                  0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+                  0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+                  0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+                 -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+                 -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+            };
+
+            int[] cubeIndices = new int[cubeVertices.Length];
+
+            for (int i = 0; i < cubeVertices.Length; i++)
+            {
+                cubeIndices[i] = i;
+            }
+
+
             Shader shader = new Shader("C:\\programming\\LearnOpenTK\\basic_shader.vert", "C:\\programming\\LearnOpenTK\\basic_shader.frag");
 
             Texture texture = new Texture("C:\\programming\\LearnOpenTK\\container.jpg");
@@ -44,6 +91,7 @@ namespace LearnOpenTK
 
             AddMesh("triangle", new Mesh(triangleVertices, triangleIndices));
             AddMesh("quad", new Mesh(quadVertices, quadIndices));
+            AddMesh("cube", new Mesh(cubeVertices, cubeIndices));
 
             AddShader("basic", shader);
 

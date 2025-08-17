@@ -1,6 +1,5 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Numerics;
+﻿
+
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
@@ -21,7 +20,6 @@ namespace LearnOpenTK
         private Transform transform;
         
 
-
         public Game(int width, int height, string title) : 
             base(GameWindowSettings.Default, new NativeWindowSettings() { ClientSize = (width, height), Title = title }) 
         {
@@ -36,12 +34,12 @@ namespace LearnOpenTK
 
             AssetManager.LoadAssets();
 
-            mesh = AssetManager.GetMesh("quad");
+            mesh = AssetManager.GetMesh("cube");
             shader = AssetManager.GetShader("basic");
             texture = AssetManager.GetTexture("container");
             texture2 = AssetManager.GetTexture("awesomeface");
 
-            transform = new Transform(new Vector3(0.0f, 0.0f, 1.0f), new Vector3(90.0f, 0.0f, 0.0f), new Vector3(1.0f, 1.0f, 1.0f));
+            transform = new Transform(new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 32.0f, 54.0f), new Vector3(1.0f, 1.0f, 1.0f));
 
             shader.Use();
             shader.SetInt("texture0", 0);
@@ -69,14 +67,14 @@ namespace LearnOpenTK
                 new Vector3(0.0f, 0.0f, 0.0f),
                 new Vector3(0.0f, 1.0f, 0.0f));
 
-            Matrix4 projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+            Matrix4 projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(45.0f), (float)ClientSize.X / (float)ClientSize.Y, 0.1f, 100.0f);
 
             base.OnRenderFrame(e);
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
             shader.Use();
-            shader.SetMat4("model", transform.GetMatrixTransform());
+            shader.SetMat4("model", transform.GetTransformMatrix());
             shader.SetMat4("view", view);
             shader.SetMat4("projection", projection);
 
