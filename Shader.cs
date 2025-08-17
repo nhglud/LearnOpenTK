@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using OpenTK.Graphics.OpenGL4;
+using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
@@ -106,10 +107,16 @@ namespace LearnOpenTK
             GL.Uniform1(location, value);
         }
 
-        void SetFloat(string name, float value)
+        public void SetFloat(string name, float value)
         {
             int location = GL.GetUniformLocation(Handle, name);
             GL.Uniform1(location, value);
+        }
+
+        public void SetMat4(string name, Matrix4 matrix)
+        {
+            int location = GL.GetUniformLocation(Handle, name);
+            GL.UniformMatrix4(location, false, ref matrix);
         }
 
     }
