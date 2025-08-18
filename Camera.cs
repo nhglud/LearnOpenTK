@@ -1,18 +1,29 @@
-﻿using OpenTK.Mathematics;
+﻿using OpenTK.Graphics.ES11;
+using OpenTK.Mathematics;
 
 namespace LearnOpenTK
 {
     public class Camera
     {
-        private Transform transform;
+        public Transform transform;
+
+        public Vector3 front;
+        public Vector3 up;
 
         private float fov;
         private float near;
         private float far;
 
+        public float pitch = 0.0f;
+        public float yaw = 0.0f;
+
+
         public Camera(Transform transform)
         {
             this.transform = transform;
+
+            front = new Vector3(0.0f, 0.0f, -1.0f);
+            up = new Vector3(0.0f, 1.0f, 0.0f);
 
             fov = 45.0f;
             near = 0.1f;
@@ -21,11 +32,7 @@ namespace LearnOpenTK
 
         public Matrix4 GetViewMatrix()
         {
-            return Matrix4.LookAt(
-                new Vector3(0.0f, 0.0f, 3.0f),
-                new Vector3(0.0f, 0.0f, 0.0f),
-                new Vector3(0.0f, 1.0f, 0.0f));
-
+            return Matrix4.LookAt(transform.position, transform.position + front, up);
         }
 
         public Matrix4 GetProjectionMatrix(float aspectRatio)

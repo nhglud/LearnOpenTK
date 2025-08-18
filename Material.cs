@@ -8,6 +8,20 @@ namespace LearnOpenTK
 {
     public class Material
     {
+        Shader shader;
 
+        Texture diffuse;
+        Texture specular;
+
+        public Material()
+        {
+
+        }
+
+        public void Use()
+        {
+            shader.Use();
+
+        }
     }
 }
