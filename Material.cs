@@ -8,20 +8,27 @@ namespace LearnOpenTK
 {
     public class Material
     {
-        Shader shader;
+        private Shader shader;
 
-        Texture diffuse;
-        Texture specular;
+        private Texture diffuse;
+        private Texture specular;
+        private float shininess;
 
-        public Material()
+
+        public Material(Shader shader, Texture diffuse, Texture specular, float shininess)
         {
-
+            this.shader = shader;
+            this.diffuse = diffuse;
+            this.specular = specular;
+            this.shininess = shininess;
         }
 
         public void Use()
         {
             shader.Use();
-
+            shader.SetFloat("material.shininess", shininess);
+            diffuse.Use();
+            specular.Use();
         }
     }
 }

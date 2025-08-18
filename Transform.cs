@@ -11,11 +11,13 @@ namespace LearnOpenTK
         public Vector3 rotation;
         public Vector3 scale;
 
+
         public Transform(Vector3 position, Vector3 rotation, Vector3 scale)
         {
             this.position = position;
             this.rotation = rotation;
             this.scale = scale;
+
         }
 
         public Matrix4 GetTransformMatrix()
@@ -30,5 +32,6 @@ namespace LearnOpenTK
 
             return rotationMatrix * scaleMatrix * translationMatrix;
         }
+
     }
 }

@@ -16,13 +16,10 @@ namespace LearnOpenTK
         private Texture texture;
         private Texture texture2;
 
-        //private Camera camera;
         private Entity entity;
         private Entity entity2;
 
         private Entity player;
-
-
 
 
 
@@ -49,9 +46,9 @@ namespace LearnOpenTK
             texture2 = AssetManager.GetTexture("awesomeface");
 
 
-            shader.Use();
-            shader.SetInt("texture0", 0);
-            shader.SetInt("texture1", 1);
+            //shader.Use();
+            //shader.SetInt("texture0", 0);
+            //shader.SetInt("texture1", 1);
 
 
             entity = new Entity();
@@ -72,7 +69,17 @@ namespace LearnOpenTK
             player.transform = new Transform(new Vector3(0.0f, 0.0f, 3.0f), new Vector3(0.0f), new Vector3(1.0f));
 
             player.AddComponent(new Camera());
-            player.AddComponent(new CharactorController(KeyboardState, MouseState));
+            player.AddComponent(new CharacterController(KeyboardState, MouseState));
+
+
+
+            shader.Use();
+            shader.SetInt("texture0", 0);
+            shader.SetInt("texture1", 1);
+
+
+            shader.SetMat4("view", Camera.main.GetViewMatrix());
+            shader.SetMat4("projection", Camera.main.GetProjectionMatrix(ClientSize.X / (float)ClientSize.Y));
 
         }
 
@@ -85,7 +92,7 @@ namespace LearnOpenTK
                 Close();
             }
             
-            player.GetComponent<CharactorController>().Update(e);
+            player.GetComponent<CharacterController>().Update(e);
 
         }
 
@@ -99,7 +106,6 @@ namespace LearnOpenTK
 
             shader.SetMat4("view", Camera.main.GetViewMatrix());
             shader.SetMat4("projection", Camera.main.GetProjectionMatrix(ClientSize.X / (float)ClientSize.Y));
-
 
             texture.Use(TextureUnit.Texture0);
             texture2.Use(TextureUnit.Texture1);
@@ -118,19 +124,6 @@ namespace LearnOpenTK
             GL.Viewport(0, 0, e.Width, e.Height);
             ClientSize = (e.Width, e.Height);
         }
-
-        //protected override void OnMouseMove(MouseMoveEventArgs e)
-        //{
-        //    base.OnMouseMove(e);
-
-        //    if (IsFocused) // check to see if the window is focused  
-        //    {
-        //        MousePosition = new Vector2(e.X + ClientSize.X / 2f, e.Y + ClientSize.Y / 2f);
-
-        //        //Mouse.SetPosition(e.X + Width / 2f, e.Y + Height / 2f);
-        //    }
-        //}
-
 
     }
 }

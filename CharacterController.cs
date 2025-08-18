@@ -1,13 +1,12 @@
-﻿using OpenTK.Mathematics;
+﻿
+using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.GraphicsLibraryFramework;
-using static System.Net.Mime.MediaTypeNames;
-
 
 
 namespace LearnOpenTK
 {
-    public class CharactorController : Component
+    public class CharacterController : Component
     {
 
         private KeyboardState keyboardState;
@@ -17,48 +16,47 @@ namespace LearnOpenTK
         private float moveSpeed = 6f;
         private float mouseSensitivity = 0.05f;
 
-        public CharactorController(KeyboardState keyboardState, MouseState mouseState) : base()
+        private Keys forwardKey = Keys.W;
+        private Keys backwardKey = Keys.S;
+        private Keys rightKey = Keys.D;
+        private Keys leftKey = Keys.A;
+
+
+        public CharacterController(KeyboardState keyboardState, MouseState mouseState) : base()
         {
             this.keyboardState = keyboardState;
             this.mouseState = mouseState;
         }
 
-
-        public CharactorController(Entity entity, KeyboardState keyboardState, MouseState mouseState) : base(entity)
-        {
-            this.keyboardState = keyboardState;
-            this.mouseState = mouseState;
-        }
 
         public void Update(FrameEventArgs e)
         {
             Vector3 moveDir = Vector3.Zero;
 
-            if (keyboardState.IsKeyDown(Keys.W))
+            if (keyboardState.IsKeyDown(forwardKey))
             {
                 moveDir += Camera.main.front;
             }
 
-            if (keyboardState.IsKeyDown(Keys.S))
+            if (keyboardState.IsKeyDown(backwardKey))
             {
                 moveDir -= Camera.main.front;
             }
 
-            if (keyboardState.IsKeyDown(Keys.D))
+            if (keyboardState.IsKeyDown(rightKey))
             {
-                moveDir += Vector3.Normalize(Vector3.Cross(Camera.main.front, Camera.main.up));
+                moveDir += Camera.main.right;
             }
 
-            if (keyboardState.IsKeyDown((Keys)Keys.A))
+            if (keyboardState.IsKeyDown(leftKey))
             {
-                moveDir -= Vector3.Normalize(Vector3.Cross(Camera.main.front, Camera.main.up));
+                moveDir -= Camera.main.right;
             }
 
 
             if (moveDir != Vector3.Zero)
             {
                 moveDir = Vector3.Normalize(moveDir);
-
                 Camera.main.transform.position += moveDir * moveSpeed * (float)e.Time;
             }
 
@@ -72,15 +70,10 @@ namespace LearnOpenTK
                 float dy = mouseState.Delta.Y * mouseSensitivity;
 
                 Camera.main.yaw += dx;
-
                 Camera.main.pitch -= dy;
                 Camera.main.pitch = MathHelper.Clamp(Camera.main.pitch, -89.0f, 89.0f);
 
-
-                Camera.main.front.X = (float)Math.Cos(MathHelper.DegreesToRadians(Camera.main.pitch)) * (float)Math.Cos(MathHelper.DegreesToRadians(Camera.main.yaw));
-                Camera.main.front.Y = (float)Math.Sin(MathHelper.DegreesToRadians(Camera.main.pitch));
-                Camera.main.front.Z = (float)Math.Cos(MathHelper.DegreesToRadians(Camera.main.pitch)) * (float)Math.Sin(MathHelper.DegreesToRadians(Camera.main.yaw));
-                Camera.main.front = Vector3.Normalize(Camera.main.front);
+                Camera.main.UpdateOrientations();
             }
         }
     }
