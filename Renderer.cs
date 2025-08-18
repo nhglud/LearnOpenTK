@@ -12,13 +12,23 @@ namespace LearnOpenTK
         private Mesh mesh;
         private Shader shader;
 
+
+        public Renderer(Shader shader) : base()
+        {
+
+            this.shader = shader;
+
+        }
+
+
         public Renderer(Entity entity, Shader shader) : base(entity)
         {
 
             this.shader = shader;
+        
         }
 
-        protected override void Init()
+        public override void Init()
         {
             mesh = entity.GetComponent<Mesh>();
         }

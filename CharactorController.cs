@@ -1,7 +1,7 @@
 ﻿using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.GraphicsLibraryFramework;
-using OpenTK.Windowing.Desktop;
+
 
 
 namespace LearnOpenTK
@@ -11,6 +11,14 @@ namespace LearnOpenTK
 
         private float moveSpeed = 6f;
         private KeyboardState keyboardState;
+
+
+        public CharactorController(KeyboardState keyboardState) : base()
+        {
+            this.keyboardState = keyboardState;
+        }
+
+
         public CharactorController(Entity entity, KeyboardState keyboardState) : base(entity)
         {
             this.keyboardState = keyboardState;
@@ -47,8 +55,6 @@ namespace LearnOpenTK
 
                 Camera.main.transform.position += moveDir * moveSpeed * (float)e.Time;
             }
-
-
 
 
         }

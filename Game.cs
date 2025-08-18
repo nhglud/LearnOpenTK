@@ -20,11 +20,6 @@ namespace LearnOpenTK
         private Entity entity;
         private Entity player;
 
-        bool firstMouse = true;
-
-        float mouseSensitivity = 0.1f;
-
-        private float moveSpeed = 6f;
 
         public Game(int width, int height, string title) : 
             base(GameWindowSettings.Default, new NativeWindowSettings() { ClientSize = (width, height), Title = title }) 
@@ -51,7 +46,6 @@ namespace LearnOpenTK
             
             //camera = new Camera(new Transform(new Vector3(0.0f, 0.0f, 3.0f), new Vector3(0.0f), new Vector3(1.0f)));
 
-
             shader.Use();
             shader.SetInt("texture0", 0);
             shader.SetInt("texture1", 1);
@@ -59,20 +53,17 @@ namespace LearnOpenTK
 
             entity = new Entity();
             entity.transform = new Transform(new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 32.0f, 54.0f), new Vector3(1.0f, 1.0f, 1.0f));
+            
             entity.AddComponent(mesh);
-            entity.AddComponent(new Renderer(entity, shader));
+            entity.AddComponent(new Renderer(shader));
 
 
             player = new Entity();
 
             player.transform = new Transform(new Vector3(0.0f, 0.0f, 3.0f), new Vector3(0.0f), new Vector3(1.0f));
 
-            player.AddComponent(new Camera(player));
+            player.AddComponent(new Camera());
             player.AddComponent(new CharactorController(player, KeyboardState));
-            
-            //Camera.main = player.GetComponent<Camera>();
-
-
 
         }
 
@@ -85,9 +76,7 @@ namespace LearnOpenTK
                 Close();
             }
             
-
             player.GetComponent<CharactorController>().Update(e);
-
 
         }
 

@@ -5,21 +5,25 @@ namespace LearnOpenTK
     {
         public Transform transform; 
 
-        private Dictionary<Type, object> components = new Dictionary<Type, object>();
+        private Dictionary<Type, Component> components = new Dictionary<Type, Component>();
 
         public Entity()
         {
 
         }
 
-        public void AddComponent<T>(T component)
+        public void AddComponent<T>(T component) where T : Component
         {
             if (component == null) return;
+
+            component.transform = transform;
+            component.entity = this;
+            component.Init();
 
             components.Add(typeof(T), component);   
         }
 
-        public T GetComponent<T>()
+        public T GetComponent<T>() where T : Component
         {
             return (T)components[typeof(T)];
         }

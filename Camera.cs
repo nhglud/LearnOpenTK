@@ -5,7 +5,6 @@ namespace LearnOpenTK
 {
     public class Camera : Component 
     {
-        //public Transform transform;
         public static Camera main;
 
         public Vector3 front;
@@ -17,6 +16,18 @@ namespace LearnOpenTK
 
         public float pitch = 0.0f;
         public float yaw = 0.0f;
+
+        public Camera() : base()
+        {
+            main ??= this;
+
+            front = new Vector3(0.0f, 0.0f, -1.0f);
+            up = new Vector3(0.0f, 1.0f, 0.0f);
+
+            fov = 45.0f;
+            near = 0.1f;
+            far = 100.0f;
+        }
 
 
         public Camera(Entity entity) : base(entity)

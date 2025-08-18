@@ -5,14 +5,20 @@
         public Entity entity;
         public Transform transform;
 
+
+        public Component()
+        {
+
+        }
+
         public Component(Entity entity)
         {
             this.entity = entity;
             transform = entity.transform;
-            Init();
+            //Init();
         }
 
-        protected virtual void Init()
+        public virtual void Init()
         {
 
         }

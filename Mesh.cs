@@ -5,13 +5,13 @@ using OpenTK.Graphics.OpenGL4;
 
 namespace LearnOpenTK
 {
-    public class Mesh
+    public class Mesh : Component
     {
         private float[] vertices;
         private int[] indices;
         private int VertexArrayObject;
 
-        public Mesh(float[] vertices, int[] indices) 
+        public Mesh(float[] vertices, int[] indices) : base()
         { 
             this.vertices = vertices;
             this.indices = indices;
