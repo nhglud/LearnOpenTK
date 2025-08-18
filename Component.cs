@@ -15,7 +15,6 @@
         {
             this.entity = entity;
             transform = entity.transform;
-            //Init();
         }
 
         public virtual void Init()

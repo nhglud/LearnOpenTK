@@ -18,7 +18,12 @@ namespace LearnOpenTK
 
         //private Camera camera;
         private Entity entity;
+        private Entity entity2;
+
         private Entity player;
+
+
+
 
 
         public Game(int width, int height, string title) : 
@@ -43,8 +48,6 @@ namespace LearnOpenTK
             texture = AssetManager.GetTexture("container");
             texture2 = AssetManager.GetTexture("awesomeface");
 
-            
-            //camera = new Camera(new Transform(new Vector3(0.0f, 0.0f, 3.0f), new Vector3(0.0f), new Vector3(1.0f)));
 
             shader.Use();
             shader.SetInt("texture0", 0);
@@ -57,13 +60,19 @@ namespace LearnOpenTK
             entity.AddComponent(mesh);
             entity.AddComponent(new Renderer(shader));
 
+            entity2 = new Entity();
+            entity2.transform = new Transform(new Vector3(0.5f, 0.0f, -2.0f), new Vector3(0.0f, -30.0f, 0.0f), new Vector3(1.5f, 1.5f, 1.5f));
+
+            entity2.AddComponent(mesh);
+            entity2.AddComponent(new Renderer(shader));
+
 
             player = new Entity();
 
             player.transform = new Transform(new Vector3(0.0f, 0.0f, 3.0f), new Vector3(0.0f), new Vector3(1.0f));
 
             player.AddComponent(new Camera());
-            player.AddComponent(new CharactorController(player, KeyboardState));
+            player.AddComponent(new CharactorController(KeyboardState, MouseState));
 
         }
 
@@ -96,6 +105,8 @@ namespace LearnOpenTK
             texture2.Use(TextureUnit.Texture1);
 
             entity.GetComponent<Renderer>().Render();
+            entity2.GetComponent<Renderer>().Render();
+
 
             SwapBuffers();
         }
@@ -108,7 +119,17 @@ namespace LearnOpenTK
             ClientSize = (e.Width, e.Height);
         }
 
+        //protected override void OnMouseMove(MouseMoveEventArgs e)
+        //{
+        //    base.OnMouseMove(e);
 
+        //    if (IsFocused) // check to see if the window is focused  
+        //    {
+        //        MousePosition = new Vector2(e.X + ClientSize.X / 2f, e.Y + ClientSize.Y / 2f);
+
+        //        //Mouse.SetPosition(e.X + Width / 2f, e.Y + Height / 2f);
+        //    }
+        //}
 
 
     }

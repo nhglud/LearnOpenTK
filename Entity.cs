@@ -29,7 +29,7 @@ namespace LearnOpenTK
         }
 
 
-        public void RemoveComponent<T>()
+        public void RemoveComponent<T>() where T : Component
         {
             components.Remove(typeof(T));
         }
