@@ -16,10 +16,13 @@ namespace LearnOpenTK
         private Texture texture;
         private Texture texture2;
 
-        private Camera camera;
+        //private Camera camera;
         private Entity entity;
+        private Entity player;
 
         bool firstMouse = true;
+
+        float mouseSensitivity = 0.1f;
 
         private float moveSpeed = 6f;
 
@@ -36,6 +39,8 @@ namespace LearnOpenTK
             GL.Enable(EnableCap.DepthTest);
             GL.ClearColor(0.2f, 0.3f, 0.33f, 1.0f);
 
+            CursorState = CursorState.Grabbed;
+
             AssetManager.LoadAssets();
 
             Mesh mesh = AssetManager.GetMesh("cube");
@@ -44,7 +49,7 @@ namespace LearnOpenTK
             texture2 = AssetManager.GetTexture("awesomeface");
 
             
-            camera = new Camera(new Transform(new Vector3(0.0f, 0.0f, 3.0f), new Vector3(0.0f), new Vector3(1.0f)));
+            //camera = new Camera(new Transform(new Vector3(0.0f, 0.0f, 3.0f), new Vector3(0.0f), new Vector3(1.0f)));
 
 
             shader.Use();
@@ -57,6 +62,18 @@ namespace LearnOpenTK
             entity.AddComponent(mesh);
             entity.AddComponent(new Renderer(entity, shader));
 
+
+            player = new Entity();
+
+            player.transform = new Transform(new Vector3(0.0f, 0.0f, 3.0f), new Vector3(0.0f), new Vector3(1.0f));
+
+            player.AddComponent(new Camera(player));
+            player.AddComponent(new CharactorController(player, KeyboardState));
+            
+            //Camera.main = player.GetComponent<Camera>();
+
+
+
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -67,53 +84,9 @@ namespace LearnOpenTK
             {
                 Close();
             }
+            
 
-            Vector3 moveDir = Vector3.Zero;
-
-            if (KeyboardState.IsKeyDown(Keys.W))
-            {
-                moveDir += camera.front;
-            }
-
-            if (KeyboardState.IsKeyDown(Keys.S))
-            {
-                moveDir -= camera.front;
-            }
-
-            if (KeyboardState.IsKeyDown(Keys.D))
-            {
-                moveDir += Vector3.Normalize(Vector3.Cross(camera.front, camera.up));
-            }
-
-            if (KeyboardState.IsKeyDown((Keys)Keys.A))
-            {
-                moveDir -= Vector3.Normalize(Vector3.Cross(camera.front, camera.up));
-            }
-
-
-            if (moveDir != Vector3.Zero)
-            {
-                moveDir = Vector3.Normalize(moveDir);
-
-                camera.transform.position += moveDir * moveSpeed * (float)e.Time;
-            }
-
-
-            if(firstMouse)
-            {
-                firstMouse = false;
-            }
-            else
-            {
-                float mouseDX = MouseState.Delta.X;
-                float mouseDY = MouseState.Delta.Y;
-
-                
-
-
-
-            }
-
+            player.GetComponent<CharactorController>().Update(e);
 
 
         }
@@ -126,8 +99,8 @@ namespace LearnOpenTK
 
             shader.Use();
 
-            shader.SetMat4("view", camera.GetViewMatrix());
-            shader.SetMat4("projection", camera.GetProjectionMatrix(ClientSize.X / (float)ClientSize.Y));
+            shader.SetMat4("view", Camera.main.GetViewMatrix());
+            shader.SetMat4("projection", Camera.main.GetProjectionMatrix(ClientSize.X / (float)ClientSize.Y));
 
 
             texture.Use(TextureUnit.Texture0);
@@ -145,6 +118,8 @@ namespace LearnOpenTK
             GL.Viewport(0, 0, e.Width, e.Height);
             ClientSize = (e.Width, e.Height);
         }
+
+
 
 
     }

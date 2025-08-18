@@ -3,9 +3,10 @@ using OpenTK.Mathematics;
 
 namespace LearnOpenTK
 {
-    public class Camera
+    public class Camera : Component 
     {
-        public Transform transform;
+        //public Transform transform;
+        public static Camera main;
 
         public Vector3 front;
         public Vector3 up;
@@ -18,9 +19,10 @@ namespace LearnOpenTK
         public float yaw = 0.0f;
 
 
-        public Camera(Transform transform)
+        public Camera(Entity entity) : base(entity)
         {
-            this.transform = transform;
+
+            main ??= this;
 
             front = new Vector3(0.0f, 0.0f, -1.0f);
             up = new Vector3(0.0f, 1.0f, 0.0f);
