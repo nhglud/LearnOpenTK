@@ -1,15 +1,17 @@
 ﻿
-#version 330 core
+#version 430 core
 layout(location = 0) in vec3 aPosition;
-layout(location = 1) in vec2 aTexCoord;
+layout(location = 1) in vec3 aNormal;
+layout(location = 2) in vec2 aTexCoord;
 
+
+out vec3 normal;
 out vec2 texCoord;
 
-uniform mat4 model;
-//uniform mat4 view;
-//uniform mat4 projection;
 
-layout(std140) uniform CameraData
+uniform mat4 model;
+
+layout(std140, binding = 0) uniform CameraData
 {
     mat4 view;
     mat4 projection;
@@ -19,8 +21,9 @@ layout(std140) uniform CameraData
 void main(void)
 {
     texCoord = aTexCoord;
+    normal = aNormal;
 
-//    gl_Position = projection * view * model * vec4(aPosition, 1.0);
+
     gl_Position =  projection * view * model * vec4(aPosition, 1.0);
 
 

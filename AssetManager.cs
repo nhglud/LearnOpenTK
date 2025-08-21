@@ -90,9 +90,14 @@
             Texture texture = new Texture("C:\\programming\\LearnOpenTK\\container.jpg");
             Texture awesomeFace = new Texture("C:\\programming\\LearnOpenTK\\awesomeface.png");
 
-            AddMesh("triangle", new Mesh(triangleVertices, triangleIndices));
-            AddMesh("quad", new Mesh(quadVertices, quadIndices));
-            AddMesh("cube", new Mesh(cubeVertices, cubeIndices));
+            //AddMesh("triangle", new Mesh(triangleVertices, triangleIndices));
+            //AddMesh("quad", new Mesh(quadVertices, quadIndices));
+            //AddMesh("cube", new Mesh(cubeVertices, cubeIndices));
+
+
+            AddMesh("cube", ModelLoader.LoadModel("C:\\programming\\LearnOpenTK\\cube.obj"));
+            AddMesh("monke", ModelLoader.LoadModel("C:\\programming\\LearnOpenTK\\monke.obj"));
+
 
             AddShader("basic", shader);
             AddShader("single_color", singleColorShader);

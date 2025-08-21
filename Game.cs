@@ -11,14 +11,10 @@ namespace LearnOpenTK
 {
     public class Game : GameWindow
     {
-
-        private Shader shader;
-        private Shader singleColorShader;
         private Texture texture;
         private Texture texture2;
 
         private List<Entity> entities;
-
 
         public Game(int width, int height, string title) : 
             base(GameWindowSettings.Default, new NativeWindowSettings() { ClientSize = (width, height), Title = title }) 
@@ -30,6 +26,16 @@ namespace LearnOpenTK
         {
             base.OnLoad();
 
+            //var ml = new ModelLoader("C:\\programming\\LearnOpenTK\\cube.obj");
+
+            //var vs = ml.GetVertices();
+
+            //foreach (var vert in vs)
+            //{
+            //    Console.WriteLine(vert.ToString());
+            //}
+
+
             GL.Enable(EnableCap.DepthTest);
             GL.ClearColor(0.2f, 0.3f, 0.33f, 1.0f);
 
@@ -38,33 +44,33 @@ namespace LearnOpenTK
             AssetManager.LoadAssets();
             entities = new List<Entity>();
 
-
             Mesh mesh = AssetManager.GetMesh("cube");
-            shader = AssetManager.GetShader("basic");
+            Mesh monke = AssetManager.GetMesh("monke");
+
+
             texture = AssetManager.GetTexture("container");
             texture2 = AssetManager.GetTexture("awesomeface");
-            singleColorShader = AssetManager.GetShader("single_color");
-
 
 
             Entity entity = new Entity();
             entity.transform = new Transform(new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 32.0f, 54.0f), new Vector3(1.0f, 1.0f, 1.0f));
             
             entity.AddComponent(mesh);
-            entity.AddComponent(new Renderer(shader));
+            entity.AddComponent(new Renderer(AssetManager.GetShader("basic")));
 
             Entity entity2 = new Entity();
             entity2.transform = new Transform(new Vector3(0.5f, 0.0f, -2.0f), new Vector3(0.0f, -30.0f, 0.0f), new Vector3(1.5f, 1.5f, 1.5f));
 
             entity2.AddComponent(mesh);
-            entity2.AddComponent(new Renderer(singleColorShader));
+            entity2.AddComponent(new Renderer(AssetManager.GetShader("single_color")));
 
 
             Entity entity3 = new Entity();
             entity3.transform = new Transform(new Vector3(3.5f, 0.0f, 2.0f), new Vector3(0.0f, -30.0f, 0.0f), new Vector3(1.5f, 1.5f, 1.5f));
 
-            entity3.AddComponent(mesh);
-            entity3.AddComponent(new Renderer(shader));
+            entity3.AddComponent(monke);
+
+            entity3.AddComponent(new Renderer(AssetManager.GetShader("basic")));
 
 
             Entity player = new Entity();
@@ -80,11 +86,9 @@ namespace LearnOpenTK
             entities.Add(entity3);
 
 
-            singleColorShader.Use();
-            shader.Use();
-            shader.SetInt("texture0", 0);
-            shader.SetInt("texture1", 1);
-
+            AssetManager.GetShader("basic").Use();
+            AssetManager.GetShader("basic").SetInt("texture0", 0);
+            AssetManager.GetShader("basic").SetInt("texture1", 1);
 
         }
 
@@ -108,10 +112,8 @@ namespace LearnOpenTK
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-
             Camera.main.UpdateUBO(ClientSize.X, ClientSize.Y);
 
-            //Shader.UpdateViewProjection(Camera.main.GetViewMatrix(), Camera.main.GetProjectionMatrix(ClientSize.X / (float)ClientSize.Y));
 
             texture.Use(TextureUnit.Texture0);
             texture2.Use(TextureUnit.Texture1);

@@ -1,4 +1,5 @@
 ﻿
+using OpenTK.Compute.OpenCL;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using System.Xml.Linq;
@@ -16,11 +17,6 @@ namespace LearnOpenTK
         public Shader(string vertexPath, string fragmentPath)
         {
             SetUpShader(vertexPath, fragmentPath);
-
-
-            //Game.UpdateView += OnUpdateView;
-            //Game.UpdateProjection += OnUpdateProjection;
-            //OnUpdateViewProjection += foo;
 
         }
 
@@ -63,6 +59,7 @@ namespace LearnOpenTK
 
             Handle = GL.CreateProgram();
 
+
             GL.AttachShader(Handle, VertexShader);
             GL.AttachShader(Handle, FragmentShader);
 
@@ -74,6 +71,11 @@ namespace LearnOpenTK
                 string infoLog = GL.GetProgramInfoLog(Handle);
                 Console.WriteLine(infoLog);
             }
+
+
+            int blockIndex = GL.GetUniformBlockIndex(Handle, "CameraData");
+            GL.UniformBlockBinding(Handle, blockIndex, 0);
+
 
             GL.DetachShader(Handle, VertexShader);
             GL.DetachShader(Handle, FragmentShader);
@@ -119,18 +121,6 @@ namespace LearnOpenTK
             int location = GL.GetUniformLocation(Handle, name);
             GL.UniformMatrix4(location, false, ref matrix);
         }
-
-        //private void foo(Matrix4 view, Matrix4 projection)
-        //{
-        //    Use();
-        //    SetMat4("view", view);
-        //    SetMat4("projection", projection);
-        //}
-
-        //public static void UpdateViewProjection(Matrix4 view, Matrix4 projection)
-        //{
-        //    OnUpdateViewProjection?.Invoke(view, projection);
-        //}
 
     }
         
