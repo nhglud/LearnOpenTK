@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenTK.Mathematics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,7 @@ namespace LearnOpenTK
             this.diffuse = diffuse;
             this.specular = specular;
             this.shininess = shininess;
+
         }
 
         public void Use()
@@ -30,5 +32,7 @@ namespace LearnOpenTK
             diffuse.Use();
             specular.Use();
         }
+
+
     }
 }

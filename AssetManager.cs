@@ -85,6 +85,7 @@
 
 
             Shader shader = new Shader("C:\\programming\\LearnOpenTK\\basic_shader.vert", "C:\\programming\\LearnOpenTK\\basic_shader.frag");
+            Shader singleColorShader = new Shader("C:\\programming\\LearnOpenTK\\basic_shader.vert", "C:\\programming\\LearnOpenTK\\single_color.frag");
 
             Texture texture = new Texture("C:\\programming\\LearnOpenTK\\container.jpg");
             Texture awesomeFace = new Texture("C:\\programming\\LearnOpenTK\\awesomeface.png");
@@ -94,6 +95,8 @@
             AddMesh("cube", new Mesh(cubeVertices, cubeIndices));
 
             AddShader("basic", shader);
+            AddShader("single_color", singleColorShader);
+
 
             AddTexture("container", texture);
             AddTexture("awesomeface", awesomeFace);

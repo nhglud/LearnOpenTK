@@ -11,15 +11,14 @@ namespace LearnOpenTK
         
         private Mesh mesh;
         private Shader shader;
+        private static event Action? OnRender;
 
 
         public Renderer(Shader shader) : base()
         {
-
             this.shader = shader;
-
+            OnRender += Render;
         }
-
 
         public override void Init()
         {
@@ -33,5 +32,11 @@ namespace LearnOpenTK
 
             mesh.Draw();
         }
+
+        public static void UpdateRenderers()
+        {
+            OnRender?.Invoke();
+        }
+
     }
 }

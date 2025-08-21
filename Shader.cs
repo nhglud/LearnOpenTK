@@ -1,6 +1,7 @@
 ﻿
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
+using System.Xml.Linq;
 
 
 namespace LearnOpenTK
@@ -10,9 +11,17 @@ namespace LearnOpenTK
         private int Handle;
         private bool disposedValue = false;
 
+        //private static event Action<Matrix4, Matrix4> OnUpdateViewProjection;
+
         public Shader(string vertexPath, string fragmentPath)
         {
             SetUpShader(vertexPath, fragmentPath);
+
+
+            //Game.UpdateView += OnUpdateView;
+            //Game.UpdateProjection += OnUpdateProjection;
+            //OnUpdateViewProjection += foo;
+
         }
 
         ~Shader()
@@ -111,6 +120,18 @@ namespace LearnOpenTK
             GL.UniformMatrix4(location, false, ref matrix);
         }
 
-    }
+        //private void foo(Matrix4 view, Matrix4 projection)
+        //{
+        //    Use();
+        //    SetMat4("view", view);
+        //    SetMat4("projection", projection);
+        //}
 
+        //public static void UpdateViewProjection(Matrix4 view, Matrix4 projection)
+        //{
+        //    OnUpdateViewProjection?.Invoke(view, projection);
+        //}
+
+    }
+        
 }

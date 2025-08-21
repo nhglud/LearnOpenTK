@@ -1,10 +1,13 @@
-﻿namespace LearnOpenTK
+﻿using OpenTK.Windowing.Common;
+
+namespace LearnOpenTK
 {
     public class Component
     {
         public Entity entity;
         public Transform transform;
 
+        protected static event Action<FrameEventArgs> OnUpdate;
 
         public Component()
         {
@@ -20,6 +23,11 @@
         public virtual void Init()
         {
 
+        }
+
+        public static void UpdateComponents(FrameEventArgs e)
+        {
+            OnUpdate?.Invoke(e);
         }
 
     }

@@ -1,5 +1,6 @@
-﻿using OpenTK.Graphics.ES11;
+﻿//using OpenTK.Graphics.ES11;
 using OpenTK.Mathematics;
+using OpenTK.Graphics.OpenGL4;
 
 namespace LearnOpenTK
 {
@@ -18,6 +19,8 @@ namespace LearnOpenTK
         public float pitch = 0.0f;
         public float yaw = -90.0f;
 
+        private int cameraUBO;
+
         public Camera() : base()
         {
             main ??= this;
@@ -28,6 +31,31 @@ namespace LearnOpenTK
             fov = 45.0f;
             near = 0.1f;
             far = 100.0f;
+            InitUBO();
+        }
+
+
+        private void InitUBO()
+        {
+            cameraUBO = GL.GenBuffer();
+
+            GL.BindBuffer(BufferTarget.UniformBuffer, cameraUBO);
+            GL.BufferData(BufferTarget.UniformBuffer, 2 * 16 * sizeof(float), IntPtr.Zero, BufferUsageHint.DynamicDraw);
+            GL.BindBuffer(BufferTarget.UniformBuffer, 0);
+
+            GL.BindBufferRange(BufferRangeTarget.UniformBuffer, 0, cameraUBO, IntPtr.Zero, 2 * 16 * sizeof(float));
+        }
+
+
+        public void UpdateUBO(int viewportWidth, int viewportHeight)
+        {
+            Matrix4 view = GetViewMatrix();
+            Matrix4 proj = GetProjectionMatrix(viewportWidth / (float)viewportHeight);
+
+            GL.BindBuffer(BufferTarget.UniformBuffer, cameraUBO);
+            GL.BufferSubData(BufferTarget.UniformBuffer, IntPtr.Zero, 64, ref view);
+            GL.BufferSubData(BufferTarget.UniformBuffer, (IntPtr)64, 64, ref proj);
+            GL.BindBuffer(BufferTarget.UniformBuffer, 0);
         }
 
 
