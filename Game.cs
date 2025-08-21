@@ -26,15 +26,6 @@ namespace LearnOpenTK
         {
             base.OnLoad();
 
-            //var ml = new ModelLoader("C:\\programming\\LearnOpenTK\\cube.obj");
-
-            //var vs = ml.GetVertices();
-
-            //foreach (var vert in vs)
-            //{
-            //    Console.WriteLine(vert.ToString());
-            //}
-
 
             GL.Enable(EnableCap.DepthTest);
             GL.ClearColor(0.2f, 0.3f, 0.33f, 1.0f);
@@ -72,7 +63,7 @@ namespace LearnOpenTK
 
             entity3.AddComponent(new Renderer(AssetManager.GetShader("basic")));
 
-
+            
             Entity player = new Entity();
 
             player.transform = new Transform(new Vector3(0.0f, 0.0f, 3.0f), new Vector3(0.0f), new Vector3(1.0f));

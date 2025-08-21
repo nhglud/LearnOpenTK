@@ -23,28 +23,30 @@ namespace LearnOpenTK
         {
             VertexArrayObject = GL.GenVertexArray();
             int VertexBufferObject = GL.GenBuffer();
+            int ElementBufferObject = GL.GenBuffer();
 
+            // Bind buffers
             GL.BindVertexArray(VertexArrayObject);
 
             GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
             GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
 
-            int ElementBufferObject = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, ElementBufferObject);
             GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(uint), indices, BufferUsageHint.StaticDraw);
 
-
-
+            // Set vertex attributes
+            
+            // Positions
             GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 8 * sizeof(float), 0);
             GL.EnableVertexAttribArray(0);
 
-
+            // Normals
             GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 8 * sizeof(float), 3 * sizeof(float));
             GL.EnableVertexAttribArray(1);
 
+            // UVs
             GL.VertexAttribPointer(2, 2, VertexAttribPointerType.Float, false, 8 * sizeof(float), 6 * sizeof(float));
             GL.EnableVertexAttribArray(2);
-
 
 
             GL.BindVertexArray(0);

@@ -13,26 +13,6 @@ namespace LearnOpenTK
 
     public static class ModelLoader
     {
-        //List<float> vertices;
-        //List<uint> indices;
-
-
-        //public ModelLoader(string path)
-        //{
-        //    LoadModel(path);
-        //}
-
-        //public List<float> GetVertices()
-        //{
-        //    return vertices;
-        //}
-
-
-        //public List<uint> GetIndices()
-        //{
-        //    return indices;
-        //}
-
 
         public static Mesh LoadModel(string path)
         {
@@ -76,113 +56,7 @@ namespace LearnOpenTK
             return new Mesh(vertices.ToArray(), indices.ToArray());
         }
 
-
     }
-
-
-    //public class ModelLoader
-    //{
-
-    //    private List<float> model;
-
-
-    //    public ModelLoader(string path)
-    //    {
-    //       model = LoadModel(path);
-    //    }
-
-    //    public List<float> GetModel()
-    //    {
-    //        return model;
-    //    }
-
-    //    public List<float> LoadModel(string path)
-    //    {
-    //        List<float> vertexData = new List<float>();
-
-
-    //        List<Vector3> positions = new List<Vector3>();
-    //        List<Vector3> normals = new List<Vector3>();
-    //        List<Vector2> uvs = new List<Vector2>();
-    //        List<int> indices = new List<int>();
-
-    //        var lines = File.ReadLines(path);
-
-    //        foreach (var line in lines)
-    //        {
-
-    //            var parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-    //            if (parts.Length == 0) continue;
-
-
-    //            switch(parts[0])
-    //            {
-    //                case "v":
-
-    //                    positions.Add(new Vector3(
-    //                        float.Parse(parts[1]), 
-    //                        float.Parse(parts[2]), 
-    //                        float.Parse(parts[3])
-    //                    ));
-                        
-    //                    break;
-
-
-    //                case "vn":
-
-    //                    normals.Add(new Vector3(
-    //                        float.Parse(parts[1]),
-    //                        float.Parse(parts[2]),
-    //                        float.Parse(parts[3])
-    //                    ));
-
-    //                    break;
-
-    //                case "vt":
-
-    //                    uvs.Add(new Vector2(
-    //                        float.Parse(parts[1]),
-    //                        float.Parse(parts[2])
-    //                    ));
-
-    //                    break;
-
-    //                case "f":
-    //                    for (int i = 1; i < parts.Length; i++)
-    //                    {
-
-
-
-
-    //                        var indicesParts = parts[i].Split('/');
-    //                        indices.Add(int.Parse(indicesParts[0]) - 1); // OBJ indices are 1-based
-                            
-                        
-                        
-                        
-    //                    }
-
-    //                    break;
-
-    //            }
-
-
-    //        }
-
-
-         
-
-    //        Console.WriteLine(positions);
-    //        Console.WriteLine(normals.Count);
-    //        Console.WriteLine(uvs.Count);
-    //        Console.WriteLine(indices.Count);
-
-
-    //        return vertexData;
-    //    }
-
-
-
 
 
     

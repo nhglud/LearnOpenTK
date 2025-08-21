@@ -2,6 +2,9 @@
 {
     public static class AssetManager
     {
+        private const string path = "C:\\programming\\LearnOpenTK\\";
+
+
 
         private static Dictionary<string, Mesh> meshes = new Dictionary<string, Mesh>();
         private static Dictionary<string, Shader> shaders = new Dictionary<string, Shader>();
@@ -9,94 +12,20 @@
 
         public static void LoadAssets()
         {
-            float[] triangleVertices = {
-                  -0.5f, -0.5f, 0.0f, //Bottom-left vertex
-                   0.5f, -0.5f, 0.0f, //Bottom-right vertex
-                   0.0f,  0.5f, 0.0f  //Top vertex
-            };
+            Shader shader = new Shader(path + "basic_shader.vert", path + "basic_shader.frag");
+            Shader singleColorShader = new Shader(path + "basic_shader.vert", path + "single_color.frag");
 
-            int[] triangleIndices = { 0, 1, 2 };
-
-            float[] quadVertices =
-            {
-                //Position          Texture coordinates
-                 0.5f,  0.5f, 0.0f, 1.0f, 1.0f, // top right
-                 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, // bottom right
-                -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, // bottom left
-                -0.5f,  0.5f, 0.0f, 0.0f, 1.0f  // top left
-            };
-
-            int[] quadIndices = {  // note that we start from 0!
-                0, 1, 3,   // first triangle
-                1, 2, 3    // second triangle
-            };
-
-
-            float[] cubeVertices = {
-                 -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-                  0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-                  0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-                  0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-                 -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-                 -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-
-                 -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-                  0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-                  0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-                  0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-                 -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-                 -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-
-                 -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-                 -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-                 -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-                 -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-                 -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-                 -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-                  0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-                  0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-                  0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-                  0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-                  0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-                  0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-                 -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-                  0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-                  0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-                  0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-                 -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-                 -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-
-                 -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-                  0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-                  0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-                  0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-                 -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-                 -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-            };
-
-            int[] cubeIndices = new int[cubeVertices.Length];
-
-            for (int i = 0; i < cubeVertices.Length; i++)
-            {
-                cubeIndices[i] = i;
-            }
-
-
-            Shader shader = new Shader("C:\\programming\\LearnOpenTK\\basic_shader.vert", "C:\\programming\\LearnOpenTK\\basic_shader.frag");
-            Shader singleColorShader = new Shader("C:\\programming\\LearnOpenTK\\basic_shader.vert", "C:\\programming\\LearnOpenTK\\single_color.frag");
-
-            Texture texture = new Texture("C:\\programming\\LearnOpenTK\\container.jpg");
-            Texture awesomeFace = new Texture("C:\\programming\\LearnOpenTK\\awesomeface.png");
+            Texture texture = new Texture(path + "container.jpg");
+            Texture awesomeFace = new Texture(path + "awesomeface.png");
 
             //AddMesh("triangle", new Mesh(triangleVertices, triangleIndices));
             //AddMesh("quad", new Mesh(quadVertices, quadIndices));
             //AddMesh("cube", new Mesh(cubeVertices, cubeIndices));
 
 
-            AddMesh("cube", ModelLoader.LoadModel("C:\\programming\\LearnOpenTK\\cube.obj"));
-            AddMesh("monke", ModelLoader.LoadModel("C:\\programming\\LearnOpenTK\\monke.obj"));
+            AddMesh("cube", ModelLoader.LoadModel(path + "cube.obj"));
+            AddMesh("monke", ModelLoader.LoadModel(path + "monke.obj"));
+
 
 
             AddShader("basic", shader);
