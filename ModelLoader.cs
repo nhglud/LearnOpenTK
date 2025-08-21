@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.WebSockets;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using Assimp;
-using OpenTK.Mathematics;
+
 
 namespace LearnOpenTK
 {
@@ -20,7 +15,7 @@ namespace LearnOpenTK
             List<int> indices = new List<int>();
 
             var importer = new AssimpContext();
-            Scene scene = importer.ImportFile(path, PostProcessSteps.Triangulate | PostProcessSteps.GenerateNormals | PostProcessSteps.FlipUVs);
+            Assimp.Scene scene = importer.ImportFile(path, PostProcessSteps.Triangulate | PostProcessSteps.GenerateNormals | PostProcessSteps.FlipUVs);
 
             foreach (var mesh in scene.Meshes)
             {

@@ -2,7 +2,7 @@
 
 namespace LearnOpenTK
 {
-    public class Component
+    public abstract class Component
     {
         public Entity entity;
         public Transform transform;

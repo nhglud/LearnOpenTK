@@ -5,7 +5,6 @@
         private const string path = "C:\\programming\\LearnOpenTK\\";
 
 
-
         private static Dictionary<string, Mesh> meshes = new Dictionary<string, Mesh>();
         private static Dictionary<string, Shader> shaders = new Dictionary<string, Shader>();
         private static Dictionary<string, Texture> textures = new Dictionary<string, Texture>();
@@ -18,13 +17,10 @@
             Texture texture = new Texture(path + "container.jpg");
             Texture awesomeFace = new Texture(path + "awesomeface.png");
 
-            //AddMesh("triangle", new Mesh(triangleVertices, triangleIndices));
-            //AddMesh("quad", new Mesh(quadVertices, quadIndices));
-            //AddMesh("cube", new Mesh(cubeVertices, cubeIndices));
-
 
             AddMesh("cube", ModelLoader.LoadModel(path + "cube.obj"));
             AddMesh("monke", ModelLoader.LoadModel(path + "monke.obj"));
+            AddMesh("quad", ModelLoader.LoadModel(path + "quad.obj"));
 
 
 
