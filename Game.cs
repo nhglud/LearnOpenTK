@@ -29,7 +29,11 @@ namespace LearnOpenTK
             GL.Enable(EnableCap.DepthTest);
             GL.ClearColor(0.2f, 0.3f, 0.33f, 1.0f);
 
+
             CursorState = CursorState.Grabbed;
+            
+            AssetManager.LoadAssets();
+
             currentLevel = new FirstLevel(this);
             currentLevel.LoadLevel();
             
@@ -41,7 +45,7 @@ namespace LearnOpenTK
 
             if (KeyboardState.IsKeyDown(Keys.Escape))
             {
-                Close();
+                    Close();
             }
 
             currentLevel.UpdateLevel(e);
@@ -65,6 +69,12 @@ namespace LearnOpenTK
 
             GL.Viewport(0, 0, e.Width, e.Height);
             ClientSize = (e.Width, e.Height);
+        }
+
+        public void ChangeLevel(Level newLevel)
+        {
+            currentLevel = newLevel;
+            newLevel.LoadLevel();
         }
 
     }

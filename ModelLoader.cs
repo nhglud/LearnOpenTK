@@ -5,7 +5,6 @@ using Assimp;
 namespace LearnOpenTK
 {
 
-
     public static class ModelLoader
     {
 
@@ -34,10 +33,8 @@ namespace LearnOpenTK
                     vertices.Add(n.Y);
                     vertices.Add(n.Z);
 
-
                     vertices.Add(uv.X);
                     vertices.Add(uv.Y);
-
                 }
 
           

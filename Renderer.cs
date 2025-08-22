@@ -10,28 +10,51 @@ namespace LearnOpenTK
     {
         
         private Mesh mesh;
-        private Shader shader;
+        private Material material;
+
+        //private Shader shader;
+        
         private static event Action? OnRender;
 
 
-        public Renderer(Shader shader) : base()
+        //public Renderer(Shader shader) : base()
+        //{
+        //    this.shader = shader;
+        //    OnRender += Render;
+        //}
+
+        public Renderer(Material material) : base()
         {
-            this.shader = shader;
+            this.material = material;
             OnRender += Render;
         }
+
 
         public override void Init()
         {
             mesh = entity.GetComponent<Mesh>();
         }
 
+
         public void Render()
         {
-            shader.Use();
-            shader.SetMat4("model", transform.GetTransformMatrix());
-
+            material.Use(transform.GetTransformMatrix());
             mesh.Draw();
         }
+
+
+
+        //public void Render()
+        //{
+        //    shader.Use();
+        //    shader.SetMat4("model", transform.GetTransformMatrix());
+
+        //    shader.Use();
+        //    shader.SetMat4("model", transform.GetTransformMatrix());
+
+
+        //    mesh.Draw();
+        //}
 
         public static void UpdateRenderers()
         {

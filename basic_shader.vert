@@ -8,6 +8,7 @@ layout(location = 2) in vec2 aTexCoord;
 out vec3 normal;
 out vec2 texCoord;
 
+out vec3 fragPosition;
 
 uniform mat4 model;
 
@@ -21,8 +22,10 @@ layout(std140, binding = 0) uniform CameraData
 void main(void)
 {
     texCoord = aTexCoord;
-    normal = aNormal;
 
+    normal = mat3(transpose(inverse(model))) * aNormal;
+
+    fragPosition = vec3(model * vec4(aPosition, 1.0));
 
     gl_Position =  projection * view * model * vec4(aPosition, 1.0);
 
