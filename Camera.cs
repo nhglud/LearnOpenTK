@@ -40,10 +40,12 @@ namespace LearnOpenTK
             cameraUBO = GL.GenBuffer();
 
             GL.BindBuffer(BufferTarget.UniformBuffer, cameraUBO);
-            GL.BufferData(BufferTarget.UniformBuffer, 2 * 16 * sizeof(float), IntPtr.Zero, BufferUsageHint.DynamicDraw);
+
+            int bufferSize = (2 * 16 + 4) * sizeof(float);
+            GL.BufferData(BufferTarget.UniformBuffer, bufferSize, IntPtr.Zero, BufferUsageHint.DynamicDraw);
             GL.BindBuffer(BufferTarget.UniformBuffer, 0);
 
-            GL.BindBufferRange(BufferRangeTarget.UniformBuffer, 0, cameraUBO, IntPtr.Zero, 2 * 16 * sizeof(float));
+            GL.BindBufferRange(BufferRangeTarget.UniformBuffer, 0, cameraUBO, IntPtr.Zero, bufferSize);
         }
 
 
@@ -55,6 +57,8 @@ namespace LearnOpenTK
             GL.BindBuffer(BufferTarget.UniformBuffer, cameraUBO);
             GL.BufferSubData(BufferTarget.UniformBuffer, IntPtr.Zero, 64, ref view);
             GL.BufferSubData(BufferTarget.UniformBuffer, (IntPtr)64, 64, ref proj);
+            GL.BufferSubData(BufferTarget.UniformBuffer, (IntPtr)128, 16, ref transform.position);
+
             GL.BindBuffer(BufferTarget.UniformBuffer, 0);
         }
 

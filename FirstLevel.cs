@@ -31,12 +31,19 @@ namespace LearnOpenTK
             Vector3 ambientColor = new Vector3(0.3f, 0.2f, 0.32f);
             float ambientStrength = 0.8f;
 
-            Vector3 lightPosition = new Vector3(0.0f, 2.0f, 0.0f);
+            Vector3 lightPosition = new Vector3(0.0f, 4.0f, 2.0f);
             Vector3 lightColor = new Vector3(1.0f, 1.0f, 1.0f);
 
 
             LitMaterial.SetAmbient(ambientColor, ambientStrength);
             LitMaterial.SetDiffuse(lightPosition, lightColor);
+
+            Entity lightEntity = new Entity();
+            lightEntity.transform = new Transform(lightPosition, Vector3.Zero, 0.2f * Vector3.One);
+
+            lightEntity.AddComponent(mesh);
+            lightEntity.AddComponent(new Renderer(new UnlitMaterial(Vector3.One)));
+
 
 
             Entity entity = new Entity();
@@ -73,6 +80,8 @@ namespace LearnOpenTK
             entities.Add(entity2);
             entities.Add(entity3);
             entities.Add(entity4);
+            entities.Add(lightEntity);
+
 
 
             AssetManager.GetShader("basic").Use();
@@ -94,6 +103,8 @@ namespace LearnOpenTK
             base.RenderLevel(e);
 
             Camera.main.UpdateUBO(game.ClientSize.X, game.ClientSize.Y);
+
+            LitMaterial.UpdateStaticProperties();
 
             texture.Use(TextureUnit.Texture0);
             texture2.Use(TextureUnit.Texture1);

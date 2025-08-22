@@ -7,12 +7,12 @@ namespace LearnOpenTK
     public class LitMaterial : Material
     {
         private Vector3 color;
+
         private static Vector3 ambientColor;
         private static float ambientStrength;
         
         private static Vector3 lightPosition;
         private static Vector3 lightColor;
-
 
 
         public LitMaterial(Vector3 color) : base()  
@@ -24,13 +24,17 @@ namespace LearnOpenTK
         public override void Use(Matrix4 model)
         { 
             base.Use(model);
-            shader.SetFloat("ambientStrength", ambientStrength);
             shader.SetVector3("color", color);
-            shader.SetVector3("ambientColor", ambientColor);
+        }
 
-            shader.SetVector3("lightPosition", lightPosition);
-            shader.SetVector3("lightColor", lightColor);
+        public static void UpdateStaticProperties()
+        {
+            var litShader = AssetManager.GetShader("lit");
 
+            litShader.SetFloat("ambientStrength", ambientStrength);
+            litShader.SetVector3("ambientColor", ambientColor);
+            litShader.SetVector3("lightPosition", lightPosition);
+            litShader.SetVector3("lightColor", lightColor);
         }
 
         public static void SetAmbient(Vector3 color, float strength)

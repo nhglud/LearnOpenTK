@@ -29,7 +29,6 @@ namespace LearnOpenTK
             GL.Enable(EnableCap.DepthTest);
             GL.ClearColor(0.2f, 0.3f, 0.33f, 1.0f);
 
-
             CursorState = CursorState.Grabbed;
             
             AssetManager.LoadAssets();
@@ -45,7 +44,7 @@ namespace LearnOpenTK
 
             if (KeyboardState.IsKeyDown(Keys.Escape))
             {
-                    Close();
+                Close();
             }
 
             currentLevel.UpdateLevel(e);

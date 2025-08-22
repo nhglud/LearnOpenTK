@@ -12,16 +12,8 @@ namespace LearnOpenTK
         private Mesh mesh;
         private Material material;
 
-        //private Shader shader;
         
         private static event Action? OnRender;
-
-
-        //public Renderer(Shader shader) : base()
-        //{
-        //    this.shader = shader;
-        //    OnRender += Render;
-        //}
 
         public Renderer(Material material) : base()
         {
@@ -42,19 +34,6 @@ namespace LearnOpenTK
             mesh.Draw();
         }
 
-
-
-        //public void Render()
-        //{
-        //    shader.Use();
-        //    shader.SetMat4("model", transform.GetTransformMatrix());
-
-        //    shader.Use();
-        //    shader.SetMat4("model", transform.GetTransformMatrix());
-
-
-        //    mesh.Draw();
-        //}
 
         public static void UpdateRenderers()
         {

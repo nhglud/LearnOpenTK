@@ -5,9 +5,9 @@ out vec4 outputColor;
 
 in vec2 texCoord;
 
-
+uniform vec3 color;
 
 void main()
 {
-    outputColor = vec4(0.5, 0.6, 0.3, 1.0);
+    outputColor = vec4(color, 1.0);
 }
