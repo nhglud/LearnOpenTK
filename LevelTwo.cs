@@ -11,11 +11,10 @@ using OpenTK.Windowing.Common;
 
 namespace LearnOpenTK
 {
-    internal class LevelTwo : Level
+    public class LevelTwo : Level
     {
         public LevelTwo(Game game) : base(game)
         { 
-
 
         }
 
@@ -37,7 +36,6 @@ namespace LearnOpenTK
             floor.AddComponent<Mesh>(AssetManager.GetMesh("quad"));
             floor.AddComponent<Renderer>(new Renderer(AssetManager.GetMaterial("container2_mat")));
 
-
             Entity lightEntity = new Entity();
             lightEntity.transform = new Transform(new Vector3(6.5f, 3.0f, 2.0f), Vector3.Zero, 0.2f * Vector3.One);
 
@@ -46,11 +44,12 @@ namespace LearnOpenTK
             lightEntity.AddComponent(new PointLight(Vector3.One));
 
 
-            Entity dirLightEntity = new Entity();
-            dirLightEntity.transform = new Transform(Vector3.Zero, Vector3.Zero,  Vector3.One);
+            Entity spotLightEntity = new Entity();
+            spotLightEntity.transform = new Transform(1.5f * Vector3.UnitY, Vector3.Zero,  0.2f * Vector3.One);
 
-
-            dirLightEntity.AddComponent(new DirectionalLight(Vector3.One, -Vector3.UnitY));
+            spotLightEntity.AddComponent(new SpotLight(Vector3.UnitX, (float)Math.Cos(10.0), (float)Math.Cos(15.0), -Vector3.UnitY));
+            spotLightEntity.AddComponent(AssetManager.GetMesh("cube"));
+            spotLightEntity.AddComponent(new Renderer(new UnlitMaterial(Vector3.One)));
 
             Entity player = new Entity();
             player.transform = new Transform(new Vector3(0.0f, 0.0f, 3.0f), new Vector3(0.0f), new Vector3(1.0f));
@@ -61,18 +60,9 @@ namespace LearnOpenTK
             entities.Add(floor);
             entities.Add(player);
             entities.Add(lightEntity);
-            entities.Add(dirLightEntity);
+            entities.Add(spotLightEntity);
 
-
-            lightingSystem = new LightingSystem(
-                new List<PointLight>() { lightEntity.GetComponent<PointLight>() },
-                new List<DirectionalLight>() { 
-                    dirLightEntity.GetComponent<DirectionalLight>(),
-                    new DirectionalLight(Vector3.UnitX, -Vector3.UnitZ)
-                }
-            );
-    
-
+            lightingSystem = new LightingSystem(entities);
         }
 
         public override void UpdateLevel(FrameEventArgs e)

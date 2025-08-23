@@ -5,7 +5,6 @@ namespace LearnOpenTK
 {
     public class DirectionalLight : Light
     {
-        public Vector3 lightColor;
         public Vector3 direction;
 
         public DirectionalLight(Vector3 lightColor, Vector3 direction) : base()
