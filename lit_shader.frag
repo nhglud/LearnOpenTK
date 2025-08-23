@@ -43,12 +43,17 @@ uniform Material material;
 uniform int numLights;
 uniform LightSource lights[MAX_LIGHTS];
 
-uniform DirectionalLight directionalLight;
+
+uniform int numDirectionalLights;
+
+#define MAX_DIRECTIONAL_LIGHTS 8
+
+uniform DirectionalLight directionalLights[MAX_DIRECTIONAL_LIGHTS];
+
 
 
 vec3 CalculateDiffuseLight(vec3 lightPos, vec3 lightCol, vec3 norm)
 {
-//	vec3 norm = normalize(normal);
 	vec3 lightDir = normalize(lightPos - fragPosition);
 	vec3 diffuse = max(dot(norm, lightDir), 0.0) * lightCol;
 
@@ -58,7 +63,6 @@ vec3 CalculateDiffuseLight(vec3 lightPos, vec3 lightCol, vec3 norm)
 
 vec3 CalculateSpecularLight(vec3 lightPos, vec3 lightCol, vec3 norm)
 {
-//	vec3 norm = normalize(normal);
 	vec3 lightDir = normalize(lightPos - fragPosition);
 
 	float specularStrength = 0.8;
@@ -73,7 +77,6 @@ vec3 CalculateSpecularLight(vec3 lightPos, vec3 lightCol, vec3 norm)
 
 vec3 CalculateDiffuseLightDirectional(vec3 lightCol, vec3 direction, vec3 norm)
 {
-//	vec3 norm = normalize(normal);
 	vec3 lightDir = -direction;
 	vec3 diffuse = max(dot(norm, lightDir), 0.0) * lightCol;
 
@@ -82,7 +85,6 @@ vec3 CalculateDiffuseLightDirectional(vec3 lightCol, vec3 direction, vec3 norm)
 
 vec3 CalculateSpecularLightDirectional(vec3 lightCol, vec3 direction, vec3 norm)
 {
-
 	vec3 lightDir = -direction;
 
 	float specularStrength = 0.8;
@@ -92,7 +94,6 @@ vec3 CalculateSpecularLightDirectional(vec3 lightCol, vec3 direction, vec3 norm)
 	vec3 specular = specularStrength * spec * lightCol; 
 
 	return specular;
-
 }
 
 void main()
@@ -115,11 +116,12 @@ void main()
 		specular += CalculateSpecularLight(lights[i].position, lights[i].color, norm);
 	}
 
-	diffuse += CalculateDiffuseLightDirectional(directionalLight.color, directionalLight.direction, norm);
-	specular += CalculateSpecularLightDirectional(directionalLight.color, directionalLight.direction, norm);
-
-
-
+	for (int i = 0; i < numDirectionalLights; i++)
+	{
+		
+		diffuse += CalculateDiffuseLightDirectional(directionalLights[i].color, directionalLights[i].direction, norm);
+		specular += CalculateSpecularLightDirectional(directionalLights[i].color, directionalLights[i].direction, norm);
+	}
 
 
 	vec3 result = (ambient + diffuse) * diffColor  + specular * specColor;

@@ -65,8 +65,13 @@ namespace LearnOpenTK
 
 
             lightingSystem = new LightingSystem(
-                new List<PointLight>() { lightEntity.GetComponent<PointLight>() }, 
-                dirLightEntity.GetComponent<DirectionalLight>());
+                new List<PointLight>() { lightEntity.GetComponent<PointLight>() },
+                new List<DirectionalLight>() { 
+                    dirLightEntity.GetComponent<DirectionalLight>(),
+                    new DirectionalLight(Vector3.UnitX, -Vector3.UnitZ)
+                }
+            );
+    
 
         }
 

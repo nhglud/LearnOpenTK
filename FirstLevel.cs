@@ -128,7 +128,7 @@ namespace LearnOpenTK
             lights.Add(lightEntity3.GetComponent<PointLight>());
             lights.Add(lightEntity4.GetComponent<PointLight>());
 
-            lightingSystem = new LightingSystem(lights, new DirectionalLight(Vector3.One, Vector3.One));
+            lightingSystem = new LightingSystem(lights, new List<DirectionalLight>() { new DirectionalLight(Vector3.One, Vector3.One) });
         }
 
 
