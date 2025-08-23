@@ -33,7 +33,9 @@ namespace LearnOpenTK
             
             AssetManager.LoadAssets();
 
-            currentLevel = new FirstLevel(this);
+            //currentLevel = new FirstLevel(this);
+
+            currentLevel = new LevelTwo(this);
             currentLevel.LoadLevel();
             
         }

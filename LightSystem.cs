@@ -9,29 +9,33 @@ namespace LearnOpenTK
     {
 
         private Shader litShader;
-        private List<LightSource> lightSources;
+        private List<PointLight> pointLights;
+        private const int MAX_LIGHTS = 16;
 
-        public LightingSystem(List<LightSource> LightSources)
+        public LightingSystem(List<PointLight> LightSources)
         {
             litShader = AssetManager.GetShader("lit");
 
-            this.lightSources = LightSources;
+            this.pointLights = LightSources;
 
-            Console.WriteLine(lightSources.Count);
+            Console.WriteLine(pointLights.Count);
         }
 
         public void Update()
         {
             litShader.Use();
-            litShader.SetInt("numLights", lightSources.Count);
+            litShader.SetInt("numLights", pointLights.Count);
 
-            for (int i = 0; i < lightSources.Count; i++)
+            int count = Math.Min(MAX_LIGHTS, pointLights.Count);
+
+
+            for (int i = 0; i < count; i++)
             {
                 string namePosition = $"lights[{i}].position";
                 string nameColor = $"lights[{i}].color";
 
-                litShader.SetVector3(namePosition, lightSources[i].transform.position);
-                litShader.SetVector3(nameColor, lightSources[i].lightColor);
+                litShader.SetVector3(namePosition, pointLights[i].transform.position);
+                litShader.SetVector3(nameColor, pointLights[i].lightColor);
             }
 
         }

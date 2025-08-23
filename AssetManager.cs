@@ -25,7 +25,7 @@ namespace LearnOpenTK
             Texture texture = new Texture(path + "container.jpg");
             Texture awesomeFace = new Texture(path + "awesomeface.png");
             Texture diffuse = new Texture(path + "container2_diffuse.png");
-            Texture specular = new Texture(path + "container2_diffuse.png");
+            Texture specular = new Texture(path + "container2_specular.png");
 
 
             AddMesh("cube", ModelLoader.LoadModel(path + "cube.obj"));

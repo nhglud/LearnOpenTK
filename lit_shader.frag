@@ -80,16 +80,10 @@ void main()
 		diffuse += CalculateDiffuseLight(lights[i].position, lights[i].color);
 		specular += CalculateSpecularLight(lights[i].position, lights[i].color);
 
-
 	}
 
 
-//	vec3 diffuse = CalculateDiffuseLight(lightPosition, lightColor);
-//	vec3 specular = CalculateSpecularLight(lightPosition, lightColor);
-
 	vec3 result = (ambient + diffuse) * diffColor  + specular * specColor;
-//	vec3 result = ambient + diffuse  + specular;
-
 
 	outputColor = vec4(result, 1.0);
 }

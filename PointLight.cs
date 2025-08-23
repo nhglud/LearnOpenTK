@@ -2,13 +2,13 @@
 
 namespace LearnOpenTK
 {
-    public class LightSource : Component
+    public class PointLight : Light
     {
         
         public Vector3 lightColor;
 
 
-        public LightSource(Vector3 lightColor) : base()
+        public PointLight(Vector3 lightColor) : base()
         {
             this.lightColor = lightColor;
         }
