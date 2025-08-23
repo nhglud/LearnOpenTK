@@ -1,5 +1,7 @@
 ﻿
 using OpenTK.Mathematics;
+using OpenTK.Graphics.OpenGL4;
+
 
 
 namespace LearnOpenTK
@@ -14,6 +16,9 @@ namespace LearnOpenTK
         private static Vector3 lightPosition;
         private static Vector3 lightColor;
 
+        private Texture diffuseMap;
+        private Texture specularMap;
+
 
         public LitMaterial(Vector3 color) : base()  
         {
@@ -21,10 +26,26 @@ namespace LearnOpenTK
             shader = AssetManager.GetShader("lit");
         }
 
+        public LitMaterial(Texture diffuseMap, Texture specularMap) : base()
+        {
+            this.color = Vector3.One;
+            shader = AssetManager.GetShader("lit");
+
+            this.diffuseMap = diffuseMap;
+            this.specularMap = specularMap;
+        }
+
+
         public override void Use(Matrix4 model)
         { 
             base.Use(model);
             shader.SetVector3("color", color);
+
+            shader.SetInt("material.diffuseMap", 0);
+            shader.SetInt("material.specularMap", 1);
+            diffuseMap.Use(TextureUnit.Texture0);
+            specularMap.Use(TextureUnit.Texture1);
+
         }
 
         public static void UpdateStaticProperties()

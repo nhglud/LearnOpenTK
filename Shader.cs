@@ -12,8 +12,6 @@ namespace LearnOpenTK
         private int Handle;
         private bool disposedValue = false;
 
-        //private static event Action<Matrix4, Matrix4> OnUpdateViewProjection;
-
         public Shader(string vertexPath, string fragmentPath)
         {
             SetUpShader(vertexPath, fragmentPath);

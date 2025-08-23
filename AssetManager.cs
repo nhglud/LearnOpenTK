@@ -24,6 +24,8 @@ namespace LearnOpenTK
 
             Texture texture = new Texture(path + "container.jpg");
             Texture awesomeFace = new Texture(path + "awesomeface.png");
+            Texture diffuse = new Texture(path + "container2_diffuse.png");
+            Texture specular = new Texture(path + "container2_diffuse.png");
 
 
             AddMesh("cube", ModelLoader.LoadModel(path + "cube.obj"));
@@ -38,9 +40,11 @@ namespace LearnOpenTK
 
             AddTexture("container", texture);
             AddTexture("awesomeface", awesomeFace);
+            AddTexture("container2_diffuse", diffuse);
+            AddTexture("container2_specular", specular);
 
+            AddMaterial("container2_mat", new LitMaterial(GetTexture("container2_diffuse"), GetTexture("container2_specular")));
 
-            //AddMaterial("lit_material", new LitMaterial(new Vector3(0.4f, 0.36f, 0.23f)));
 
         }
 
@@ -63,7 +67,6 @@ namespace LearnOpenTK
         {
             materials.Add(name, material);
         }
-
 
 
         public static Mesh GetMesh(string name)
