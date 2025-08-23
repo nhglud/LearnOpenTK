@@ -8,8 +8,6 @@ namespace LearnOpenTK
 {
     public class FirstLevel : Level
     {
-        //private Texture texture;
-        //private Texture texture2;
 
         private LightingSystem lightingSystem;
 
@@ -20,11 +18,6 @@ namespace LearnOpenTK
         public override void LoadLevel()
         {
             base.LoadLevel();
-
-            //AssetManager.LoadAssets();
-
-            //texture = AssetManager.GetTexture("container");
-            //texture2 = AssetManager.GetTexture("awesomeface");
 
 
             Mesh mesh = AssetManager.GetMesh("cube");
@@ -64,14 +57,11 @@ namespace LearnOpenTK
             lightEntity3.AddComponent(new PointLight(Vector3.One));
 
 
-
-
             Entity lightEntity4 = new Entity();
             lightEntity4.transform = new Transform(new Vector3(2.3f, 5.4f, 1.0f), Vector3.Zero, 0.2f * Vector3.One);
             lightEntity4.AddComponent(mesh);
             lightEntity4.AddComponent(new Renderer(new UnlitMaterial(Vector3.One)));
             lightEntity4.AddComponent(new PointLight(Vector3.One));
-
 
 
             Entity entity = new Entity();
@@ -128,9 +118,7 @@ namespace LearnOpenTK
             lights.Add(lightEntity3.GetComponent<PointLight>());
             lights.Add(lightEntity4.GetComponent<PointLight>());
 
-            //lightingSystem = new LightingSystem(lights, new List<DirectionalLight>() { new DirectionalLight(Vector3.One, Vector3.One) }, new List<SpotLight>());
             lightingSystem = new LightingSystem(entities);
-
 
         }
 
@@ -152,9 +140,6 @@ namespace LearnOpenTK
             lightingSystem.Update();
 
             LitMaterial.UpdateStaticProperties();
-
-            //texture.Use(TextureUnit.Texture0);
-            //texture2.Use(TextureUnit.Texture1);
 
             Renderer.UpdateRenderers();
 

@@ -5,29 +5,16 @@ using System.Runtime.InteropServices;
 
 namespace LearnOpenTK
 {
-    internal class LightingSystem
+    public class LightingSystem : System
     {
-
         private Shader litShader;
         private List<PointLight> pointLights;
         private List<DirectionalLight> directionalLights;
         private List<SpotLight> spotLights;
 
-
         private const int MAX_LIGHTS = 16;
         private const int MAX_DIRECTIONAL_LIGHTS = 8;
         private const int MAX_SPOT_LIGHTS = 8;
-
-
-        public LightingSystem(List<PointLight> LightSources, List<DirectionalLight> directionalLights, List<SpotLight> spotLights)
-        {
-            litShader = AssetManager.GetShader("lit");
-
-            this.pointLights = LightSources;
-            this.directionalLights = directionalLights;
-            this.spotLights = spotLights;
-        }
-
 
 
         public LightingSystem(List<Entity> entities)
@@ -109,4 +96,9 @@ namespace LearnOpenTK
         }
 
     }
+
+
+
 }
+
+

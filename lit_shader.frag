@@ -38,13 +38,12 @@ in vec2 texCoord;
 in vec3 fragPosition;
 in vec3 viewPosition;
 
-uniform vec3 color;
+//uniform vec3 color;
 uniform vec3 ambientColor;
 uniform float ambientStrength;
 
-uniform vec3 lightPosition;
-uniform vec3 lightColor;
-
+//uniform vec3 lightPosition;
+//uniform vec3 lightColor;
 
 uniform Material material;
 
@@ -103,7 +102,6 @@ void main()
 		diffuse += CalculateDiffuseSpotLight(spotLights[i], norm);
 		specular += CalculateSpecularSpotLight(spotLights[i], norm);
 	}
-
 
 	vec3 result = (ambient + diffuse) * diffColor  + specular * specColor;
 
