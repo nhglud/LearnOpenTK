@@ -117,9 +117,6 @@ namespace LearnOpenTK
             entities.Add(lightEntity4);
 
 
-
-
-
             AssetManager.GetShader("basic").Use();
             AssetManager.GetShader("basic").SetInt("texture0", 0);
             AssetManager.GetShader("basic").SetInt("texture1", 1);
@@ -131,8 +128,7 @@ namespace LearnOpenTK
             lights.Add(lightEntity3.GetComponent<PointLight>());
             lights.Add(lightEntity4.GetComponent<PointLight>());
 
-
-            lightingSystem = new LightingSystem(lights);
+            lightingSystem = new LightingSystem(lights, new DirectionalLight(Vector3.One, Vector3.One));
         }
 
 

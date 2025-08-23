@@ -10,15 +10,17 @@ namespace LearnOpenTK
 
         private Shader litShader;
         private List<PointLight> pointLights;
+        private DirectionalLight directionalLight;
+
         private const int MAX_LIGHTS = 16;
 
-        public LightingSystem(List<PointLight> LightSources)
+        public LightingSystem(List<PointLight> LightSources, DirectionalLight directionalLight)
         {
             litShader = AssetManager.GetShader("lit");
 
             this.pointLights = LightSources;
+            this.directionalLight = directionalLight;
 
-            Console.WriteLine(pointLights.Count);
         }
 
         public void Update()
@@ -37,6 +39,10 @@ namespace LearnOpenTK
                 litShader.SetVector3(namePosition, pointLights[i].transform.position);
                 litShader.SetVector3(nameColor, pointLights[i].lightColor);
             }
+
+
+            litShader.SetVector3("directionalLight.color", directionalLight.lightColor);
+            litShader.SetVector3("directionalLight.direction", directionalLight.direction);
 
         }
 
