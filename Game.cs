@@ -14,7 +14,9 @@ namespace LearnOpenTK
     {
 
         Level currentLevel;
-
+        Framebuffer framebuffer;
+        Shader postProcessingShader;
+        private int postProcessingQuad;
 
         public Game(int width, int height, string title) :
             base(GameWindowSettings.Default, new NativeWindowSettings() { ClientSize = (width, height), Title = title })
@@ -37,7 +39,11 @@ namespace LearnOpenTK
 
             currentLevel = new LevelTwo(this);
             currentLevel.LoadLevel();
-            
+
+
+            framebuffer = new Framebuffer(ClientSize.X, ClientSize.Y);
+            postProcessingShader = AssetManager.GetShader("post_processing");
+            postProcessingQuad = GL.GenVertexArray();
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -50,16 +56,31 @@ namespace LearnOpenTK
             }
 
             currentLevel.UpdateLevel(e);
-
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
         {
             base.OnRenderFrame(e);
 
+
+            framebuffer.Bind(ClientSize.X, ClientSize.Y);
+            GL.Enable(EnableCap.DepthTest);
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
             currentLevel.RenderLevel(e);
+            
+            framebuffer.Unbind(ClientSize.X, ClientSize.Y);
+
+            GL.Clear(ClearBufferMask.ColorBufferBit);
+            GL.Disable(EnableCap.DepthTest);
+
+            postProcessingShader.Use();
+            framebuffer.BindTexture();
+            postProcessingShader.SetInt("screenTexture", 0);
+
+
+            GL.BindVertexArray(postProcessingQuad);
+            GL.DrawArrays(PrimitiveType.TriangleStrip, 0, 4);
 
             SwapBuffers();
         }

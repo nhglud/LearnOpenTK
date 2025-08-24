@@ -20,7 +20,7 @@ namespace LearnOpenTK
             Shader shader = new Shader(path + "basic_shader.vert", path + "basic_shader.frag");
             Shader singleColorShader = new Shader(path + "basic_shader.vert", path + "single_color.frag");
             Shader litShader = new Shader(path + "basic_shader.vert", path + "lit_shader.frag");
-
+            Shader postPorcessingShader = new Shader(path + "post_processing_shader.vert", path + "post_processing_shader.frag");
 
             Texture texture = new Texture(path + "container.jpg");
             Texture awesomeFace = new Texture(path + "awesomeface.png");
@@ -36,6 +36,7 @@ namespace LearnOpenTK
             AddShader("basic", shader);
             AddShader("single_color", singleColorShader);
             AddShader("lit", litShader);
+            AddShader("post_processing", postPorcessingShader);
 
 
             AddTexture("container", texture);

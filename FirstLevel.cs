@@ -111,12 +111,12 @@ namespace LearnOpenTK
             AssetManager.GetShader("basic").SetInt("texture0", 0);
             AssetManager.GetShader("basic").SetInt("texture1", 1);
 
-            List<PointLight> lights = new List<PointLight>();
+            //List<PointLight> lights = new List<PointLight>();
 
-            lights.Add(lightEntity.GetComponent<PointLight>());
-            lights.Add(lightEntity2.GetComponent<PointLight>());
-            lights.Add(lightEntity3.GetComponent<PointLight>());
-            lights.Add(lightEntity4.GetComponent<PointLight>());
+            //lights.Add(lightEntity.GetComponent<PointLight>());
+            //lights.Add(lightEntity2.GetComponent<PointLight>());
+            //lights.Add(lightEntity3.GetComponent<PointLight>());
+            //lights.Add(lightEntity4.GetComponent<PointLight>());
 
             lightingSystem = new LightingSystem(entities);
 

@@ -7,14 +7,15 @@ namespace LearnOpenTK
 {
     public class LightingSystem : System
     {
+        private const int MAX_POINT_LIGHTS = 16;
+        private const int MAX_DIRECTIONAL_LIGHTS = 8;
+        private const int MAX_SPOT_LIGHTS = 8;
+
         private Shader litShader;
         private List<PointLight> pointLights;
         private List<DirectionalLight> directionalLights;
         private List<SpotLight> spotLights;
 
-        private const int MAX_LIGHTS = 16;
-        private const int MAX_DIRECTIONAL_LIGHTS = 8;
-        private const int MAX_SPOT_LIGHTS = 8;
 
 
         public LightingSystem(List<Entity> entities)
@@ -54,7 +55,7 @@ namespace LearnOpenTK
             litShader.SetInt("numSpotLights", spotLights.Count);
 
 
-            int count = Math.Min(MAX_LIGHTS, pointLights.Count);
+            int count = Math.Min(MAX_POINT_LIGHTS, pointLights.Count);
             int countDirectional = Math.Min(MAX_DIRECTIONAL_LIGHTS, directionalLights.Count);
             int countSpot = Math.Min(MAX_SPOT_LIGHTS, spotLights.Count);
 
