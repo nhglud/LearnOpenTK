@@ -17,20 +17,20 @@ namespace LearnOpenTK
 
         public static void LoadAssets()
         {
-            Shader shader = new Shader(path + "basic_shader.vert", path + "basic_shader.frag");
-            Shader singleColorShader = new Shader(path + "basic_shader.vert", path + "single_color.frag");
-            Shader litShader = new Shader(path + "basic_shader.vert", path + "lit_shader.frag");
-            Shader postPorcessingShader = new Shader(path + "post_processing_shader.vert", path + "post_processing_shader.frag");
+            Shader shader = new Shader(path + "src/shaders/basic_shader.vert", path + "src/shaders/basic_shader.frag");
+            Shader singleColorShader = new Shader(path + "src/shaders/basic_shader.vert", path + "src/shaders/single_color.frag");
+            Shader litShader = new Shader(path + "src/shaders/basic_shader.vert", path + "src/shaders/lit_shader.frag");
+            Shader postPorcessingShader = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/post_processing_shader.frag");
 
-            Texture texture = new Texture(path + "container.jpg");
-            Texture awesomeFace = new Texture(path + "awesomeface.png");
-            Texture diffuse = new Texture(path + "container2_diffuse.png");
-            Texture specular = new Texture(path + "container2_specular.png");
+            Texture texture = new Texture(path + "assets/container.jpg");
+            Texture awesomeFace = new Texture(path + "assets/awesomeface.png");
+            Texture diffuse = new Texture(path + "assets/container2_diffuse.png");
+            Texture specular = new Texture(path + "assets/container2_specular.png");
 
 
-            AddMesh("cube", ModelLoader.LoadModel(path + "cube.obj"));
-            AddMesh("monke", ModelLoader.LoadModel(path + "monke.obj"));
-            AddMesh("quad", ModelLoader.LoadModel(path + "quad.obj"));
+            AddMesh("cube", ModelLoader.LoadModel(path + "assets/cube.obj"));
+            AddMesh("monke", ModelLoader.LoadModel(path + "assets/monke.obj"));
+            AddMesh("quad", ModelLoader.LoadModel(path + "assets/quad.obj"));
 
 
             AddShader("basic", shader);
