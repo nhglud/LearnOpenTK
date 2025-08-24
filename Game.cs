@@ -13,9 +13,9 @@ namespace LearnOpenTK
     public class Game : GameWindow
     {
 
-        Level currentLevel;
-        Framebuffer framebuffer;
-        Shader postProcessingShader;
+        private Level currentLevel;
+        private Framebuffer framebuffer;
+        private Shader postProcessingShader;
         private int postProcessingQuad;
 
         public Game(int width, int height, string title) :
@@ -35,9 +35,10 @@ namespace LearnOpenTK
             
             AssetManager.LoadAssets();
 
-            //currentLevel = new FirstLevel(this);
+            currentLevel = new FirstLevel(this);
 
-            currentLevel = new LevelTwo(this);
+            //currentLevel = new LevelTwo(this);
+
             currentLevel.LoadLevel();
 
 
@@ -62,13 +63,12 @@ namespace LearnOpenTK
         {
             base.OnRenderFrame(e);
 
-
             framebuffer.Bind(ClientSize.X, ClientSize.Y);
-            GL.Enable(EnableCap.DepthTest);
-            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-
-            currentLevel.RenderLevel(e);
             
+                GL.Enable(EnableCap.DepthTest);
+                GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+                currentLevel.RenderLevel(e);
+
             framebuffer.Unbind(ClientSize.X, ClientSize.Y);
 
             GL.Clear(ClearBufferMask.ColorBufferBit);
@@ -77,7 +77,6 @@ namespace LearnOpenTK
             postProcessingShader.Use();
             framebuffer.BindTexture();
             postProcessingShader.SetInt("screenTexture", 0);
-
 
             GL.BindVertexArray(postProcessingQuad);
             GL.DrawArrays(PrimitiveType.TriangleStrip, 0, 4);

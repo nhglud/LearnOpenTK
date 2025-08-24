@@ -2,7 +2,7 @@
 using OpenTK.Compute.OpenCL;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
-using System.Xml.Linq;
+
 
 
 namespace LearnOpenTK

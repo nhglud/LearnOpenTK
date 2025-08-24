@@ -7,5 +7,11 @@ uniform sampler2D screenTexture;
 
 void main()
 {
-    outputColor = vec4(1.0) - texture(screenTexture, texCoord);
+    
+    vec2 uv = texCoord;
+    
+    vec4 scene = texture(screenTexture, uv);
+
+    outputColor = 1.0 - scene.grba;
+
 }
