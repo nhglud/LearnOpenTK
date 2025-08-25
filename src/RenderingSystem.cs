@@ -1,4 +1,4 @@
-﻿namespace LearnOpenTK.src
+﻿namespace LearnOpenTK
 {
     public class RenderingSystem : System
     {

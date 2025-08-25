@@ -15,7 +15,7 @@ namespace LearnOpenTK
     public class Game : GameWindow
     {
 
-        private Level currentLevel;
+        public Level currentLevel;
         private Framebuffer framebuffer;
         private PostProcessor postProcessor;
         private UIManager uiManager;
@@ -33,30 +33,22 @@ namespace LearnOpenTK
             GL.Enable(EnableCap.DepthTest);
             GL.ClearColor(0.2f, 0.3f, 0.33f, 1.0f);
 
-            CursorState = CursorState.Grabbed;
-
             AssetManager.LoadAssets();
 
             currentLevel = new FirstLevel(this);
-
-
             currentLevel.LoadLevel();
 
-
             framebuffer = new Framebuffer(ClientSize.X, ClientSize.Y);
-
             postProcessor = new PostProcessor(AssetManager.GetShader("post_processing"));
 
-
             uiManager = new UIManager(this);
-
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
             base.OnUpdateFrame(e);
 
-            // Handle Inputs
+            // HANDLE INPUTS
 
             if (KeyboardState.IsKeyDown(Keys.Escape))
             {
@@ -73,11 +65,12 @@ namespace LearnOpenTK
 
             }
 
+            // UPDATE SCENE
+
             currentLevel.UpdateLevel(e);
 
-
-            // Update UI
-
+            // UPDATE UI
+            
             uiManager.Update(e);
         }
 

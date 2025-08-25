@@ -30,7 +30,7 @@ namespace LearnOpenTK
             var rotationZ = Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(rotation.Z));
             var rotationMatrix = rotationZ * rotationY * rotationX;
 
-            return rotationMatrix * scaleMatrix * translationMatrix;
+            return scaleMatrix * rotationMatrix * translationMatrix;
         }
 
     }

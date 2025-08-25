@@ -74,7 +74,7 @@
   <Class Name="LearnOpenTK.Game" Collapsed="true">
     <Position X="31" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAAAAAAAAAEAAAAAACAUAAADAABAIAAAAAAAE=</HashCode>
+      <HashCode>AAABAAAAAAACAAAAEAAAAgACAQAAACAABAAAAAAAAAE=</HashCode>
       <FileName>src\Game.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -187,7 +187,7 @@
   <Class Name="LearnOpenTK.UIManager" Collapsed="true">
     <Position X="31" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABIAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABIAAAEAAAA=</HashCode>
       <FileName>UIManager.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -206,21 +206,21 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="LearnOpenTK.src.PostProcessor" Collapsed="true">
+  <Class Name="LearnOpenTK.PostProcessor" Collapsed="true">
     <Position X="29.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAABAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAABAAIAAAAAAAAAA=</HashCode>
       <FileName>src\PostProcessor.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="LearnOpenTK.src.RenderingSystem" Collapsed="true">
+  <Class Name="LearnOpenTK.RenderingSystem" Collapsed="true">
     <Position X="11.75" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAgAA=</HashCode>
       <FileName>src\RenderingSystem.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="LearnOpenTK.src.IUpdateable" Collapsed="true">
+  <Interface Name="LearnOpenTK.IUpdateable" Collapsed="true">
     <Position X="25.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>

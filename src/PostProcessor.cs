@@ -2,7 +2,7 @@
 using OpenTK.Graphics.OpenGL4;
 
 
-namespace LearnOpenTK.src
+namespace LearnOpenTK
 {
     public class PostProcessor
     {
