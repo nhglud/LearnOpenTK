@@ -15,14 +15,16 @@ namespace LearnOpenTK
 {
     public class LevelTwo : Level
     {
+        private LightingSystem lightingSystem;
+        private RenderingSystem renderingSystem;
+        private UpdateSystem updateSystem;
+
+
         public LevelTwo(Game game) : base(game)
         { 
 
         }
 
-        LightingSystem lightingSystem;
-        RenderingSystem renderingSystem;
-        UpdateSystem updateSystem;
 
 
         public override void LoadLevel()
@@ -32,14 +34,14 @@ namespace LearnOpenTK
             Entity monke = new Entity();
 
             monke.transform = new Transform(Vector3.Zero, Vector3.Zero, Vector3.One);
-            monke.AddComponent<Mesh>(AssetManager.GetMesh("monke"));
-            monke.AddComponent<Renderer>(new Renderer(AssetManager.GetMaterial("container2_mat")));
+            monke.AddComponent(AssetManager.GetMesh("monke"));
+            monke.AddComponent(new Renderer(AssetManager.GetMaterial("container2_mat")));
 
             Entity floor = new Entity();
 
             floor.transform = new Transform(-1.5f * Vector3.UnitY, Vector3.Zero, new Vector3(8f, 1f, 8f));
-            floor.AddComponent<Mesh>(AssetManager.GetMesh("quad"));
-            floor.AddComponent<Renderer>(new Renderer(AssetManager.GetMaterial("container2_mat")));
+            floor.AddComponent(AssetManager.GetMesh("quad"));
+            floor.AddComponent(new Renderer(AssetManager.GetMaterial("container2_mat")));
 
             Entity lightEntity = new Entity();
             lightEntity.transform = new Transform(new Vector3(6.5f, 3.0f, 2.0f), Vector3.Zero, 0.2f * Vector3.One);

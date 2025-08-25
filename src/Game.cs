@@ -7,6 +7,7 @@ using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 using ImGuiNET;
+using LearnOpenTK.src;
 
 namespace LearnOpenTK
 {
@@ -16,10 +17,8 @@ namespace LearnOpenTK
 
         private Level currentLevel;
         private Framebuffer framebuffer;
-        private Shader postProcessingShader;
-        private int postProcessingQuad;
-
-        private ImGuiController uiController;
+        private PostProcessor postProcessor;
+        private UIManager uiManager;
 
         public Game(int width, int height, string title) :
             base(GameWindowSettings.Default, new NativeWindowSettings() { ClientSize = (width, height), Title = title })
@@ -40,25 +39,24 @@ namespace LearnOpenTK
 
             currentLevel = new FirstLevel(this);
 
-            //currentLevel = new LevelTwo(this);
 
             currentLevel.LoadLevel();
 
 
             framebuffer = new Framebuffer(ClientSize.X, ClientSize.Y);
-            postProcessingShader = AssetManager.GetShader("post_processing");
-            postProcessingQuad = GL.GenVertexArray();
 
-            ImGui.CreateContext();
-            ImGui.GetIO().Fonts.AddFontDefault();
+            postProcessor = new PostProcessor(AssetManager.GetShader("post_processing"));
 
-            uiController = new ImGuiController(ClientSize.X, ClientSize.Y);
+
+            uiManager = new UIManager(this);
 
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
             base.OnUpdateFrame(e);
+
+            // Handle Inputs
 
             if (KeyboardState.IsKeyDown(Keys.Escape))
             {
@@ -76,6 +74,11 @@ namespace LearnOpenTK
             }
 
             currentLevel.UpdateLevel(e);
+
+
+            // Update UI
+
+            uiManager.Update(e);
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
@@ -83,6 +86,7 @@ namespace LearnOpenTK
             base.OnRenderFrame(e);
 
             // SCENE RENDERING
+            
             GL.Enable(EnableCap.DepthTest);
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             currentLevel.RenderLevel(e);
@@ -97,34 +101,11 @@ namespace LearnOpenTK
 
             // POST PROCESSING
 
+            postProcessor.ApplyPostProcessing(e, framebuffer);
 
-            GL.Clear(ClearBufferMask.ColorBufferBit);
-            GL.Disable(EnableCap.DepthTest);
+            // RENDER UI
 
-            postProcessingShader.Use();
-    
-            framebuffer.BindTexture();
-            postProcessingShader.SetInt("screenTexture", 0);
-
-            GL.BindVertexArray(postProcessingQuad);
-            GL.DrawArrays(PrimitiveType.TriangleStrip, 0, 4);
-
-            // UI
-
-            uiController.Update(this, (float)e.Time);
-
-            ImGui.Begin("Select Level");
-            if (ImGui.Button("Level 1"))
-                ChangeLevel(new FirstLevel(this));
-
-            if (ImGui.Button("Level 2"))
-                ChangeLevel(new LevelTwo(this));
-
-
-            ImGui.End();
-
-            uiController.Render();
-            ImGuiController.CheckGLError("End of frame");
+            uiManager.Render();
 
             SwapBuffers();
         }
@@ -134,7 +115,8 @@ namespace LearnOpenTK
             base.OnFramebufferResize(e);
 
             GL.Viewport(0, 0, e.Width, e.Height);
-            uiController.WindowResized(e.Width, e.Height);
+
+            uiManager.Resize(e);
             framebuffer.Resize(e.Width, e.Height);
             ClientSize = (e.Width, e.Height);
         }

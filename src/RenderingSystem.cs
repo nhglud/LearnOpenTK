@@ -19,9 +19,9 @@
         public void Render()
         {
 
-            foreach (var e in renderers)
+            foreach (var r in renderers)
             {
-                e.Render();
+                r.Render();
             }
         }
     }
