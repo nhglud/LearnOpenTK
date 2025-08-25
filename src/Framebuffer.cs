@@ -64,6 +64,19 @@ namespace LearnOpenTK
         }
 
 
+        public void Resize(int width, int height)
+        {
+            // Resize color texture
+            GL.BindTexture(TextureTarget.Texture2D, colorTexture);
+            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, width, height,
+                          0, PixelFormat.Rgba, PixelType.UnsignedByte, IntPtr.Zero);
+
+            // Resize depth-stencil renderbuffer
+            GL.BindRenderbuffer(RenderbufferTarget.Renderbuffer, renderBufferObject);
+            GL.RenderbufferStorage(RenderbufferTarget.Renderbuffer, RenderbufferStorage.Depth24Stencil8, width, height);
+        }
+
+
 
     }
 }

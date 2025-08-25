@@ -39,6 +39,9 @@ namespace LearnOpenTK
             return components.ContainsKey(type); 
         }
 
+
+
+
         public void Clear()
         {
             components.Clear();

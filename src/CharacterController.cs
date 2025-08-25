@@ -6,7 +6,7 @@ using OpenTK.Windowing.GraphicsLibraryFramework;
 
 namespace LearnOpenTK
 {
-    public class CharacterController : Component
+    public class CharacterController : Component, IUpdateable
     {
 
         private KeyboardState keyboardState;

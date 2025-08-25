@@ -33,6 +33,9 @@ void main(void)
     fragPosition = vec3(model * vec4(aPosition, 1.0));
 
     gl_Position =  projection * view * model * vec4(aPosition, 1.0);
+//    gl_Position =  projection * view * vec4(aPosition, 1.0);
+//    gl_Position =  projection * vec4(aPosition, 1.0);
+
 
 
 }

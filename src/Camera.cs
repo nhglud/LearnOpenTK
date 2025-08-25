@@ -52,7 +52,7 @@ namespace LearnOpenTK
         public void UpdateUBO(int viewportWidth, int viewportHeight)
         {
             Matrix4 view = GetViewMatrix();
-            Matrix4 proj = GetProjectionMatrix(viewportWidth / (float)viewportHeight);
+            Matrix4 proj = GetProjectionMatrix((float)viewportWidth / (float)viewportHeight);
 
             GL.BindBuffer(BufferTarget.UniformBuffer, cameraUBO);
             GL.BufferSubData(BufferTarget.UniformBuffer, IntPtr.Zero, 64, ref view);

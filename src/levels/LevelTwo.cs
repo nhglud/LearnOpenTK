@@ -5,6 +5,7 @@
 //using System.Threading.Tasks;
 
 using Assimp;
+using LearnOpenTK.src;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 
@@ -19,6 +20,7 @@ namespace LearnOpenTK
         }
 
         LightingSystem lightingSystem;
+        RenderingSystem renderingSystem;
 
         public override void LoadLevel()
         {
@@ -63,13 +65,16 @@ namespace LearnOpenTK
             entities.Add(spotLightEntity);
 
             lightingSystem = new LightingSystem(entities);
+            renderingSystem = new RenderingSystem(entities);
         }
 
         public override void UpdateLevel(FrameEventArgs e)
         {
             base.UpdateLevel(e);
-            
-            CharacterController.UpdateComponents(e);
+
+            Component.UpdateComponents(e);
+            ////CharacterController.UpdateComponents(e);
+            ////CharacterController.
         }
 
         public override void RenderLevel(FrameEventArgs e)
@@ -79,7 +84,8 @@ namespace LearnOpenTK
             Camera.main.UpdateUBO(game.ClientSize.X, game.ClientSize.Y);
             
             lightingSystem.Update();
-            Renderer.UpdateRenderers();
+            renderingSystem.Render();
+            //Renderer.UpdateRenderers();
         
         }
 

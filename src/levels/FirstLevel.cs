@@ -1,4 +1,5 @@
 ﻿
+using LearnOpenTK.src;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
@@ -10,7 +11,7 @@ namespace LearnOpenTK
     {
 
         private LightingSystem lightingSystem;
-
+        private RenderingSystem renderingSystem;
         public FirstLevel(Game game) : base(game)
         {
         }
@@ -106,20 +107,13 @@ namespace LearnOpenTK
             entities.Add(lightEntity3);
             entities.Add(lightEntity4);
 
-
             AssetManager.GetShader("basic").Use();
             AssetManager.GetShader("basic").SetInt("texture0", 0);
             AssetManager.GetShader("basic").SetInt("texture1", 1);
 
-            //List<PointLight> lights = new List<PointLight>();
-
-            //lights.Add(lightEntity.GetComponent<PointLight>());
-            //lights.Add(lightEntity2.GetComponent<PointLight>());
-            //lights.Add(lightEntity3.GetComponent<PointLight>());
-            //lights.Add(lightEntity4.GetComponent<PointLight>());
-
+            
             lightingSystem = new LightingSystem(entities);
-
+            renderingSystem = new RenderingSystem(entities);
         }
 
 
@@ -140,8 +134,8 @@ namespace LearnOpenTK
             lightingSystem.Update();
 
             LitMaterial.UpdateStaticProperties();
+            renderingSystem.Render();
 
-            Renderer.UpdateRenderers();
 
         }
 

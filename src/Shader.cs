@@ -114,6 +114,13 @@ namespace LearnOpenTK
             GL.Uniform1(location, value);
         }
 
+        public void SetVector2(string name, Vector2 vector)
+        {
+            int location = GL.GetUniformLocation(Handle, name);
+            GL.Uniform2(location, vector);
+        }
+
+
         public void SetVector3(string name, Vector3 vector)
         {
             int location = GL.GetUniformLocation(Handle, name);

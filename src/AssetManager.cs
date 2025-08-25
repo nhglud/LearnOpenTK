@@ -8,7 +8,6 @@ namespace LearnOpenTK
     {
         private const string path = "C:\\programming\\LearnOpenTK\\";
 
-
         private static Dictionary<string, Mesh> meshes = new Dictionary<string, Mesh>();
         private static Dictionary<string, Shader> shaders = new Dictionary<string, Shader>();
         private static Dictionary<string, Texture> textures = new Dictionary<string, Texture>();
@@ -45,8 +44,6 @@ namespace LearnOpenTK
             AddTexture("container2_specular", specular);
 
             AddMaterial("container2_mat", new LitMaterial(GetTexture("container2_diffuse"), GetTexture("container2_specular")));
-
-
         }
 
         public static void AddMesh(string name, Mesh mesh)
