@@ -34,8 +34,8 @@ namespace LearnOpenTK
             GL.Enable(EnableCap.DepthTest);
             GL.ClearColor(0.2f, 0.3f, 0.33f, 1.0f);
 
-            //CursorState = CursorState.Grabbed;
-            
+            CursorState = CursorState.Grabbed;
+
             AssetManager.LoadAssets();
 
             currentLevel = new FirstLevel(this);
@@ -63,6 +63,16 @@ namespace LearnOpenTK
             if (KeyboardState.IsKeyDown(Keys.Escape))
             {
                 Close();
+            }
+
+            if(MouseState.IsButtonDown(MouseButton.Right))
+            {
+                CursorState = CursorState.Grabbed;
+            }
+            else
+            {
+                CursorState = CursorState.Normal;
+
             }
 
             currentLevel.UpdateLevel(e);
@@ -131,6 +141,8 @@ namespace LearnOpenTK
 
         public void ChangeLevel(Level newLevel)
         {
+            currentLevel.Clear();
+            Camera.main = null;
             currentLevel = newLevel;
             newLevel.LoadLevel();
         }

@@ -11,5 +11,9 @@ namespace LearnOpenTK
 
 
 
+        public virtual void Clear()
+        {
+
+        }
     }
 }

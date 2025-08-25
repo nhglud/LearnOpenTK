@@ -1,4 +1,5 @@
 ﻿
+using LearnOpenTK.src;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.GraphicsLibraryFramework;
@@ -11,6 +12,7 @@ namespace LearnOpenTK
 
         private KeyboardState keyboardState;
         private MouseState mouseState;
+
 
         private bool firstMove = true;
         private float moveSpeed = 6f;
@@ -33,6 +35,10 @@ namespace LearnOpenTK
 
         public void Update(FrameEventArgs e)
         {
+
+            if (!mouseState.IsButtonDown(MouseButton.Right)) return;
+            
+
             Vector3 moveDir = Vector3.Zero;
 
             if (keyboardState.IsKeyDown(forwardKey))

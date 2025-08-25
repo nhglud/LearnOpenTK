@@ -29,6 +29,11 @@ namespace LearnOpenTK
 
         }
 
+        public void Clear()
+        {
+            entities.Clear();
+        }
+
 
     }
 }

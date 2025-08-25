@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LearnOpenTK
+namespace LearnOpenTK.src
 {
     public interface IUpdateable
     {

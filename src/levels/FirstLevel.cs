@@ -1,5 +1,6 @@
 ﻿
 using LearnOpenTK.src;
+using LearnOpenTK.src.levels;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
@@ -12,6 +13,8 @@ namespace LearnOpenTK
 
         private LightingSystem lightingSystem;
         private RenderingSystem renderingSystem;
+        private UpdateSystem updateSystem;
+
         public FirstLevel(Game game) : base(game)
         {
         }
@@ -114,6 +117,9 @@ namespace LearnOpenTK
             
             lightingSystem = new LightingSystem(entities);
             renderingSystem = new RenderingSystem(entities);
+            updateSystem = new UpdateSystem(entities);
+
+
         }
 
 
@@ -123,7 +129,9 @@ namespace LearnOpenTK
         {
             base.UpdateLevel(e);
 
-            Component.UpdateComponents(e);
+            updateSystem.Update(e);
+
+            //Component.UpdateComponents(e)
         }
 
         public override void RenderLevel(FrameEventArgs e)

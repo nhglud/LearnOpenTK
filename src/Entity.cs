@@ -5,7 +5,7 @@ namespace LearnOpenTK
     {
         public Transform transform; 
 
-        private Dictionary<Type, Component> components = new Dictionary<Type, Component>();
+        public Dictionary<Type, Component> components = new Dictionary<Type, Component>();
 
         public Entity()
         {
@@ -46,6 +46,7 @@ namespace LearnOpenTK
         {
             components.Clear();
         }
+
 
     }
 }

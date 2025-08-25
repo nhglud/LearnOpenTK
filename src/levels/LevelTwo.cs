@@ -6,6 +6,7 @@
 
 using Assimp;
 using LearnOpenTK.src;
+using LearnOpenTK.src.levels;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 
@@ -21,6 +22,8 @@ namespace LearnOpenTK
 
         LightingSystem lightingSystem;
         RenderingSystem renderingSystem;
+        UpdateSystem updateSystem;
+
 
         public override void LoadLevel()
         {
@@ -66,15 +69,16 @@ namespace LearnOpenTK
 
             lightingSystem = new LightingSystem(entities);
             renderingSystem = new RenderingSystem(entities);
+            updateSystem = new UpdateSystem(entities);
+
         }
 
         public override void UpdateLevel(FrameEventArgs e)
         {
             base.UpdateLevel(e);
 
-            Component.UpdateComponents(e);
-            ////CharacterController.UpdateComponents(e);
-            ////CharacterController.
+            updateSystem.Update(e);
+
         }
 
         public override void RenderLevel(FrameEventArgs e)
@@ -85,7 +89,6 @@ namespace LearnOpenTK
             
             lightingSystem.Update();
             renderingSystem.Render();
-            //Renderer.UpdateRenderers();
         
         }
 
