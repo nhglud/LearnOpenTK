@@ -15,7 +15,7 @@ namespace LearnOpenTK
 
 
         private bool firstMove = true;
-        public float moveSpeed = 6f;
+        public float moveSpeed = 14f;
         public float mouseSensitivity = 0.05f;
 
         private Keys forwardKey = Keys.W;

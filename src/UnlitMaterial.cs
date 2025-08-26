@@ -4,7 +4,7 @@ namespace LearnOpenTK
 {
     public class UnlitMaterial : Material
     {
-        private Vector3 color;
+        public Vector3 color;
 
         public UnlitMaterial(Vector3 color) : base()
         {

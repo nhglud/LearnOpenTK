@@ -39,18 +39,26 @@ namespace LearnOpenTK
             monke.AddComponent(AssetManager.GetMesh("monke"));
             monke.AddComponent(new Renderer(AssetManager.GetMaterial("container2_mat")));
 
+            Entity torus = new Entity();
+
+            torus.transform = new Transform(3f * Vector3.UnitX, Vector3.Zero, Vector3.One);
+            torus.AddComponent(AssetManager.GetMesh("torus"));
+            torus.AddComponent(new Renderer(AssetManager.GetMaterial("container2_mat")));
+
+
+
             Entity floor = new Entity();
 
             floor.transform = new Transform(-1.5f * Vector3.UnitY, Vector3.Zero, new Vector3(8f, 1f, 8f));
             floor.AddComponent(AssetManager.GetMesh("quad"));
             floor.AddComponent(new Renderer(AssetManager.GetMaterial("container2_mat")));
 
-            Entity lightEntity = new Entity();
-            lightEntity.transform = new Transform(new Vector3(6.5f, 3.0f, 2.0f), Vector3.Zero, 0.2f * Vector3.One);
+            //Entity lightEntity = new Entity();
+            //lightEntity.transform = new Transform(new Vector3(6.5f, 3.0f, 2.0f), Vector3.Zero, 0.2f * Vector3.One);
 
-            lightEntity.AddComponent(AssetManager.GetMesh("cube"));
-            lightEntity.AddComponent(new Renderer(new UnlitMaterial(Vector3.One)));
-            lightEntity.AddComponent(new PointLight(Color4.White));
+            //lightEntity.AddComponent(AssetManager.GetMesh("cube"));
+            //lightEntity.AddComponent(new Renderer(new UnlitMaterial(Vector3.One)));
+            //lightEntity.AddComponent(new PointLight(Color4.White));
 
 
             Entity spotLightEntity = new Entity();
@@ -70,7 +78,9 @@ namespace LearnOpenTK
             entities.Add(monke);
             entities.Add(floor);
             entities.Add(player);
-            entities.Add(lightEntity);
+            entities.Add(torus);
+
+            //entities.Add(lightEntity);
             entities.Add(spotLightEntity);
 
             lightingSystem = new LightingSystem(entities);

@@ -30,6 +30,8 @@ namespace LearnOpenTK
             AddMesh("cube", ModelLoader.LoadModel(path + "assets/cube.obj"));
             AddMesh("monke", ModelLoader.LoadModel(path + "assets/monke.obj"));
             AddMesh("quad", ModelLoader.LoadModel(path + "assets/quad.obj"));
+            AddMesh("sphere", ModelLoader.LoadModel(path + "assets/sphere.obj"));
+            AddMesh("torus", ModelLoader.LoadModel(path + "assets/torus.obj"));
 
 
             AddShader("basic", shader);

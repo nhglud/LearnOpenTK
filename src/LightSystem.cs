@@ -67,6 +67,8 @@ namespace LearnOpenTK
 
                 litShader.SetVector3(namePosition, pointLights[i].transform.position);
                 litShader.SetColor4(nameColor, pointLights[i].lightColor);
+                UnlitMaterial mat = (UnlitMaterial)pointLights[i].entity.GetComponent<Renderer>().material;
+                mat.color = new Vector3(pointLights[i].lightColor.R, pointLights[i].lightColor.G, pointLights[i].lightColor.B);
             }
 
             for (int i = 0; i < countDirectional; i++)
@@ -76,6 +78,7 @@ namespace LearnOpenTK
 
                 litShader.SetVector3(nameDirection, directionalLights[i].direction);
                 litShader.SetColor4(nameColor, directionalLights[i].lightColor);
+
             }
 
             for (int i = 0; i < countSpot; i++)
@@ -91,6 +94,9 @@ namespace LearnOpenTK
                 litShader.SetVector3(namePosition, spotLights[i].transform.position);
                 litShader.SetFloat(nameOuter, MathF.Cos(spotLights[i].outerRadius));
                 litShader.SetFloat(nameInner, MathF.Cos(spotLights[i].innerRadius));
+
+                UnlitMaterial mat = (UnlitMaterial)spotLights[i].entity.GetComponent<Renderer>().material;
+                mat.color = new Vector3(spotLights[i].lightColor.R, spotLights[i].lightColor.G, spotLights[i].lightColor.B);
             }
 
 

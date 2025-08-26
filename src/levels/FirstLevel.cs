@@ -70,13 +70,13 @@ namespace LearnOpenTK
 
             Entity entity = new Entity();
             entity.transform = new Transform(new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 32.0f, 54.0f), Vector3.One);
-            entity.AddComponent(mesh);
+            entity.AddComponent(AssetManager.GetMesh("torus"));
             entity.AddComponent(new Renderer(AssetManager.GetMaterial("container2_mat")));
 
 
             Entity entity2 = new Entity();
             entity2.transform = new Transform(new Vector3(0.5f, 0.0f, -5.0f), new Vector3(0.0f, -30.0f, 0.0f), Vector3.One);
-            entity2.AddComponent(mesh);
+            entity2.AddComponent(AssetManager.GetMesh("sphere"));
             entity2.AddComponent(new Renderer(AssetManager.GetMaterial("container2_mat")));
 
 

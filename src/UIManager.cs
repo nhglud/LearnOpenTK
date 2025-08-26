@@ -110,8 +110,6 @@ namespace LearnOpenTK
                 if (ImGui.TreeNode($"{component.GetType().Name}##{component.GetHashCode()}"))
                 {
                     
-
-
                     foreach (var field in component.GetType().GetFields())
                     {
 

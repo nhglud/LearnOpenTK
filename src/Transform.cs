@@ -1,7 +1,5 @@
 ﻿
-
 using OpenTK.Mathematics;
-
 
 namespace LearnOpenTK
 {
@@ -10,7 +8,6 @@ namespace LearnOpenTK
         public Vector3 position;
         public Vector3 rotation;
         public Vector3 scale;
-
 
         public Transform(Vector3 position, Vector3 rotation, Vector3 scale)
         {

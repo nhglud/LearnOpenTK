@@ -10,7 +10,7 @@ namespace LearnOpenTK
     {
         
         private Mesh mesh;
-        private Material material;
+        public Material material;
 
         
         private static event Action? OnRender;
