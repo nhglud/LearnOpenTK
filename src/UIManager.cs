@@ -10,6 +10,15 @@ namespace LearnOpenTK
         private ImGuiController uiController;
         private Game game;
 
+        private bool applyFilter = false;
+        private bool applyBnwFilter = false;
+
+
+        private PostProcessingFilter negativeFilter;
+        private PostProcessingFilter bnwFilter;
+
+
+
         public UIManager(Game game)
         {
             //this.uiController = uiController;
@@ -34,6 +43,40 @@ namespace LearnOpenTK
 
             if (ImGui.Button("Level 2"))
                 game.ChangeLevel(new LevelTwo(game));
+
+            ImGui.End();
+
+            ImGui.Begin("Post processing");
+
+            ImGui.Checkbox("Negative filter", ref applyFilter);
+
+            if (applyFilter)
+            {
+                if (negativeFilter == null)
+                    negativeFilter = new PostProcessingFilter(AssetManager.GetShader("negative_filter"), game.ClientSize.X, game.ClientSize.Y);
+
+                game.postProcessor.AddFilter("negative", negativeFilter);
+            }
+            else
+            {
+                game.postProcessor.RemoveFilter("negative");
+            }
+
+
+            ImGui.Checkbox("bnw filter", ref applyBnwFilter);
+            if (applyBnwFilter)
+            {
+                if (bnwFilter == null)
+                    bnwFilter = new PostProcessingFilter(AssetManager.GetShader("bnw_filter"), game.ClientSize.X, game.ClientSize.Y);
+
+                game.postProcessor.AddFilter("bnw", bnwFilter);
+            }
+            else
+            {
+                game.postProcessor.RemoveFilter("bnw");
+
+            }
+
 
             ImGui.End();
 

@@ -5,8 +5,6 @@
 //using System.Threading.Tasks;
 
 using Assimp;
-using LearnOpenTK.src;
-using LearnOpenTK.src.levels;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 
@@ -30,8 +28,6 @@ namespace LearnOpenTK
         public override void LoadLevel()
         {
             base.LoadLevel();
-
-
 
             Entity monke = new Entity();
 

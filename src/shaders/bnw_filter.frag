@@ -9,10 +9,13 @@ uniform sampler2D screenTexture;
 
 void main()
 {
+    
     vec2 uv = texCoord;
     
+
     vec4 scene = texture(screenTexture, uv);
 
-    outputColor = scene;
+
+    outputColor = scene.rrra;
 
 }

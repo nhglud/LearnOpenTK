@@ -89,7 +89,7 @@ namespace LearnOpenTK
                 string nameOuter= $"spotLights[{i}].outerRadius";
                 string nameInner = $"spotLights[{i}].innerRadius";
 
-                litShader.SetVector3(nameDirection, spotLights[i].direction);
+                litShader.SetVector3(nameDirection, Vector3.Normalize(spotLights[i].direction));
                 litShader.SetColor4(nameColor, spotLights[i].lightColor);
                 litShader.SetVector3(namePosition, spotLights[i].transform.position);
                 litShader.SetFloat(nameOuter, MathF.Cos(spotLights[i].outerRadius));

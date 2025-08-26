@@ -7,7 +7,7 @@ using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 using ImGuiNET;
-using LearnOpenTK.src;
+
 
 namespace LearnOpenTK
 {
@@ -17,7 +17,7 @@ namespace LearnOpenTK
 
         public Level currentLevel;
         private Framebuffer framebuffer;
-        private PostProcessor postProcessor;
+        public PostProcessor postProcessor;
         private UIManager uiManager;
 
         public Game(int width, int height, string title) :
@@ -40,6 +40,10 @@ namespace LearnOpenTK
 
             framebuffer = new Framebuffer(ClientSize.X, ClientSize.Y);
             postProcessor = new PostProcessor(AssetManager.GetShader("post_processing"));
+
+            //postProcessor.AddFilter("negative", new PostProcessingFilter(AssetManager.GetShader("negative_filter"), ClientSize.X, ClientSize.Y));
+            //postProcessor.AddFilter("bnw", new PostProcessingFilter(AssetManager.GetShader("bnw_filter"), ClientSize.X, ClientSize.Y));
+
 
             uiManager = new UIManager(this);
         }
@@ -82,7 +86,7 @@ namespace LearnOpenTK
             
             GL.Enable(EnableCap.DepthTest);
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-            currentLevel.RenderLevel(e);
+            //currentLevel.RenderLevel(e);
 
             framebuffer.Bind(ClientSize.X, ClientSize.Y);
 
@@ -91,10 +95,11 @@ namespace LearnOpenTK
             currentLevel.RenderLevel(e);
 
             framebuffer.Unbind(ClientSize.X, ClientSize.Y);
+            framebuffer.BindTexture();
 
             // POST PROCESSING
-
-            postProcessor.ApplyPostProcessing(e, framebuffer);
+            postProcessor.ApplyPostProcessing(e, ClientSize.X, ClientSize.Y);
+            //postProcessor.ApplyPostProcessing(e, framebuffer);
 
             // RENDER UI
 
@@ -111,6 +116,7 @@ namespace LearnOpenTK
 
             uiManager.Resize(e);
             framebuffer.Resize(e.Width, e.Height);
+            postProcessor.Resize(e.Width, e.Height);
             ClientSize = (e.Width, e.Height);
         }
 

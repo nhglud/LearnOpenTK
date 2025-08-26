@@ -1,5 +1,4 @@
 ﻿
-using LearnOpenTK.src;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.GraphicsLibraryFramework;

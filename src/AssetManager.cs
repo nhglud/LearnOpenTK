@@ -20,6 +20,9 @@ namespace LearnOpenTK
             Shader singleColorShader = new Shader(path + "src/shaders/basic_shader.vert", path + "src/shaders/single_color.frag");
             Shader litShader = new Shader(path + "src/shaders/basic_shader.vert", path + "src/shaders/lit_shader.frag");
             Shader postPorcessingShader = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/post_processing_shader.frag");
+            Shader negativeFilter = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/negative_filter.frag");
+            Shader bnwFilter = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/bnw_filter.frag");
+
 
             Texture texture = new Texture(path + "assets/container.jpg");
             Texture awesomeFace = new Texture(path + "assets/awesomeface.png");
@@ -38,6 +41,8 @@ namespace LearnOpenTK
             AddShader("single_color", singleColorShader);
             AddShader("lit", litShader);
             AddShader("post_processing", postPorcessingShader);
+            AddShader("negative_filter", negativeFilter);
+            AddShader("bnw_filter", bnwFilter);
 
 
             AddTexture("container", texture);

@@ -1,6 +1,6 @@
 ﻿using OpenTK.Windowing.Common;
 
-namespace LearnOpenTK.src.levels
+namespace LearnOpenTK
 {
     public class UpdateSystem : System
     {
