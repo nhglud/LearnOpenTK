@@ -66,7 +66,7 @@ namespace LearnOpenTK
                 string nameColor = $"lights[{i}].color";
 
                 litShader.SetVector3(namePosition, pointLights[i].transform.position);
-                litShader.SetVector3(nameColor, pointLights[i].lightColor);
+                litShader.SetColor4(nameColor, pointLights[i].lightColor);
             }
 
             for (int i = 0; i < countDirectional; i++)
@@ -75,7 +75,7 @@ namespace LearnOpenTK
                 string nameColor = $"directionalLights[{i}].color";
 
                 litShader.SetVector3(nameDirection, directionalLights[i].direction);
-                litShader.SetVector3(nameColor, directionalLights[i].lightColor);
+                litShader.SetColor4(nameColor, directionalLights[i].lightColor);
             }
 
             for (int i = 0; i < countSpot; i++)
@@ -87,10 +87,10 @@ namespace LearnOpenTK
                 string nameInner = $"spotLights[{i}].innerRadius";
 
                 litShader.SetVector3(nameDirection, spotLights[i].direction);
-                litShader.SetVector3(nameColor, spotLights[i].lightColor);
+                litShader.SetColor4(nameColor, spotLights[i].lightColor);
                 litShader.SetVector3(namePosition, spotLights[i].transform.position);
-                litShader.SetFloat(nameOuter, spotLights[i].outerRadius);
-                litShader.SetFloat(nameInner, spotLights[i].innerRadius);
+                litShader.SetFloat(nameOuter, MathF.Cos(spotLights[i].outerRadius));
+                litShader.SetFloat(nameInner, MathF.Cos(spotLights[i].innerRadius));
             }
 
 

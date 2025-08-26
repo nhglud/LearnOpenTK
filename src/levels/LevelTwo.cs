@@ -31,6 +31,8 @@ namespace LearnOpenTK
         {
             base.LoadLevel();
 
+
+
             Entity monke = new Entity();
 
             monke.transform = new Transform(Vector3.Zero, Vector3.Zero, Vector3.One);
@@ -48,13 +50,15 @@ namespace LearnOpenTK
 
             lightEntity.AddComponent(AssetManager.GetMesh("cube"));
             lightEntity.AddComponent(new Renderer(new UnlitMaterial(Vector3.One)));
-            lightEntity.AddComponent(new PointLight(Vector3.One));
+            lightEntity.AddComponent(new PointLight(Color4.White));
 
 
             Entity spotLightEntity = new Entity();
             spotLightEntity.transform = new Transform(1.5f * Vector3.UnitY, Vector3.Zero,  0.2f * Vector3.One);
 
-            spotLightEntity.AddComponent(new SpotLight(Vector3.UnitX, (float)Math.Cos(10.0), (float)Math.Cos(15.0), -Vector3.UnitY));
+            //spotLightEntity.AddComponent(new SpotLight(Vector3.UnitX, (float)Math.Cos(10.0), (float)Math.Cos(15.0), -Vector3.UnitY));
+            spotLightEntity.AddComponent(new SpotLight(Color4.Red, 10.0f, 15.0f, -Vector3.UnitY));
+
             spotLightEntity.AddComponent(AssetManager.GetMesh("cube"));
             spotLightEntity.AddComponent(new Renderer(new UnlitMaterial(Vector3.One)));
 

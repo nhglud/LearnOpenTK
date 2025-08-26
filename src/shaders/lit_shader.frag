@@ -11,18 +11,18 @@ struct Material {
 
 struct LightSource {
 	vec3 position;
-	vec3 color;
+	vec4 color;
 };
 
 struct DirectionalLight
 {
-	vec3 color;
+	vec4 color;
 	vec3 direction;
 };
 
 struct SpotLight
 {
-	vec3 color;
+	vec4 color;
 	vec3 direction;
 	vec3 position;
 	float innerRadius;
@@ -63,10 +63,10 @@ uniform DirectionalLight directionalLights[MAX_DIRECTIONAL_LIGHTS];
 uniform int numSpotLights;
 uniform SpotLight spotLights[MAX_SPOT_LIGHTS];
 
-vec3 CalculateDiffuseLight(vec3 lightPos, vec3 lightCol, vec3 norm);
-vec3 CalculateSpecularLight(vec3 lightPos, vec3 lightCol, vec3 norm);
-vec3 CalculateDiffuseLightDirectional(vec3 lightCol, vec3 direction, vec3 norm);
-vec3 CalculateSpecularLightDirectional(vec3 lightCol, vec3 direction, vec3 norm);
+vec3 CalculateDiffuseLight(vec3 lightPos, vec4 lightCol, vec3 norm);
+vec3 CalculateSpecularLight(vec3 lightPos, vec4 lightCol, vec3 norm);
+vec3 CalculateDiffuseLightDirectional(vec4 lightCol, vec3 direction, vec3 norm);
+vec3 CalculateSpecularLightDirectional(vec4 lightCol, vec3 direction, vec3 norm);
 vec3 CalculateDiffuseSpotLight(SpotLight spotlight, vec3 norm);
 vec3 CalculateSpecularSpotLight(SpotLight spotlight, vec3 norm);
 
@@ -109,16 +109,16 @@ void main()
 }
 
 
-vec3 CalculateDiffuseLight(vec3 lightPos, vec3 lightCol, vec3 norm)
+vec3 CalculateDiffuseLight(vec3 lightPos, vec4 lightCol, vec3 norm)
 {
 	vec3 lightDir = normalize(lightPos - fragPosition);
-	vec3 diffuse = max(dot(norm, lightDir), 0.0) * lightCol;
+	vec3 diffuse = max(dot(norm, lightDir), 0.0) * lightCol.rgb;
 
 	return diffuse;
 }
 
 
-vec3 CalculateSpecularLight(vec3 lightPos, vec3 lightCol, vec3 norm)
+vec3 CalculateSpecularLight(vec3 lightPos, vec4 lightCol, vec3 norm)
 {
 	vec3 lightDir = normalize(lightPos - fragPosition);
 
@@ -126,21 +126,21 @@ vec3 CalculateSpecularLight(vec3 lightPos, vec3 lightCol, vec3 norm)
 	vec3 viewDir = normalize(viewPosition - fragPosition);
 	vec3 reflectDir = reflect(-lightDir, norm);  
 	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 128);
-	vec3 specular = specularStrength * spec * lightCol; 
+	vec3 specular = specularStrength * spec * lightCol.rgb; 
 
 	return specular;
 }
 
 
-vec3 CalculateDiffuseLightDirectional(vec3 lightCol, vec3 direction, vec3 norm)
+vec3 CalculateDiffuseLightDirectional(vec4 lightCol, vec3 direction, vec3 norm)
 {
 	vec3 lightDir = -direction;
-	vec3 diffuse = max(dot(norm, lightDir), 0.0) * lightCol;
+	vec3 diffuse = max(dot(norm, lightDir), 0.0) * lightCol.rgb;
 
 	return diffuse;
 }
 
-vec3 CalculateSpecularLightDirectional(vec3 lightCol, vec3 direction, vec3 norm)
+vec3 CalculateSpecularLightDirectional(vec4 lightCol, vec3 direction, vec3 norm)
 {
 	vec3 lightDir = -direction;
 
@@ -148,7 +148,7 @@ vec3 CalculateSpecularLightDirectional(vec3 lightCol, vec3 direction, vec3 norm)
 	vec3 viewDir = normalize(viewPosition - fragPosition);
 	vec3 reflectDir = reflect(-lightDir, norm);  
 	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 128);
-	vec3 specular = specularStrength * spec * lightCol; 
+	vec3 specular = specularStrength * spec * lightCol.rgb; 
 
 	return specular;
 }
@@ -157,7 +157,7 @@ vec3 CalculateSpecularLightDirectional(vec3 lightCol, vec3 direction, vec3 norm)
 vec3 CalculateDiffuseSpotLight(SpotLight spotlight, vec3 norm)
 {
 	vec3 lightDir = normalize(spotlight.position - fragPosition);
-	vec3 diffuse = max(dot(norm, lightDir), 0.0) * spotlight.color;
+	vec3 diffuse = max(dot(norm, lightDir), 0.0) * spotlight.color.rgb;
 
 	float theta     = dot(lightDir, normalize(spotlight.direction));
 	float epsilon   = spotlight.innerRadius - spotlight.outerRadius;
@@ -175,7 +175,7 @@ vec3 CalculateSpecularSpotLight(SpotLight spotlight, vec3 norm)
 	vec3 viewDir = normalize(viewPosition - fragPosition);
 	vec3 reflectDir = reflect(-lightDir, norm);  
 	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 128);
-	vec3 specular = specularStrength * spec * spotlight.color; 
+	vec3 specular = specularStrength * spec * spotlight.color.rgb; 
 
 	float theta     = dot(lightDir, normalize(spotlight.direction));
 	float epsilon   = spotlight.innerRadius - spotlight.outerRadius;

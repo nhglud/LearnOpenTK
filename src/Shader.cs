@@ -128,6 +128,13 @@ namespace LearnOpenTK
         }
 
 
+        public void SetColor4(string name, Color4 color)
+        {
+            int location = GL.GetUniformLocation(Handle, name);
+            GL.Uniform4(location, color);
+        }
+
+
 
         public void SetMat4(string name, Matrix4 matrix)
         {

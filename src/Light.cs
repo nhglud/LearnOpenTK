@@ -9,7 +9,7 @@ namespace LearnOpenTK
 {
     public abstract class Light : Component
     {
-        public Vector3 lightColor;
+        public Color4 lightColor;
 
     }
 }

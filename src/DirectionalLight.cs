@@ -7,7 +7,7 @@ namespace LearnOpenTK
     {
         public Vector3 direction;
 
-        public DirectionalLight(Vector3 lightColor, Vector3 direction) : base()
+        public DirectionalLight(Color4 lightColor, Vector3 direction) : base()
         {
             this.lightColor = lightColor;
             this.direction = direction;
