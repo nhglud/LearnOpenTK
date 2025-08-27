@@ -1,4 +1,5 @@
 ﻿using OpenTK.Windowing.Common;
+using System.Security.Principal;
 
 namespace LearnOpenTK
 {
@@ -11,6 +12,8 @@ namespace LearnOpenTK
         {
             entities = new List<Entity>();
             this.game = game;
+
+            Entity.EntityCreated += AddEntity;
         }
 
         public virtual void LoadLevel()
@@ -29,8 +32,15 @@ namespace LearnOpenTK
 
         }
 
+        public void AddEntity(Entity entity)
+        {
+            entities.Add(entity);
+        }
+
+
         public void Clear()
         {
+            Entity.EntityCreated -= AddEntity;
             entities.Clear();
         }
 

@@ -15,7 +15,9 @@ namespace LearnOpenTK
 
         public UIPanel() 
         { 
-            
+            components = new Dictionary<string, UIComponent>();
+
+
 
 
         }

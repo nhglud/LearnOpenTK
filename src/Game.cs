@@ -41,9 +41,6 @@ namespace LearnOpenTK
             framebuffer = new Framebuffer(ClientSize.X, ClientSize.Y);
             postProcessor = new PostProcessor(AssetManager.GetShader("post_processing"));
 
-            //postProcessor.AddFilter("negative", new PostProcessingFilter(AssetManager.GetShader("negative_filter"), ClientSize.X, ClientSize.Y));
-            //postProcessor.AddFilter("bnw", new PostProcessingFilter(AssetManager.GetShader("bnw_filter"), ClientSize.X, ClientSize.Y));
-
 
             uiManager = new UIManager(this);
         }

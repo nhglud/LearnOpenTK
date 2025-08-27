@@ -7,9 +7,11 @@ namespace LearnOpenTK
 
         public Dictionary<Type, Component> components = new Dictionary<Type, Component>();
 
+        public static event Action<Entity> EntityCreated;
+
         public Entity()
         {
-
+            EntityCreated?.Invoke(this);
         }
 
         public void AddComponent<T>(T component) where T : Component

@@ -99,16 +99,6 @@ namespace LearnOpenTK
             player.AddComponent(new CharacterController(game.KeyboardState, game.MouseState));
 
 
-            entities.Add(player);
-            entities.Add(entity);
-            entities.Add(entity2);
-            entities.Add(entity3);
-            entities.Add(entity4);
-            entities.Add(lightEntity);
-            entities.Add(lightEntity2);
-            entities.Add(lightEntity3);
-            entities.Add(lightEntity4);
-
             AssetManager.GetShader("basic").Use();
             AssetManager.GetShader("basic").SetInt("texture0", 0);
             AssetManager.GetShader("basic").SetInt("texture1", 1);
