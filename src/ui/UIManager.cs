@@ -44,6 +44,10 @@ namespace LearnOpenTK
             if (ImGui.Button("Level 2"))
                 game.ChangeLevel(new LevelTwo(game));
 
+
+            if (ImGui.Button("Level 3"))
+                game.ChangeLevel(new LevelThree(game));
+
             ImGui.End();
 
             ImGui.Begin("Post processing");

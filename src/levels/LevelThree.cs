@@ -3,19 +3,22 @@
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace LearnOpenTK
 {
-    public class FirstLevel : Level
+    public class LevelThree : Level
     {
 
         private LightingSystem lightingSystem;
         private RenderingSystem renderingSystem;
         private UpdateSystem updateSystem;
 
-        public FirstLevel(Game game) : base(game)
+        public LevelThree(Game game) : base(game)
         {
+
+
         }
 
         public override void LoadLevel()
@@ -41,30 +44,7 @@ namespace LearnOpenTK
 
             lightEntity.AddComponent(mesh);
             lightEntity.AddComponent(new Renderer(new UnlitMaterial(Vector3.One)));
-            lightEntity.AddComponent(new PointLight(Color4.Green));
-
-
-            Entity lightEntity2 = new Entity();
-            lightEntity2.transform = new Transform(new Vector3(1.3f, 1.4f, -1.0f), Vector3.Zero, 0.2f * Vector3.One);
-
-            lightEntity2.AddComponent(mesh);
-            lightEntity2.AddComponent(new Renderer(new UnlitMaterial(Vector3.One)));
-            lightEntity2.AddComponent(new PointLight(Color4.AliceBlue));
-
-
-            Entity lightEntity3 = new Entity();
-            lightEntity3.transform = new Transform(new Vector3(-1.3f, 1.4f, -1.0f), Vector3.Zero, 0.2f * Vector3.One);
-
-            lightEntity3.AddComponent(mesh);
-            lightEntity3.AddComponent(new Renderer(new UnlitMaterial(Vector3.One)));
-            lightEntity3.AddComponent(new PointLight(Color4.BlueViolet));
-
-
-            Entity lightEntity4 = new Entity();
-            lightEntity4.transform = new Transform(new Vector3(2.3f, 5.4f, 1.0f), Vector3.Zero, 0.2f * Vector3.One);
-            lightEntity4.AddComponent(mesh);
-            lightEntity4.AddComponent(new Renderer(new UnlitMaterial(Vector3.One)));
-            lightEntity4.AddComponent(new PointLight(Color4.DeepPink));
+            lightEntity.AddComponent(new DirectionalLight((Color4.White), Vector3.Normalize(new Vector3(-1.0f, -2.0f, 0.0f))));
 
 
             Entity entity = new Entity();
@@ -99,7 +79,7 @@ namespace LearnOpenTK
             player.AddComponent(new CharacterController(game.KeyboardState, game.MouseState));
 
 
-            
+
             lightingSystem = new LightingSystem(entities);
             renderingSystem = new RenderingSystem(entities);
             updateSystem = new UpdateSystem(entities);
