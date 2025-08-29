@@ -80,23 +80,10 @@ namespace LearnOpenTK
             base.OnRenderFrame(e);
 
             // SCENE RENDERING
-            
-            GL.Enable(EnableCap.DepthTest);
-            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-            //currentLevel.RenderLevel(e);
-
-            framebuffer.Bind(ClientSize.X, ClientSize.Y);
-
-            GL.Enable(EnableCap.DepthTest);
-            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             currentLevel.RenderLevel(e);
-
-            framebuffer.Unbind(ClientSize.X, ClientSize.Y);
-            framebuffer.BindTexture();
 
             // POST PROCESSING
             postProcessor.ApplyPostProcessing(e, ClientSize.X, ClientSize.Y);
-            //postProcessor.ApplyPostProcessing(e, framebuffer);
 
             // RENDER UI
 
@@ -112,7 +99,7 @@ namespace LearnOpenTK
             GL.Viewport(0, 0, e.Width, e.Height);
 
             uiManager.Resize(e);
-            framebuffer.Resize(e.Width, e.Height);
+            currentLevel.framebuffer.Resize(e.Width, e.Height);
             postProcessor.Resize(e.Width, e.Height);
             ClientSize = (e.Width, e.Height);
         }

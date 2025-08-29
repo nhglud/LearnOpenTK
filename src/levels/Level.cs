@@ -7,6 +7,7 @@ namespace LearnOpenTK
     {
         public List<Entity> entities;
         public Game game;
+        public Framebuffer framebuffer;
 
         public Level(Game game)
         {

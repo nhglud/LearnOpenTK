@@ -7,6 +7,7 @@
 using Assimp;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
+using OpenTK.Graphics.OpenGL4;
 
 
 namespace LearnOpenTK
@@ -63,6 +64,7 @@ namespace LearnOpenTK
             lightingSystem = new LightingSystem(entities);
             renderingSystem = new RenderingSystem(entities);
             updateSystem = new UpdateSystem(entities);
+            framebuffer = new Framebuffer(game.ClientSize.X, game.ClientSize.Y);
 
         }
 
@@ -78,11 +80,26 @@ namespace LearnOpenTK
         {
             base.RenderLevel(e);
 
+            GL.Enable(EnableCap.DepthTest);
+
+            framebuffer.Bind(game.ClientSize.X, game.ClientSize.Y);
+            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+
+
             Camera.main.UpdateUBO(game.ClientSize.X, game.ClientSize.Y);
-            
             lightingSystem.Update();
+
+            LitMaterial.UpdateStaticProperties();
             renderingSystem.Render();
-        
+
+            framebuffer.Unbind(game.ClientSize.X, game.ClientSize.Y);
+            framebuffer.BindTexture();
+
+            //Camera.main.UpdateUBO(game.ClientSize.X, game.ClientSize.Y);
+
+            //lightingSystem.Update();
+            //renderingSystem.Render();
+
         }
 
 
