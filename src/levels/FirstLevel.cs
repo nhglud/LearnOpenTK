@@ -36,12 +36,12 @@ namespace LearnOpenTK
             LitMaterial.SetAmbient(ambientColor, ambientStrength);
             LitMaterial.SetDiffuse(lightPosition, lightColor);
 
-            Entity lightEntity = new Entity();
-            lightEntity.transform = new Transform(lightPosition, Vector3.Zero, 0.2f * Vector3.One);
+            //Entity lightEntity = new Entity();
+            //lightEntity.transform = new Transform(lightPosition, Vector3.Zero, 0.2f * Vector3.One);
 
-            lightEntity.AddComponent(mesh);
-            lightEntity.AddComponent(new Renderer(new UnlitMaterial(Vector3.One)));
-            lightEntity.AddComponent(new PointLight(Color4.Green));
+            //lightEntity.AddComponent(mesh);
+            //lightEntity.AddComponent(new Renderer(new UnlitMaterial(Vector3.One)));
+            //lightEntity.AddComponent(new PointLight(Color4.Green));
 
 
             Entity lightEntity2 = new Entity();
@@ -60,11 +60,11 @@ namespace LearnOpenTK
             lightEntity3.AddComponent(new PointLight(Color4.BlueViolet));
 
 
-            Entity lightEntity4 = new Entity();
-            lightEntity4.transform = new Transform(new Vector3(2.3f, 5.4f, 1.0f), Vector3.Zero, 0.2f * Vector3.One);
-            lightEntity4.AddComponent(mesh);
-            lightEntity4.AddComponent(new Renderer(new UnlitMaterial(Vector3.One)));
-            lightEntity4.AddComponent(new PointLight(Color4.DeepPink));
+            //Entity lightEntity4 = new Entity();
+            //lightEntity4.transform = new Transform(new Vector3(2.3f, 5.4f, 1.0f), Vector3.Zero, 0.2f * Vector3.One);
+            //lightEntity4.AddComponent(mesh);
+            //lightEntity4.AddComponent(new Renderer(new UnlitMaterial(Vector3.One)));
+            //lightEntity4.AddComponent(new PointLight(Color4.DeepPink));
 
 
             Entity entity = new Entity();
@@ -89,6 +89,12 @@ namespace LearnOpenTK
             entity4.transform = new Transform(new Vector3(0.0f, -2.0f, 0.0f), new Vector3(0.0f, 0.0f, 0.0f), new Vector3(8.0f, 1.0f, 8.0f));
             entity4.AddComponent(AssetManager.GetMesh("quad"));
             entity4.AddComponent(new Renderer(AssetManager.GetMaterial("container2_mat")));
+
+            Entity entity5 = new Entity();
+            entity5.transform = new Transform(new Vector3(-2.5f, 0.5f, -3.0f), new Vector3(0.0f, 0.0f, 0.0f), Vector3.One);
+            entity5.AddComponent(AssetManager.GetMesh("cube"));
+            entity5.AddComponent(new Renderer(AssetManager.GetMaterial("container2_mat")));
+
 
 
             Entity player = new Entity();
@@ -116,7 +122,6 @@ namespace LearnOpenTK
 
             updateSystem.Update(e);
 
-            //Component.UpdateComponents(e)
         }
 
         public override void RenderLevel(FrameEventArgs e)

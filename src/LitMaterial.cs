@@ -8,7 +8,7 @@ namespace LearnOpenTK
 {
     public class LitMaterial : Material
     {
-        private Vector3 color;
+        private Color4 color;
 
         private static Vector3 ambientColor;
         private static float ambientStrength;
@@ -20,7 +20,9 @@ namespace LearnOpenTK
         private Texture specularMap;
 
 
-        public LitMaterial(Vector3 color) : base()  
+        public bool useTexture = true;
+
+        public LitMaterial(Color4 color) : base()  
         {
             this.color = color;
             shader = AssetManager.GetShader("lit");
@@ -28,7 +30,7 @@ namespace LearnOpenTK
 
         public LitMaterial(Texture diffuseMap, Texture specularMap) : base()
         {
-            this.color = Vector3.One;
+            this.color = Color4.Blue;
             shader = AssetManager.GetShader("lit");
 
             this.diffuseMap = diffuseMap;
@@ -39,7 +41,9 @@ namespace LearnOpenTK
         public override void Use(Matrix4 model)
         { 
             base.Use(model);
-            shader.SetVector3("color", color);
+
+            shader.SetColor4("material.color", color);
+            shader.SetBool("useTexture", useTexture);
 
             shader.SetInt("material.diffuseMap", 0);
             shader.SetInt("material.specularMap", 1);
@@ -73,10 +77,10 @@ namespace LearnOpenTK
         }
 
 
-        public void SetColor(Vector3 color)
-        {
-            this.color = color;
-        }
+        //public void SetColor(Vector3 color)
+        //{
+        //    this.color = color;
+        //}
 
     }
 }

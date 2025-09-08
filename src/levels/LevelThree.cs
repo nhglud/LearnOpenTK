@@ -78,16 +78,11 @@ namespace LearnOpenTK
             player.AddComponent(new CharacterController(game.KeyboardState, game.MouseState));
 
 
-
             lightingSystem = new LightingSystem(entities);
             renderingSystem = new RenderingSystem(entities);
             updateSystem = new UpdateSystem(entities);
-            framebuffer = new Framebuffer(game.ClientSize.X, game.ClientSize.Y);
-
-
+            framebuffer = new Framebuffer(game.ClientSize.X, game.ClientSize.Y);            
         }
-
-
 
 
         public override void UpdateLevel(FrameEventArgs e)
@@ -117,16 +112,6 @@ namespace LearnOpenTK
 
             framebuffer.Unbind(game.ClientSize.X, game.ClientSize.Y);
             framebuffer.BindTexture();
-
-
-
-
-            //Camera.main.UpdateUBO(game.ClientSize.X, game.ClientSize.Y);
-            //lightingSystem.Update();
-
-            //LitMaterial.UpdateStaticProperties();
-            //renderingSystem.Render();
-
 
         }
 

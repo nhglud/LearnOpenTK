@@ -108,6 +108,12 @@ namespace LearnOpenTK
             GL.Uniform1(location, value);
         }
 
+        public void SetBool(string name, bool value)
+        {
+            int location = GL.GetUniformLocation(Handle, name);
+            GL.Uniform1(location, value ? 1 : 0);
+        }
+
         public void SetFloat(string name, float value)
         {
             int location = GL.GetUniformLocation(Handle, name);

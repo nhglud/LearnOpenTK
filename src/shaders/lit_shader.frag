@@ -4,6 +4,7 @@
 
 
 struct Material {
+	vec4 color;
 	sampler2D diffuseMap;
 	sampler2D specularMap;
 };
@@ -63,6 +64,8 @@ uniform DirectionalLight directionalLights[MAX_DIRECTIONAL_LIGHTS];
 uniform int numSpotLights;
 uniform SpotLight spotLights[MAX_SPOT_LIGHTS];
 
+uniform bool useTexture;
+
 vec3 CalculateDiffuseLight(vec3 lightPos, vec4 lightCol, vec3 norm);
 vec3 CalculateSpecularLight(vec3 lightPos, vec4 lightCol, vec3 norm);
 vec3 CalculateDiffuseLightDirectional(vec4 lightCol, vec3 direction, vec3 norm);
@@ -76,8 +79,17 @@ void main()
 
 	vec3 ambient = ambientStrength * ambientColor;
 
+	
+
 	vec3 diffColor = vec3(texture(material.diffuseMap, texCoord));
 	vec3 specColor = vec3(texture(material.specularMap, texCoord));
+
+	if(!useTexture)
+	{
+		diffColor = material.color.rgb;
+		specColor = vec3(1.0);
+	}
+
 
 	vec3 diffuse = vec3(0.0);
 	vec3 specular = vec3(0.0);
@@ -103,7 +115,7 @@ void main()
 		specular += CalculateSpecularSpotLight(spotLights[i], norm);
 	}
 
-	vec3 result = (ambient + diffuse) * diffColor  + specular * specColor;
+	vec3 result = (ambient + diffuse) * diffColor  + diffuse * specular * specColor;
 
 	outputColor = vec4(result, 1.0);
 }
@@ -125,7 +137,10 @@ vec3 CalculateSpecularLight(vec3 lightPos, vec4 lightCol, vec3 norm)
 	float specularStrength = 0.8;
 	vec3 viewDir = normalize(viewPosition - fragPosition);
 	vec3 reflectDir = reflect(-lightDir, norm);  
-	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 128);
+
+	vec3 halfwayDir = normalize(viewDir + lightDir);
+
+	float spec = pow(max(dot(norm, halfwayDir), 0.0), 128);
 	vec3 specular = specularStrength * spec * lightCol.rgb; 
 
 	return specular;
@@ -147,7 +162,10 @@ vec3 CalculateSpecularLightDirectional(vec4 lightCol, vec3 direction, vec3 norm)
 	float specularStrength = 0.8;
 	vec3 viewDir = normalize(viewPosition - fragPosition);
 	vec3 reflectDir = reflect(-lightDir, norm);  
-	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 128);
+
+	vec3 halfwayDir = normalize(viewDir + lightDir);
+
+	float spec = pow(max(dot(norm, halfwayDir), 0.0), 128);
 	vec3 specular = specularStrength * spec * lightCol.rgb; 
 
 	return specular;
@@ -174,7 +192,10 @@ vec3 CalculateSpecularSpotLight(SpotLight spotlight, vec3 norm)
 	float specularStrength = 0.8;
 	vec3 viewDir = normalize(viewPosition - fragPosition);
 	vec3 reflectDir = reflect(-lightDir, norm);  
-	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 128);
+
+	vec3 halfwayDir = normalize(viewDir + lightDir);
+
+	float spec = pow(max(dot(norm, halfwayDir), 0.0), 128);
 	vec3 specular = specularStrength * spec * spotlight.color.rgb; 
 
 	float theta     = dot(lightDir, normalize(spotlight.direction));
