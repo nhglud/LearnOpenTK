@@ -39,12 +39,10 @@ in vec2 texCoord;
 in vec3 fragPosition;
 in vec3 viewPosition;
 
-//uniform vec3 color;
 uniform vec3 ambientColor;
 uniform float ambientStrength;
 
-//uniform vec3 lightPosition;
-//uniform vec3 lightColor;
+
 
 uniform Material material;
 
@@ -76,11 +74,8 @@ vec3 CalculateSpecularSpotLight(SpotLight spotlight, vec3 norm);
 
 void main()
 {
-	vec3 norm = normalize(normal);
 
-
-	vec3 ambient = ambientStrength * ambientColor * max(0.0, dot(norm,normalize(viewPosition - fragPosition)));
-//	vec3 ambient = ambientStrength * ambientColor;
+	vec3 ambient = ambientStrength * ambientColor;
 
 	
 
@@ -96,7 +91,8 @@ void main()
 
 	vec3 diffuse = vec3(0.0);
 	vec3 specular = vec3(0.0);
-	
+
+	vec3 norm = normalize(normal);
 
 	// point lights
 	for (int i = 0; i < numLights; i++)
@@ -117,16 +113,7 @@ void main()
 		specular += CalculateSpecularSpotLight(spotLights[i], norm);
 	}
 
-
-
-//	float rim = smoothstep(0.25, 0.0, dot(norm, normalize(viewPosition - fragPosition)));
-
-
-
 	vec3 result = (ambient + diffuse) * diffColor  + diffuse * specular * specColor;
-
-//	vec3 result = (ambient + diffuse) * diffColor  + diffuse * specular * specColor + rim * vec3(1.0);
-
 
 	outputColor = vec4(result, 1.0);
 }
@@ -135,7 +122,31 @@ void main()
 vec3 CalculateDiffuseLight(vec3 lightPos, vec4 lightCol, vec3 norm)
 {
 	vec3 lightDir = normalize(lightPos - fragPosition);
-	vec3 diffuse = max(dot(norm, lightDir), 0.0) * lightCol.rgb;
+
+	float intensity = max(dot(norm, lightDir), 0.0);
+
+//	vec4 color;
+//	if (intensity > 0.95)
+//		color = vec4(1.0,0.5,0.5,1.0);
+////	else 
+////	if (intensity > 0.5)
+////		color = vec4(0.6,0.3,0.3,1.0);
+//	else
+//	if (intensity > 0.25)
+//		color = vec4(0.4,0.2,0.2,1.0);
+//	else
+//		color = vec4(0.2,0.1,0.1,1.0);
+//
+//	return color.rgb;
+
+	intensity = intensity > 0.0 ? 0.8 : 0;
+
+
+
+	vec3 diffuse = intensity * lightCol.rgb;
+	
+
+
 
 	return diffuse;
 }
@@ -152,6 +163,7 @@ vec3 CalculateSpecularLight(vec3 lightPos, vec4 lightCol, vec3 norm)
 	vec3 halfwayDir = normalize(viewDir + lightDir);
 
 	float spec = pow(max(dot(norm, halfwayDir), 0.0), 128);
+	spec = spec > 0.85 ? 1.0 : 0.0;
 	vec3 specular = specularStrength * spec * lightCol.rgb; 
 
 	return specular;

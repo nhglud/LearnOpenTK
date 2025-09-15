@@ -22,6 +22,8 @@ namespace LearnOpenTK
             Shader postPorcessingShader = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/post_processing_shader.frag");
             Shader negativeFilter = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/negative_filter.frag");
             Shader bnwFilter = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/bnw_filter.frag");
+            Shader toonFilter = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/toon_filter.frag");
+
 
 
             Texture texture = new Texture(path + "assets/container.jpg");
@@ -43,6 +45,8 @@ namespace LearnOpenTK
             AddShader("post_processing", postPorcessingShader);
             AddShader("negative_filter", negativeFilter);
             AddShader("bnw_filter", bnwFilter);
+            AddShader("toon_filter", toonFilter);
+
 
 
             AddTexture("container", texture);

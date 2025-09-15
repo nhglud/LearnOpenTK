@@ -60,11 +60,11 @@ namespace LearnOpenTK
             lightEntity3.AddComponent(new PointLight(Color4.BlueViolet));
 
 
-            //Entity lightEntity4 = new Entity();
-            //lightEntity4.transform = new Transform(new Vector3(2.3f, 5.4f, 1.0f), Vector3.Zero, 0.2f * Vector3.One);
-            //lightEntity4.AddComponent(mesh);
-            //lightEntity4.AddComponent(new Renderer(new UnlitMaterial(Vector3.One)));
-            //lightEntity4.AddComponent(new PointLight(Color4.DeepPink));
+            Entity lightEntity4 = new Entity();
+            lightEntity4.transform = new Transform(new Vector3(2.3f, 5.4f, 1.0f), Vector3.Zero, 0.2f * Vector3.One);
+            lightEntity4.AddComponent(mesh);
+            lightEntity4.AddComponent(new Renderer(new UnlitMaterial(Vector3.One)));
+            lightEntity4.AddComponent(new PointLight(Color4.DeepPink));
 
 
             Entity entity = new Entity();
@@ -83,6 +83,7 @@ namespace LearnOpenTK
             entity3.transform = new Transform(new Vector3(3.5f, 0.0f, 2.0f), new Vector3(0.0f, -30.0f, 0.0f), new Vector3(1.5f, 1.5f, 1.5f));
             entity3.AddComponent(monke);
             entity3.AddComponent(new Renderer(AssetManager.GetMaterial("container2_mat")));
+            
 
 
             Entity entity4 = new Entity();

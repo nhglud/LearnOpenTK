@@ -8,28 +8,37 @@ namespace LearnOpenTK
     {
         private int handle;
 
-        public Texture(string path)
-        {
-            LoadTexture(path);
-        }
+        private string path;
+        private TextureFilter filter;
 
-        private void LoadTexture(string path)
+        public Texture(string path, TextureFilter textureFilter = TextureFilter.TrilinearMipMap)
         {
+            this.path = path;
+            filter = textureFilter;
             handle = GL.GenTexture();
             Use();
+            LoadTexture();
+        }
 
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)TextureWrapMode.Repeat);
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)TextureWrapMode.Repeat);
 
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
-
+        private void LoadTexture()
+        {
             StbImage.stbi_set_flip_vertically_on_load(1);
 
             ImageResult image = ImageResult.FromStream(File.OpenRead(path), ColorComponents.RedGreenBlueAlpha);
 
             GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, image.Width, image.Height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, image.Data);
+
+
+            ApplyTextureFilter(filter);
         }
+
+        public void SetTextureFilter(TextureFilter filter)
+        {
+            this.filter = filter;
+            LoadTexture();
+        }
+
 
         public void Use(TextureUnit unit = TextureUnit.Texture0)
         {
@@ -37,5 +46,57 @@ namespace LearnOpenTK
             GL.BindTexture(TextureTarget.Texture2D, handle);
         }
 
+        private void ApplyTextureFilter(TextureFilter textureFilter)
+        {
+
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)TextureWrapMode.Repeat);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)TextureWrapMode.Repeat);
+
+            switch (textureFilter)
+            {
+                case TextureFilter.Nearest:
+
+                    GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
+                    GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
+
+                    break;
+                case TextureFilter.Linear:
+
+
+                    GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
+                    GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
+
+                    break;
+                case TextureFilter.BilinearMipmap:
+
+                    GL.GenerateMipmap(GenerateMipmapTarget.Texture2D);
+
+                    GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.LinearMipmapNearest);
+                    GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
+
+                    break;
+                case TextureFilter.TrilinearMipMap:
+
+                    GL.GenerateMipmap(GenerateMipmapTarget.Texture2D);
+
+                    GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.LinearMipmapLinear);
+                    GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
+
+                    break;
+                default:
+                    throw new NotImplementedException("Texture filter not implementet");
+            }
+        }
+
     }
+    
+    public enum TextureFilter
+    {
+        Nearest,
+        Linear,
+        BilinearMipmap,
+        TrilinearMipMap
+    }
+
+
 }

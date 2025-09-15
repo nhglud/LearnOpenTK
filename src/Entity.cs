@@ -42,8 +42,6 @@ namespace LearnOpenTK
         }
 
 
-
-
         public void Clear()
         {
             components.Clear();

@@ -12,11 +12,12 @@ namespace LearnOpenTK
 
         private bool applyFilter = false;
         private bool applyBnwFilter = false;
+        private bool applyToonFilter = false;
 
 
         private PostProcessingFilter negativeFilter;
         private PostProcessingFilter bnwFilter;
-
+        private PostProcessingFilter toonFilter;
 
 
         public UIManager(Game game)
@@ -82,6 +83,22 @@ namespace LearnOpenTK
             }
 
 
+            ImGui.Checkbox("toon filter", ref applyToonFilter);
+            if (applyToonFilter)
+            {
+                if (toonFilter == null)
+                    toonFilter = new PostProcessingFilter(AssetManager.GetShader("toon_filter"), game.ClientSize.X, game.ClientSize.Y);
+
+                game.postProcessor.AddFilter("toon", toonFilter);
+            }
+            else
+            {
+                game.postProcessor.RemoveFilter("toon");
+
+            }
+
+
+
             ImGui.End();
 
 
@@ -94,7 +111,7 @@ namespace LearnOpenTK
                     DrawTransform(entity);
 
 
-                    DrawComponents(entity);
+                    //DrawComponents(entity);
 
                     ImGui.TreePop();
                 }

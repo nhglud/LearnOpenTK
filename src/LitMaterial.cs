@@ -30,7 +30,7 @@ namespace LearnOpenTK
 
         public LitMaterial(Texture diffuseMap, Texture specularMap) : base()
         {
-            this.color = Color4.Blue;
+            this.color = Color4.Lavender;
             shader = AssetManager.GetShader("lit");
 
             this.diffuseMap = diffuseMap;
