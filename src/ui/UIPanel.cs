@@ -1,9 +1,5 @@
 ﻿using ImGuiNET;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LearnOpenTK
 {
@@ -11,14 +7,17 @@ namespace LearnOpenTK
     {
         private string title;
 
-        private Dictionary<string, UIComponent> components;
+        protected Dictionary<string, UIComponent> components;
 
-        public UIPanel() 
-        { 
+        private Game game;
+
+        public UIPanel(string title, Game game) 
+        {
+            this.title = title;
+            this.game = game;
             components = new Dictionary<string, UIComponent>();
 
-
-
+            
 
         }
 
