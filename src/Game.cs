@@ -39,7 +39,7 @@ namespace LearnOpenTK
             currentLevel.LoadLevel();
 
             framebuffer = new Framebuffer(ClientSize.X, ClientSize.Y);
-            postProcessor = new PostProcessor(AssetManager.GetShader("post_processing"));
+            postProcessor = new PostProcessor(AssetManager.GetShader("post_processing"), this);
 
 
             uiManager = new UIManager(this);

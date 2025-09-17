@@ -45,6 +45,7 @@ namespace LearnOpenTK
 
 
             Entity lightEntity2 = new Entity();
+            lightEntity2.name = "Light 1";
             lightEntity2.transform = new Transform(new Vector3(1.3f, 1.4f, -1.0f), Vector3.Zero, 0.2f * Vector3.One);
 
             lightEntity2.AddComponent(mesh);
@@ -53,6 +54,7 @@ namespace LearnOpenTK
 
 
             Entity lightEntity3 = new Entity();
+            lightEntity3.name = "Light 2";
             lightEntity3.transform = new Transform(new Vector3(-1.3f, 1.4f, -1.0f), Vector3.Zero, 0.2f * Vector3.One);
 
             lightEntity3.AddComponent(mesh);
@@ -61,6 +63,7 @@ namespace LearnOpenTK
 
 
             Entity lightEntity4 = new Entity();
+            lightEntity4.name = "Light 3";
             lightEntity4.transform = new Transform(new Vector3(2.3f, 5.4f, 1.0f), Vector3.Zero, 0.2f * Vector3.One);
             lightEntity4.AddComponent(mesh);
             lightEntity4.AddComponent(new Renderer(new UnlitMaterial(Vector3.One)));
@@ -68,30 +71,36 @@ namespace LearnOpenTK
 
 
             Entity entity = new Entity();
+            entity.name = "Torus";
             entity.transform = new Transform(new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 32.0f, 54.0f), Vector3.One);
             entity.AddComponent(AssetManager.GetMesh("torus"));
             entity.AddComponent(new Renderer(AssetManager.GetMaterial("container2_mat")));
 
 
             Entity entity2 = new Entity();
+            entity2.name = "Sphere";
             entity2.transform = new Transform(new Vector3(0.5f, 0.0f, -5.0f), new Vector3(0.0f, -30.0f, 0.0f), Vector3.One);
             entity2.AddComponent(AssetManager.GetMesh("sphere"));
-            entity2.AddComponent(new Renderer(AssetManager.GetMaterial("container2_mat")));
+            entity2.AddComponent(new Renderer(AssetManager.GetMaterial("checker")));
 
 
             Entity entity3 = new Entity();
+            entity3.name = "Monke";
             entity3.transform = new Transform(new Vector3(3.5f, 0.0f, 2.0f), new Vector3(0.0f, -30.0f, 0.0f), new Vector3(1.5f, 1.5f, 1.5f));
             entity3.AddComponent(monke);
-            entity3.AddComponent(new Renderer(AssetManager.GetMaterial("container2_mat")));
+            entity3.AddComponent(new Renderer(AssetManager.GetMaterial("white")));
             
 
-
             Entity entity4 = new Entity();
+            entity4.name = "Floor";
             entity4.transform = new Transform(new Vector3(0.0f, -2.0f, 0.0f), new Vector3(0.0f, 0.0f, 0.0f), new Vector3(8.0f, 1.0f, 8.0f));
             entity4.AddComponent(AssetManager.GetMesh("quad"));
-            entity4.AddComponent(new Renderer(AssetManager.GetMaterial("container2_mat")));
+            entity4.AddComponent(new Renderer(AssetManager.GetMaterial("checker")));
+
+
 
             Entity entity5 = new Entity();
+            entity5.name = "Cube";
             entity5.transform = new Transform(new Vector3(-2.5f, 0.5f, -3.0f), new Vector3(0.0f, 0.0f, 0.0f), Vector3.One);
             entity5.AddComponent(AssetManager.GetMesh("cube"));
             entity5.AddComponent(new Renderer(AssetManager.GetMaterial("container2_mat")));
@@ -99,7 +108,7 @@ namespace LearnOpenTK
 
 
             Entity player = new Entity();
-
+            player.name = "Camera";
             player.transform = new Transform(new Vector3(0.0f, 0.0f, 3.0f), new Vector3(0.0f), new Vector3(1.0f));
 
             player.AddComponent(new Camera());

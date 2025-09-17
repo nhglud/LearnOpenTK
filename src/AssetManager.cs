@@ -23,6 +23,8 @@ namespace LearnOpenTK
             Shader negativeFilter = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/negative_filter.frag");
             Shader bnwFilter = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/bnw_filter.frag");
             Shader toonFilter = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/toon_filter.frag");
+            Shader pixelateFilter = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/pixelate_filter.frag");
+
 
 
 
@@ -30,6 +32,10 @@ namespace LearnOpenTK
             Texture awesomeFace = new Texture(path + "assets/awesomeface.png");
             Texture diffuse = new Texture(path + "assets/container2_diffuse.png");
             Texture specular = new Texture(path + "assets/container2_specular.png");
+            Texture checker = new Texture(path + "assets/checker.png");
+            Texture white= new Texture(path + "assets/white.png");
+
+
 
 
             AddMesh("cube", ModelLoader.LoadModel(path + "assets/cube.obj"));
@@ -46,6 +52,8 @@ namespace LearnOpenTK
             AddShader("negative_filter", negativeFilter);
             AddShader("bnw_filter", bnwFilter);
             AddShader("toon_filter", toonFilter);
+            AddShader("pixelate_filter", pixelateFilter);
+
 
 
 
@@ -53,9 +61,19 @@ namespace LearnOpenTK
             AddTexture("awesomeface", awesomeFace);
             AddTexture("container2_diffuse", diffuse);
             AddTexture("container2_specular", specular);
+            AddTexture("checker", checker);
+            AddTexture("white", white);
+
+
 
             AddMaterial("container2_mat", new LitMaterial(GetTexture("container2_diffuse"), GetTexture("container2_specular")));
+            AddMaterial("checker", new LitMaterial(GetTexture("checker"), GetTexture("white")));
+            AddMaterial("white", new LitMaterial(GetTexture("white"), GetTexture("white")));
+
+
+
         }
+
 
         public static void AddMesh(string name, Mesh mesh)
         {

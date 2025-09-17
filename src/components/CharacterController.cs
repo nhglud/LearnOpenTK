@@ -28,7 +28,7 @@ namespace LearnOpenTK
             this.keyboardState = keyboardState;
             this.mouseState = mouseState;
 
-            OnUpdate += Update;
+            //OnUpdate += Update;
         }
 
 

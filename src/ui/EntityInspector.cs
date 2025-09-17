@@ -1,13 +1,4 @@
 ﻿using ImGuiNET;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using goo;
-
-using OpenTK.Windowing.Common;
 using System.Numerics;
 
 
@@ -32,10 +23,23 @@ namespace LearnOpenTK
             int index = 0;
             foreach (var entity in game.currentLevel.entities)
             {
-                if (ImGui.TreeNode($"Entity {index}##entity{index}"))
+                if (ImGui.TreeNode($"{entity.name} ##entity{index}"))
                 {
                     DrawTransform(entity);
 
+
+                    if(entity.HasComponent(typeof(Light)))
+                    {
+                        var light = entity.GetComponent<Light>();
+
+                        if(ImGui.TreeNode($"Light ##{light.GetHashCode()}"))
+                        {
+                            ImGui.Text("Light yo");
+
+                            ImGui.TreePop();
+                        }
+
+                    }
 
                     //DrawComponents(entity);
 
@@ -44,6 +48,12 @@ namespace LearnOpenTK
                 index++;
             }
 
+
+            if (ImGui.Button("Add Entity"))
+            {
+                var entity = new Entity();
+                entity.transform = new Transform(OpenTK.Mathematics.Vector3.Zero, OpenTK.Mathematics.Vector3.Zero, OpenTK.Mathematics.Vector3.One);
+            }
 
         }
 
@@ -79,8 +89,6 @@ namespace LearnOpenTK
         }
 
     }
-
-
 
 
 }

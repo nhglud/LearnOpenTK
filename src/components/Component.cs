@@ -7,7 +7,7 @@ namespace LearnOpenTK
         public Entity entity;
         public Transform transform;
 
-        protected static event Action<FrameEventArgs> OnUpdate;
+        //protected static event Action<FrameEventArgs> OnUpdate;
 
         public Component()
         {
@@ -25,10 +25,10 @@ namespace LearnOpenTK
 
         }
 
-        public static void UpdateComponents(FrameEventArgs e)
-        {
-            OnUpdate?.Invoke(e);
-        }
+        //public static void UpdateComponents(FrameEventArgs e)
+        //{
+        //    OnUpdate?.Invoke(e);
+        //}
 
     }
 }

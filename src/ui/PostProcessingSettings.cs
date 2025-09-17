@@ -13,11 +13,15 @@ namespace LearnOpenTK
         private bool applyFilter = false;
         private bool applyBnwFilter = false;
         private bool applyToonFilter = false;
+        private bool applyPixelFilter = false;
+
 
 
         private PostProcessingFilter negativeFilter;
         private PostProcessingFilter bnwFilter;
         private PostProcessingFilter toonFilter;
+        private PostProcessingFilter pixelFilter;
+
 
 
         private Game game;
@@ -75,6 +79,23 @@ namespace LearnOpenTK
                 game.postProcessor.RemoveFilter("toon");
 
             }
+
+
+            ImGui.Checkbox("Pixel Filter", ref applyPixelFilter);
+            if (applyPixelFilter)
+            {
+                if (pixelFilter == null)
+                    pixelFilter = new PostProcessingFilter(AssetManager.GetShader("pixelate_filter"), game.ClientSize.X, game.ClientSize.Y);
+
+                game.postProcessor.AddFilter("pixel", pixelFilter);
+            }
+            else
+            {
+                game.postProcessor.RemoveFilter("pixel");
+
+            }
+
+
 
 
 
