@@ -37,9 +37,18 @@ namespace LearnOpenTK
 
                     vertices.Add(uv.X);
                     vertices.Add(uv.Y);
+
+                    vertices.Add(tangent.X);
+                    vertices.Add(tangent.Y);
+                    vertices.Add(tangent.Z);
+
+                    vertices.Add(bitangent.X);
+                    vertices.Add(bitangent.Y);
+                    vertices.Add(bitangent.Z);
+
                 }
 
-          
+
                 foreach (var face in mesh.Faces)
                 {
                     indices.AddRange(face.Indices.Select(i => (int)i));

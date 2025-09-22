@@ -3,10 +3,16 @@
 layout(location = 0) in vec3 aPosition;
 layout(location = 1) in vec3 aNormal;
 layout(location = 2) in vec2 aTexCoord;
+layout(location = 3) in vec3 aTangent;
+layout(location = 4) in vec3 aBinormal;
+
 
 
 out vec3 normal;
 out vec2 texCoord;
+out vec3 tangent;
+out vec3 binormal;
+out mat3 tbn;
 
 out vec3 fragPosition;
 out vec3 viewPosition;
@@ -28,11 +34,23 @@ void main(void)
 
     viewPosition = cameraPosition.xyz;
 
-    normal = mat3(transpose(inverse(model))) * aNormal;
+    normal = normalize(mat3(transpose(inverse(model))) * aNormal);
+    tangent = normalize(mat3(transpose(inverse(model))) * aTangent);
+    binormal = normalize(mat3(transpose(inverse(model))) * aBinormal);
 
+//    
+//    normal = normalize(vec3(model * vec4(aNormal, 1.0)));
+//    tangent = normalize(vec3(model * vec4(aTangent, 1.0)));
+//    binormal = normalize(vec3(model * vec4(aBinormal, 1.0)));
+
+
+
+    tbn = mat3(tangent, binormal, normal);
+    
     fragPosition = vec3(model * vec4(aPosition, 1.0));
 
     gl_Position =  projection * view * model * vec4(aPosition, 1.0);
+
 //    gl_Position =  projection * view * vec4(aPosition, 1.0);
 //    gl_Position =  projection * vec4(aPosition, 1.0);
 

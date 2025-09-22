@@ -36,6 +36,7 @@ out vec4 outputColor;
 
 in vec3 normal;
 in vec2 texCoord;
+in mat3 tbn;
 
 in vec3 fragPosition;
 in vec3 viewPosition;
@@ -79,14 +80,20 @@ void main()
 {
 	vec3 norm = normalize(normal);
 
-
 	vec3 ambient = ambientStrength * ambientColor * max(0.0, dot(norm,normalize(viewPosition - fragPosition)));
 //	vec3 ambient = ambientStrength * ambientColor;
 
-	
 
 	vec3 diffColor = vec3(texture(material.diffuseMap, texCoord));
 	vec3 specColor = vec3(texture(material.specularMap, texCoord));
+
+
+	vec3 normalMap = vec3(texture(material.normalMap, texCoord));
+	normalMap = normalize(normalMap * 2.0 - 1.0);
+
+	norm = normalize(tbn * normalMap);
+
+
 
 	if(!useTexture)
 	{

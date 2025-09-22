@@ -33,7 +33,13 @@ namespace LearnOpenTK
             Texture diffuse = new Texture(path + "assets/container2_diffuse.png");
             Texture specular = new Texture(path + "assets/container2_specular.png");
             Texture checker = new Texture(path + "assets/checker.png");
-            Texture white= new Texture(path + "assets/white.png");
+            Texture white = new Texture(path + "assets/white.png");
+            Texture blue = new Texture(path + "assets/normalmap.png");
+            Texture brickwall = new Texture(path + "assets/brickwall.jpg");
+            Texture brickwallNormal = new Texture(path + "assets/brickwall_normal.jpg");
+
+
+
 
 
 
@@ -63,13 +69,27 @@ namespace LearnOpenTK
             AddTexture("container2_specular", specular);
             AddTexture("checker", checker);
             AddTexture("white", white);
+            AddTexture("blue", blue);
 
 
 
-            AddMaterial("container2_mat", new LitMaterial(GetTexture("container2_diffuse"), GetTexture("container2_specular")));
-            AddMaterial("checker", new LitMaterial(GetTexture("checker"), GetTexture("white")));
-            AddMaterial("white", new LitMaterial(GetTexture("white"), GetTexture("white")));
 
+            //AddMaterial("container2_mat", new LitMaterial(GetTexture("container2_diffuse"), GetTexture("container2_specular")));
+            //AddMaterial("checker", new LitMaterial(GetTexture("checker"), GetTexture("white")));
+            //AddMaterial("white", new LitMaterial(GetTexture("white"), GetTexture("white")));
+
+            AddMaterial(
+                "container2_mat", 
+                new LitMaterial(
+                    GetTexture("container2_diffuse"), 
+                    GetTexture("container2_specular"), 
+                    GetTexture("blue")));
+
+
+
+            AddMaterial("checker", new LitMaterial(GetTexture("checker"), GetTexture("white"), GetTexture("blue")));
+            AddMaterial("white", new LitMaterial(GetTexture("white"), GetTexture("white"), GetTexture("blue")));
+            AddMaterial("brickwall", new LitMaterial(brickwall, white, brickwallNormal));
 
 
         }

@@ -39,6 +39,18 @@ namespace LearnOpenTK
         }
 
 
+        public LitMaterial(Texture diffuseMap, Texture specularMap, Texture normalMap) : base()
+        {
+            this.color = Color4.Lavender;
+            shader = AssetManager.GetShader("lit");
+
+            this.diffuseMap = diffuseMap;
+            this.specularMap = specularMap;
+            this.normalMap = normalMap;
+        }
+
+
+
         public override void Use(Matrix4 model)
         { 
             base.Use(model);
@@ -52,7 +64,7 @@ namespace LearnOpenTK
 
             diffuseMap.Use(TextureUnit.Texture0);
             specularMap.Use(TextureUnit.Texture1);
-            //normalMap.Use(TextureUnit.Texture2);
+            normalMap.Use(TextureUnit.Texture2);
 
 
         }

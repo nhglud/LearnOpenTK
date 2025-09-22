@@ -105,6 +105,13 @@ namespace LearnOpenTK
             entity5.AddComponent(AssetManager.GetMesh("cube"));
             entity5.AddComponent(new Renderer(AssetManager.GetMaterial("container2_mat")));
 
+            Entity entity6 = new Entity();
+            entity6.name = "Cube";
+            entity6.transform = new Transform(new Vector3(-2.5f, 0.5f, 3.0f), new Vector3(0.0f, 0.0f, 0.0f), Vector3.One);
+            entity6.AddComponent(AssetManager.GetMesh("cube"));
+            entity6.AddComponent(new Renderer(AssetManager.GetMaterial("brickwall")));
+
+
 
 
             Entity player = new Entity();
