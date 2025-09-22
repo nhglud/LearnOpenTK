@@ -3,7 +3,8 @@
 
 # Toaster 3D engine
 
-This is a tiny little 3D engine. For viewing 3D Scenes
+This is a tiny little OpenGL 3D engine learning project.
+Written in C# with OpenTK and ImGuiNet,
 
 Currently supports:
 - Blinn-Phong shading with multiple light sources.
