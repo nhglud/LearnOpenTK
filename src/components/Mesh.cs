@@ -36,62 +36,34 @@ namespace LearnOpenTK
 
             // Set vertex attributes
 
-            //int size = 3 + 3 + 2 + 3 + 3;
-
-            //int offset = 0;
-            //// Positions
-            //GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 8 * sizeof(float), 0);
-            //GL.EnableVertexAttribArray(0);
-
-            //offset += 3;
-
-            //// Normals
-            //GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 8 * sizeof(float), 3 * sizeof(float));
-            //GL.EnableVertexAttribArray(1);
-
-            //// UVs
-            //GL.VertexAttribPointer(2, 2, VertexAttribPointerType.Float, false, 8 * sizeof(float), 6 * sizeof(float));
-            //GL.EnableVertexAttribArray(2);
-
-            //// Tangents
-
-            //GL.VertexAttribPointer(3, 3, VertexAttribPointerType.Float, false, size * sizeof(float), 6 * sizeof(float));
-            //GL.EnableVertexAttribArray(3);
-
-            //// Binormals
-
-
             // position + normal + uv + tangent + binormal
             int size = 3 + 3 + 2 + 3 + 3;
-            //int size = 3 + 3 + 2;
+            size *= sizeof(float);
 
 
-            int offset = 0;
             // Positions
-            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, size * sizeof(float), offset);
+            int offset = 0;
+            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, size, offset);
             GL.EnableVertexAttribArray(0);
 
-            offset += 3;
-
             // Normals
-            GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, size * sizeof(float), offset* sizeof(float));
+            offset += 3 * sizeof(float);
+            GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, size, offset);
             GL.EnableVertexAttribArray(1);
 
-            offset += 3;
-
             // UVs
-            GL.VertexAttribPointer(2, 2, VertexAttribPointerType.Float, false, size * sizeof(float), offset * sizeof(float));
+            offset += 3 * sizeof(float);
+            GL.VertexAttribPointer(2, 2, VertexAttribPointerType.Float, false, size, offset);
             GL.EnableVertexAttribArray(2);
 
-            offset += 2;
             //Tangents
-
-            GL.VertexAttribPointer(3, 3, VertexAttribPointerType.Float, false, size * sizeof(float), offset * sizeof(float));
+            offset += 2 * sizeof(float);
+            GL.VertexAttribPointer(3, 3, VertexAttribPointerType.Float, false, size, offset);
             GL.EnableVertexAttribArray(3);
 
-            offset += 3;
             // Binormals
-            GL.VertexAttribPointer(4, 3, VertexAttribPointerType.Float, false, size * sizeof(float), offset * sizeof(float));
+            offset += 3 * sizeof(float);
+            GL.VertexAttribPointer(4, 3, VertexAttribPointerType.Float, false, size, offset);
             GL.EnableVertexAttribArray(4);
 
 

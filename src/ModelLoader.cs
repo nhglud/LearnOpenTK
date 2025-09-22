@@ -21,19 +21,19 @@ namespace LearnOpenTK
                 for (int i = 0; i < mesh.VertexCount; i++)
                 {
 
-                    var v = mesh.Vertices[i];
-                    var n = mesh.Normals[i];
+                    var vertex = mesh.Vertices[i];
+                    var normal = mesh.Normals[i];
                     var uv = mesh.TextureCoordinateChannels[0].Count > 0 ? mesh.TextureCoordinateChannels[0][i] : new Vector3D();
                     var tangent = mesh.Tangents[i];
                     var bitangent = mesh.BiTangents[i];
 
-                    vertices.Add(v.X);
-                    vertices.Add(v.Y);
-                    vertices.Add(v.Z);
+                    vertices.Add(vertex.X);
+                    vertices.Add(vertex.Y);
+                    vertices.Add(vertex.Z);
 
-                    vertices.Add(n.X);
-                    vertices.Add(n.Y);
-                    vertices.Add(n.Z);
+                    vertices.Add(normal.X);
+                    vertices.Add(normal.Y);
+                    vertices.Add(normal.Z);
 
                     vertices.Add(uv.X);
                     vertices.Add(uv.Y);

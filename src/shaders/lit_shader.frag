@@ -93,8 +93,6 @@ void main()
 
 	norm = normalize(tbn * normalMap);
 
-
-
 	if(!useTexture)
 	{
 		diffColor = material.color.rgb;
@@ -126,15 +124,12 @@ void main()
 	}
 
 
-
-//	float rim = smoothstep(0.25, 0.0, dot(norm, normalize(viewPosition - fragPosition)));
-
-
-
 	vec3 result = (ambient + diffuse) * diffColor  + diffuse * specular * specColor;
 
-//	vec3 result = (ambient + diffuse) * diffColor  + diffuse * specular * specColor + rim * vec3(1.0);
-
+//	float rim = smoothstep(0.25, 0.0, dot(norm, normalize(viewPosition - fragPosition)));
+//
+//	result += diffuse * rim * vec3(1.0);
+//
 
 	outputColor = vec4(result, 1.0);
 }

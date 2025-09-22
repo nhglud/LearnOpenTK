@@ -38,22 +38,10 @@ void main(void)
     tangent = normalize(mat3(transpose(inverse(model))) * aTangent);
     binormal = normalize(mat3(transpose(inverse(model))) * aBinormal);
 
-//    
-//    normal = normalize(vec3(model * vec4(aNormal, 1.0)));
-//    tangent = normalize(vec3(model * vec4(aTangent, 1.0)));
-//    binormal = normalize(vec3(model * vec4(aBinormal, 1.0)));
-
-
-
     tbn = mat3(tangent, binormal, normal);
     
     fragPosition = vec3(model * vec4(aPosition, 1.0));
 
     gl_Position =  projection * view * model * vec4(aPosition, 1.0);
-
-//    gl_Position =  projection * view * vec4(aPosition, 1.0);
-//    gl_Position =  projection * vec4(aPosition, 1.0);
-
-
 
 }
