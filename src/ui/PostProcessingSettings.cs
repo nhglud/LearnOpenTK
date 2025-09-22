@@ -22,7 +22,7 @@ namespace LearnOpenTK
         private PostProcessingFilter toonFilter;
         private PostProcessingFilter pixelFilter;
 
-
+        private float pixelSize = 6.0f;
 
         private Game game;
 
@@ -82,12 +82,14 @@ namespace LearnOpenTK
 
 
             ImGui.Checkbox("Pixel Filter", ref applyPixelFilter);
+            ImGui.SliderFloat("pixelSize", ref pixelSize, 1.0f, 50.0f);
             if (applyPixelFilter)
             {
                 if (pixelFilter == null)
                     pixelFilter = new PostProcessingFilter(AssetManager.GetShader("pixelate_filter"), game.ClientSize.X, game.ClientSize.Y);
 
                 game.postProcessor.AddFilter("pixel", pixelFilter);
+          
             }
             else
             {

@@ -18,6 +18,7 @@ namespace LearnOpenTK
 
         private Texture diffuseMap;
         private Texture specularMap;
+        private Texture normalMap;
 
 
         public bool useTexture = true;
@@ -47,8 +48,12 @@ namespace LearnOpenTK
 
             shader.SetInt("material.diffuseMap", 0);
             shader.SetInt("material.specularMap", 1);
+            shader.SetInt("material.normalMap", 2);
+
             diffuseMap.Use(TextureUnit.Texture0);
             specularMap.Use(TextureUnit.Texture1);
+            //normalMap.Use(TextureUnit.Texture2);
+
 
         }
 

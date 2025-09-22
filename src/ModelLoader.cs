@@ -14,7 +14,7 @@ namespace LearnOpenTK
             List<int> indices = new List<int>();
 
             var importer = new AssimpContext();
-            Assimp.Scene scene = importer.ImportFile(path, PostProcessSteps.Triangulate | PostProcessSteps.GenerateNormals | PostProcessSteps.FlipUVs);
+            Assimp.Scene scene = importer.ImportFile(path, PostProcessSteps.Triangulate | PostProcessSteps.GenerateNormals | PostProcessSteps.FlipUVs | PostProcessSteps.CalculateTangentSpace);
 
             foreach (var mesh in scene.Meshes)
             {
@@ -24,6 +24,8 @@ namespace LearnOpenTK
                     var v = mesh.Vertices[i];
                     var n = mesh.Normals[i];
                     var uv = mesh.TextureCoordinateChannels[0].Count > 0 ? mesh.TextureCoordinateChannels[0][i] : new Vector3D();
+                    var tangent = mesh.Tangents[i];
+                    var bitangent = mesh.BiTangents[i];
 
                     vertices.Add(v.X);
                     vertices.Add(v.Y);

@@ -5,7 +5,7 @@ out vec4 outputColor;
 
 uniform sampler2D screenTexture;
 uniform vec2 resolution;
-
+uniform float pixelSize;
 
 
 void main()
@@ -18,8 +18,8 @@ void main()
 
     vec2 fragCoord = resolution * uv;
     
-    vec2 blocks = resolution / pixelsize;
-    vec2 blockIndex = floor(fragCoord / pixelsize);
+    vec2 blocks = fragCoord / pixelsize;
+    vec2 blockIndex = floor(blocks);
     vec2 samplePixel = (blockIndex + 0.5) * pixelsize;
     vec2 sampleUV = samplePixel / resolution;
 

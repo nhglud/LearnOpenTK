@@ -7,6 +7,7 @@ struct Material {
 	vec4 color;
 	sampler2D diffuseMap;
 	sampler2D specularMap;
+	sampler2D normalMap;
 };
 
 
