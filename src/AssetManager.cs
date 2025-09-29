@@ -48,6 +48,7 @@ namespace LearnOpenTK
             Texture brickwallNormal = new Texture(path + "assets/brickwall_normal.jpg");
             Texture black = new Texture(path + "assets/solid_black.png");
 
+            Texture blood = new Texture(path + "assets/blood_splatter_0.png");
 
 
             AddMesh("cube", ModelLoader.LoadModel(path + "assets/cube.obj"));
@@ -76,6 +77,9 @@ namespace LearnOpenTK
             AddTexture("checker", checker);
             AddTexture("white", white);
             AddTexture("blue", blue);
+
+            AddTexture("blood", blood);
+
 
 
             AddMaterial(

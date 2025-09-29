@@ -41,6 +41,9 @@ in mat3 tbn;
 in vec3 fragPosition;
 in vec3 viewPosition;
 
+
+
+
 //uniform vec3 color;
 uniform vec3 ambientColor;
 uniform float ambientStrength;
@@ -67,6 +70,13 @@ uniform int numSpotLights;
 uniform SpotLight spotLights[MAX_SPOT_LIGHTS];
 
 uniform bool useTexture;
+
+// decal stuff
+
+in vec4 decalViewPos;
+uniform sampler2D decalTexture;
+
+// function definitions
 
 vec3 CalculateDiffuseLight(vec3 lightPos, vec4 lightCol, vec3 norm);
 vec3 CalculateSpecularLight(vec3 lightPos, vec4 lightCol, vec3 norm);
@@ -130,7 +140,32 @@ void main()
 //	result += diffuse * rim * vec3(1.0);
 //
 
-	outputColor = vec4(result, 1.0);
+	vec2 decalTexCoord;
+	decalTexCoord.x = decalViewPos.x / decalViewPos.w * 0.5 + 0.5;
+	decalTexCoord.y = decalViewPos.y / decalViewPos.w * 0.5 + 0.5;
+	
+	if(clamp(decalTexCoord.xy, 0.0, 1.0) == decalTexCoord)
+	{
+		
+		vec4 decal = texture(decalTexture, decalTexCoord);
+
+		if(decal.w < 1.0)
+		{
+			outputColor = vec4(result, 1.0);
+
+		}
+		else
+		{
+
+			outputColor = texture(decalTexture, decalTexCoord);
+		}
+	}
+	else
+	{
+		outputColor = vec4(result, 1.0);
+
+	}
+
 }
 
 

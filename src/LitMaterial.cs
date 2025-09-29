@@ -1,6 +1,7 @@
 ﻿
-using OpenTK.Mathematics;
 using OpenTK.Graphics.OpenGL4;
+using OpenTK.Mathematics;
+using static System.Net.Mime.MediaTypeNames;
 
 
 
@@ -23,6 +24,13 @@ namespace LearnOpenTK
 
         public bool useTexture = true;
 
+
+        private Texture decalTexture;
+
+
+        //Matrix4 decalView;
+        //Matrix4 decalProjection;
+
         public LitMaterial(Color4 color) : base()  
         {
             this.color = color;
@@ -36,6 +44,9 @@ namespace LearnOpenTK
 
             this.diffuseMap = diffuseMap;
             this.specularMap = specularMap;
+
+            decalTexture = AssetManager.GetTexture("blood");
+
         }
 
 
@@ -47,6 +58,8 @@ namespace LearnOpenTK
             this.diffuseMap = diffuseMap;
             this.specularMap = specularMap;
             this.normalMap = normalMap;
+
+            decalTexture = AssetManager.GetTexture("blood");
         }
 
 
@@ -67,6 +80,25 @@ namespace LearnOpenTK
             normalMap.Use(TextureUnit.Texture2);
 
 
+            var decalCamPos = new Vector3(0.0f, 3.0f, 0.0f);
+            var decalDir = new Vector3(0.0f, -1.0f, -1.0f);
+
+            Matrix4 decalView = Matrix4.LookAt(decalCamPos, decalCamPos + decalDir, Vector3.UnitY);
+            Matrix4 decalProjection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(90), 1.0f, 0.1f, 100.0f);
+
+
+       
+
+            //decalView = Camera.main.GetViewMatrix();
+            //decalProjection = Camera.main.GetProjectionMatrix(1.0f);
+
+
+            shader.SetMat4("decalView", decalView);
+            shader.SetMat4("decalProjection", decalProjection);
+
+            shader.SetInt("decalTexture", 3);
+
+            decalTexture.Use(TextureUnit.Texture3);
         }
 
         public static void UpdateStaticProperties()

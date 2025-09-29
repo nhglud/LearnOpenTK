@@ -7,12 +7,13 @@ layout(location = 3) in vec3 aTangent;
 layout(location = 4) in vec3 aBinormal;
 
 
-
 out vec3 normal;
 out vec2 texCoord;
 out vec3 tangent;
 out vec3 binormal;
 out mat3 tbn;
+
+
 
 out vec3 fragPosition;
 out vec3 viewPosition;
@@ -20,12 +21,17 @@ out vec3 viewPosition;
 
 uniform mat4 model;
 
+
 layout(std140, binding = 0) uniform CameraData
 {
     mat4 view;
     mat4 projection;
     vec4 cameraPosition;
 };
+
+uniform mat4 decalProjection;
+uniform mat4 decalView;
+out vec4 decalViewPos;
 
 
 void main(void)
@@ -43,5 +49,7 @@ void main(void)
     fragPosition = vec3(model * vec4(aPosition, 1.0));
 
     gl_Position =  projection * view * model * vec4(aPosition, 1.0);
+
+    decalViewPos = decalProjection * decalView * model * vec4(aPosition, 1.0);
 
 }
