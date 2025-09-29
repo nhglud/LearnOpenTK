@@ -87,7 +87,6 @@ void main()
 	vec3 diffColor = vec3(texture(material.diffuseMap, texCoord));
 	vec3 specColor = vec3(texture(material.specularMap, texCoord));
 
-
 	vec3 normalMap = vec3(texture(material.normalMap, texCoord));
 	normalMap = normalize(normalMap * 2.0 - 1.0);
 

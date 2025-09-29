@@ -1,12 +1,14 @@
 ﻿
 using OpenTK.Mathematics;
 
+using System.IO;
 
 namespace LearnOpenTK
 {
     public static class AssetManager
     {
-        private const string path = "C:\\programming\\LearnOpenTK\\";
+        private static string path = "";
+
 
         private static Dictionary<string, Mesh> meshes = new Dictionary<string, Mesh>();
         private static Dictionary<string, Shader> shaders = new Dictionary<string, Shader>();
@@ -16,6 +18,13 @@ namespace LearnOpenTK
 
         public static void LoadAssets()
         {
+
+            string baseDir = AppContext.BaseDirectory;
+
+            path = Path.GetFullPath(
+                Path.Combine(AppContext.BaseDirectory, @"..\..\..\"));
+
+  
             Shader shader = new Shader(path + "src/shaders/basic_shader.vert", path + "src/shaders/basic_shader.frag");
             Shader singleColorShader = new Shader(path + "src/shaders/basic_shader.vert", path + "src/shaders/single_color.frag");
             Shader litShader = new Shader(path + "src/shaders/basic_shader.vert", path + "src/shaders/lit_shader.frag");
@@ -24,8 +33,6 @@ namespace LearnOpenTK
             Shader bnwFilter = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/bnw_filter.frag");
             Shader toonFilter = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/toon_filter.frag");
             Shader pixelateFilter = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/pixelate_filter.frag");
-
-
 
 
             Texture texture = new Texture(path + "assets/container.jpg");
@@ -40,7 +47,6 @@ namespace LearnOpenTK
             Texture brickwall = new Texture(path + "assets/brickwall.jpg");
             Texture brickwallNormal = new Texture(path + "assets/brickwall_normal.jpg");
             Texture black = new Texture(path + "assets/solid_black.png");
-
 
 
 
