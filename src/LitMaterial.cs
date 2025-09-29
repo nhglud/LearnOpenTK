@@ -1,4 +1,5 @@
 ﻿
+using Assimp;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using static System.Net.Mime.MediaTypeNames;
@@ -84,10 +85,10 @@ namespace LearnOpenTK
             var decalDir = new Vector3(0.0f, -1.0f, -1.0f);
 
             Matrix4 decalView = Matrix4.LookAt(decalCamPos, decalCamPos + decalDir, Vector3.UnitY);
-            Matrix4 decalProjection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(90), 1.0f, 0.1f, 100.0f);
+            //Matrix4 decalProjection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(90), 1.0f, 0.1f, 100.0f);
 
 
-       
+            Matrix4 decalProjection = Matrix4.CreateOrthographic(10.0f, 10.0f, 0.1f, 100.0f);
 
             //decalView = Camera.main.GetViewMatrix();
             //decalProjection = Camera.main.GetProjectionMatrix(1.0f);

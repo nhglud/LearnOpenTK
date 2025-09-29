@@ -81,7 +81,6 @@ namespace LearnOpenTK
             AddTexture("blood", blood);
 
 
-
             AddMaterial(
                 "container2_mat", 
                 new LitMaterial(
