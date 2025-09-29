@@ -42,8 +42,6 @@ in vec3 fragPosition;
 in vec3 viewPosition;
 
 
-
-
 //uniform vec3 color;
 uniform vec3 ambientColor;
 uniform float ambientStrength;
@@ -75,6 +73,13 @@ uniform bool useTexture;
 
 in vec4 decalViewPos;
 uniform sampler2D decalTexture;
+
+#define MAX_DECALS 8
+
+
+uniform int countDecals;
+in vec4 decalPositions[MAX_DECALS];
+
 
 // function definitions
 
@@ -140,25 +145,36 @@ void main()
 //	result += diffuse * rim * vec3(1.0);
 //
 
-	vec2 decalTexCoord;
-	decalTexCoord.x = decalViewPos.x / decalViewPos.w * 0.5 + 0.5;
-	decalTexCoord.y = decalViewPos.y / decalViewPos.w * 0.5 + 0.5;
-	
-	if(clamp(decalTexCoord.xy, 0.0, 1.0) == decalTexCoord)
-	{
+
 		
-		vec4 decal = texture(decalTexture, decalTexCoord);
+	vec3 decalOut = vec3(0.0);
+	
+	int num = min(countDecals, MAX_DECALS);
 
-		if(decal.w < 1.0)
+	for(int i = 0; i < num; i++)
+	{
+		vec2 decalTexCoord;
+		decalTexCoord.x = decalPositions[i].x / decalPositions[i].w * 0.5 + 0.5;
+		decalTexCoord.y = decalPositions[i].y / decalPositions[i].w * 0.5 + 0.5;
+
+		if(clamp(decalTexCoord.xy, 0.0, 1.0) == decalTexCoord)
 		{
-			outputColor = vec4(result, 1.0);
+
+			vec4 decal = texture(decalTexture, decalTexCoord);
+
+			if(decal.w == 1.0) 
+			{
+				decalOut = decal.rgb;
+			
+			}
 
 		}
-		else
-		{
 
-			outputColor = texture(decalTexture, decalTexCoord);
-		}
+	}
+	
+	if(decalOut != vec3(0.0))
+	{
+		outputColor = vec4(decalOut, 1.0);
 	}
 	else
 	{
@@ -166,6 +182,36 @@ void main()
 
 	}
 
+
+//
+//	vec2 decalTexCoord;
+//	decalTexCoord.x = decalViewPos.x / decalViewPos.w * 0.5 + 0.5;
+//	decalTexCoord.y = decalViewPos.y / decalViewPos.w * 0.5 + 0.5;
+//
+//
+//	
+//	if(clamp(decalTexCoord.xy, 0.0, 1.0) == decalTexCoord)
+//	{
+//		
+//		vec4 decal = texture(decalTexture, decalTexCoord);
+//
+//		if(decal.w < 1.0)
+//		{
+//			outputColor = vec4(result, 1.0);
+//
+//		}
+//		else
+//		{
+//
+//			outputColor = texture(decalTexture, decalTexCoord);
+//		}
+//	}
+//	else
+//	{
+//		outputColor = vec4(result, 1.0);
+//
+//	}
+//
 }
 
 

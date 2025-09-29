@@ -9,6 +9,9 @@ namespace LearnOpenTK
     public abstract class UIComponent
     {
 
+
+
+
         public virtual void Render()
         {
 

@@ -1,4 +1,5 @@
 ﻿
+using LearnOpenTK.src.ui;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace LearnOpenTK
             components.Add("TextureSettings", new TextureSettings());
             components.Add("PostProcessingSettings", new PostProcessingSettings(game));
             components.Add("EntityInspector", new EntityInspector(game));
+            components.Add("Blood Shooter", new DecalShooter());
 
 
         }

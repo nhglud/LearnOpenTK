@@ -2,7 +2,7 @@
 using Assimp;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
-using static System.Net.Mime.MediaTypeNames;
+
 
 
 
@@ -28,6 +28,7 @@ namespace LearnOpenTK
 
         private Texture decalTexture;
 
+        public static List<Decal> decals;
 
         //Matrix4 decalView;
         //Matrix4 decalProjection;
@@ -60,6 +61,8 @@ namespace LearnOpenTK
             this.specularMap = specularMap;
             this.normalMap = normalMap;
 
+
+            decals = new List<Decal>();
             decalTexture = AssetManager.GetTexture("blood");
         }
 
@@ -84,7 +87,9 @@ namespace LearnOpenTK
             var decalCamPos = new Vector3(0.0f, 3.0f, 0.0f);
             var decalDir = new Vector3(0.0f, -1.0f, -1.0f);
 
-            Matrix4 decalView = Matrix4.LookAt(decalCamPos, decalCamPos + decalDir, Vector3.UnitY);
+            //Matrix4 decalView = Matrix4.LookAt(decalCamPos, decalCamPos + decalDir, Vector3.UnitY);
+            Matrix4 decalView = Matrix4.LookAt(Camera.main.transform.position, Camera.main.transform.position + Camera.main.front, Vector3.UnitY);
+
             //Matrix4 decalProjection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(90), 1.0f, 0.1f, 100.0f);
 
 
@@ -93,13 +98,27 @@ namespace LearnOpenTK
             //decalView = Camera.main.GetViewMatrix();
             //decalProjection = Camera.main.GetProjectionMatrix(1.0f);
 
+            int countDecals = Math.Min(decals.Count, 8);
+
 
             shader.SetMat4("decalView", decalView);
             shader.SetMat4("decalProjection", decalProjection);
 
             shader.SetInt("decalTexture", 3);
+            
+            shader.SetInt("countDecals", countDecals);
 
             decalTexture.Use(TextureUnit.Texture3);
+
+            for (int i = 0; i < countDecals; i++)
+            {
+                Matrix4 dview = Matrix4.LookAt(decals[i].position, decals[i].position + decals[i].direction, Vector3.UnitY); ;
+                
+                shader.SetMat4($"decals[{i}]", dview);
+          
+            }
+
+
         }
 
         public static void UpdateStaticProperties()
@@ -133,4 +152,12 @@ namespace LearnOpenTK
         //}
 
     }
+}
+
+
+public struct Decal
+{
+    public Vector3 position;
+    public Vector3 direction;
+    
 }

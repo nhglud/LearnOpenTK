@@ -14,4 +14,5 @@ Currently supports:
 - Exstensible with a Unity like Entity Component Pattern (Not Quite an ECS though).
 - Viewing Multiple scenes.
 - Multiple post processing shaders.
+- Shooting bloodsplatter decals.
 

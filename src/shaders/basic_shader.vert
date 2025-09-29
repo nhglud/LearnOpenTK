@@ -34,6 +34,16 @@ uniform mat4 decalView;
 out vec4 decalViewPos;
 
 
+
+#define MAX_DECALS 8
+
+uniform int countDecals;
+
+uniform mat4 decals[MAX_DECALS];
+out vec4 decalPositions[MAX_DECALS];
+
+
+
 void main(void)
 {
     texCoord = aTexCoord;
@@ -51,5 +61,13 @@ void main(void)
     gl_Position =  projection * view * model * vec4(aPosition, 1.0);
 
     decalViewPos = decalProjection * decalView * model * vec4(aPosition, 1.0);
+
+
+
+    for(int i = 0; i < countDecals; i++)
+    {
+        decalPositions[i] = decalProjection * decals[i] * model * vec4(aPosition, 1.0);
+    }
+
 
 }
