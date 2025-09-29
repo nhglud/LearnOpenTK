@@ -5,7 +5,6 @@ using OpenTK.Mathematics;
 
 
 
-
 namespace LearnOpenTK
 {
     public class LitMaterial : Material
