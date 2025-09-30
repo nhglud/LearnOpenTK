@@ -73,6 +73,9 @@ uniform bool useTexture;
 
 in vec4 decalViewPos;
 uniform sampler2D decalTexture;
+uniform sampler2D decalSpecular;
+uniform sampler2D decalNormal;
+
 
 #define MAX_DECALS 8
 
@@ -106,7 +109,7 @@ void main()
 	normalMap = normalize(normalMap * 2.0 - 1.0);
 
 
-		vec3 decalOut = vec3(0.0);
+	vec3 decalOut = vec3(0.0);
 	
 	int num = min(countDecals, MAX_DECALS);
 
@@ -120,8 +123,18 @@ void main()
 		{
 
 			vec4 decal = texture(decalTexture, decalTexCoord);
+			vec4 decalSpec = texture(decalSpecular, decalTexCoord);
+			vec4 decaNormalMap = texture(decalNormal, decalTexCoord);
 
-			diffColor = mix(diffColor, decal.rgb, decal.a);
+				diffColor = mix(diffColor, decal.rgb, decal.a);
+				specColor = mix(specColor, decalSpec.rgb, decalSpec.a);
+				normalMap = mix(normalMap, decaNormalMap.rgb, decaNormalMap.a);
+
+//			if(decal.a == 1)
+//			{
+//			}
+
+//
 
 		}
 

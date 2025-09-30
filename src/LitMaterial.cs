@@ -40,6 +40,10 @@ namespace LearnOpenTK
         {
             this.color = color;
             shader = AssetManager.GetShader("lit");
+
+            decalTexture = AssetManager.GetTexture("blood");
+            decalSpecular = AssetManager.GetTexture("blood_specular");
+            decalNormal = AssetManager.GetTexture("blood_normal");
         }
 
         public LitMaterial(Texture diffuseMap, Texture specularMap) : base()
@@ -70,6 +74,8 @@ namespace LearnOpenTK
 
             decals = new List<Decal>();
             decalTexture = AssetManager.GetTexture("blood");
+            decalSpecular = AssetManager.GetTexture("blood_specular");
+            decalNormal = AssetManager.GetTexture("blood_normal");
         }
 
 
@@ -111,10 +117,16 @@ namespace LearnOpenTK
             shader.SetMat4("decalProjection", decalProjection);
 
             shader.SetInt("decalTexture", 3);
-            
+            shader.SetInt("decalSpecular", 4);
+            shader.SetInt("decalNormal", 5);
+
+
             shader.SetInt("countDecals", countDecals);
 
             decalTexture.Use(TextureUnit.Texture3);
+            decalSpecular.Use(TextureUnit.Texture4);
+            decalNormal.Use(TextureUnit.Texture5);
+
 
             for (int i = 0; i < countDecals; i++)
             {
