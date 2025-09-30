@@ -25,7 +25,6 @@ namespace LearnOpenTK.src.ui
                 decal.position = Camera.main.transform.position;
 
                 LitMaterial.decals.Add(decal);
-                Console.WriteLine(LitMaterial.decals.Count);
 
             }
 

@@ -19,10 +19,7 @@ namespace LearnOpenTK
         public static void LoadAssets()
         {
 
-            string baseDir = AppContext.BaseDirectory;
-
-            path = Path.GetFullPath(
-                Path.Combine(AppContext.BaseDirectory, @"..\..\..\"));
+            path = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\"));
 
   
             Shader shader = new Shader(path + "src/shaders/basic_shader.vert", path + "src/shaders/basic_shader.frag");
@@ -49,6 +46,10 @@ namespace LearnOpenTK
             Texture black = new Texture(path + "assets/solid_black.png");
 
             Texture blood = new Texture(path + "assets/blood_splatter_0.png");
+            Texture bloodSpecular = new Texture(path + "assets/blood_specular.png");
+
+            Texture bloodNormal = new Texture(path + "assets/blood_normal.png");
+
 
 
             AddMesh("cube", ModelLoader.LoadModel(path + "assets/cube.obj"));
@@ -79,6 +80,9 @@ namespace LearnOpenTK
             AddTexture("blue", blue);
 
             AddTexture("blood", blood);
+            AddTexture("blood_specular", bloodSpecular);
+            AddTexture("blood_normal", bloodNormal);
+
 
 
             AddMaterial(

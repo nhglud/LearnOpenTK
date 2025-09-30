@@ -26,6 +26,10 @@ namespace LearnOpenTK
 
 
         private Texture decalTexture;
+        private Texture decalSpecular;
+        private Texture decalNormal;
+
+
 
         public static List<Decal> decals;
 
@@ -47,6 +51,9 @@ namespace LearnOpenTK
             this.specularMap = specularMap;
 
             decalTexture = AssetManager.GetTexture("blood");
+            decalSpecular = AssetManager.GetTexture("blood_specular");
+            decalNormal = AssetManager.GetTexture("blood_normal");
+
 
         }
 

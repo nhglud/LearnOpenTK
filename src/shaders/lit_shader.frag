@@ -145,7 +145,6 @@ void main()
 //	result += diffuse * rim * vec3(1.0);
 //
 
-
 		
 	vec3 decalOut = vec3(0.0);
 	
@@ -182,36 +181,6 @@ void main()
 
 	}
 
-
-//
-//	vec2 decalTexCoord;
-//	decalTexCoord.x = decalViewPos.x / decalViewPos.w * 0.5 + 0.5;
-//	decalTexCoord.y = decalViewPos.y / decalViewPos.w * 0.5 + 0.5;
-//
-//
-//	
-//	if(clamp(decalTexCoord.xy, 0.0, 1.0) == decalTexCoord)
-//	{
-//		
-//		vec4 decal = texture(decalTexture, decalTexCoord);
-//
-//		if(decal.w < 1.0)
-//		{
-//			outputColor = vec4(result, 1.0);
-//
-//		}
-//		else
-//		{
-//
-//			outputColor = texture(decalTexture, decalTexCoord);
-//		}
-//	}
-//	else
-//	{
-//		outputColor = vec4(result, 1.0);
-//
-//	}
-//
 }
 
 
