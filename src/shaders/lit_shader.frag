@@ -105,6 +105,29 @@ void main()
 	vec3 normalMap = vec3(texture(material.normalMap, texCoord));
 	normalMap = normalize(normalMap * 2.0 - 1.0);
 
+
+		vec3 decalOut = vec3(0.0);
+	
+	int num = min(countDecals, MAX_DECALS);
+
+	for(int i = 0; i < num; i++)
+	{
+		vec2 decalTexCoord;
+		decalTexCoord.x = decalPositions[i].x / decalPositions[i].w * 0.5 + 0.5;
+		decalTexCoord.y = decalPositions[i].y / decalPositions[i].w * 0.5 + 0.5;
+
+		if(clamp(decalTexCoord.xy, 0.0, 1.0) == decalTexCoord)
+		{
+
+			vec4 decal = texture(decalTexture, decalTexCoord);
+
+			diffColor = mix(diffColor, decal.rgb, decal.a);
+
+		}
+
+	}
+
+
 	norm = normalize(tbn * normalMap);
 
 	if(!useTexture)
@@ -145,42 +168,44 @@ void main()
 //	result += diffuse * rim * vec3(1.0);
 //
 
+	outputColor = vec4(result, 1.0);
+
 		
-	vec3 decalOut = vec3(0.0);
+//	vec3 decalOut = vec3(0.0);
+//	
+//	int num = min(countDecals, MAX_DECALS);
+//
+//	for(int i = 0; i < num; i++)
+//	{
+//		vec2 decalTexCoord;
+//		decalTexCoord.x = decalPositions[i].x / decalPositions[i].w * 0.5 + 0.5;
+//		decalTexCoord.y = decalPositions[i].y / decalPositions[i].w * 0.5 + 0.5;
+//
+//		if(clamp(decalTexCoord.xy, 0.0, 1.0) == decalTexCoord)
+//		{
+//
+//			vec4 decal = texture(decalTexture, decalTexCoord);
+//
+//			if(decal.w == 1.0) 
+//			{
+//				decalOut = decal.rgb;
+//			
+//			}
+//
+//		}
+//
+//	}
 	
-	int num = min(countDecals, MAX_DECALS);
-
-	for(int i = 0; i < num; i++)
-	{
-		vec2 decalTexCoord;
-		decalTexCoord.x = decalPositions[i].x / decalPositions[i].w * 0.5 + 0.5;
-		decalTexCoord.y = decalPositions[i].y / decalPositions[i].w * 0.5 + 0.5;
-
-		if(clamp(decalTexCoord.xy, 0.0, 1.0) == decalTexCoord)
-		{
-
-			vec4 decal = texture(decalTexture, decalTexCoord);
-
-			if(decal.w == 1.0) 
-			{
-				decalOut = decal.rgb;
-			
-			}
-
-		}
-
-	}
-	
-	if(decalOut != vec3(0.0))
-	{
-		outputColor = vec4(decalOut, 1.0);
-	}
-	else
-	{
-		outputColor = vec4(result, 1.0);
-
-	}
-
+//	if(decalOut != vec3(0.0))
+//	{
+//		outputColor = vec4(decalOut, 1.0);
+//	}
+//	else
+//	{
+//		outputColor = vec4(result, 1.0);
+//
+//	}
+//
 }
 
 
