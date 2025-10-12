@@ -17,8 +17,7 @@ namespace LearnOpenTK
             this.game = game;
             components = new Dictionary<string, UIComponent>();
 
-            
-
+           
         }
 
         public void DrawPanel()

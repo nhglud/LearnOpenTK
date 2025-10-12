@@ -57,8 +57,6 @@ namespace LearnOpenTK
             decalTexture = AssetManager.GetTexture("blood");
             decalSpecular = AssetManager.GetTexture("blood_specular");
             decalNormal = AssetManager.GetTexture("blood_normal");
-
-
         }
 
 
@@ -84,6 +82,12 @@ namespace LearnOpenTK
         { 
             base.Use(model);
 
+            SetMaterialProperties();
+            SetDecals();
+        }
+
+        private void SetMaterialProperties()
+        {
             shader.SetColor4("material.color", color);
             shader.SetBool("useTexture", useTexture);
 
@@ -95,23 +99,17 @@ namespace LearnOpenTK
             specularMap.Use(TextureUnit.Texture1);
             normalMap.Use(TextureUnit.Texture2);
 
+        }
 
-            var decalCamPos = new Vector3(0.0f, 3.0f, 0.0f);
-            var decalDir = new Vector3(0.0f, -1.0f, -1.0f);
 
-            //Matrix4 decalView = Matrix4.LookAt(decalCamPos, decalCamPos + decalDir, Vector3.UnitY);
+        private void SetDecals()
+        {
+            float decalSize = 5.0f;
             Matrix4 decalView = Matrix4.LookAt(Camera.main.transform.position, Camera.main.transform.position + Camera.main.front, Vector3.UnitY);
+            Matrix4 decalProjection = Matrix4.CreateOrthographic(decalSize, decalSize, 0.1f, 100.0f);
 
-            //Matrix4 decalProjection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(90), 1.0f, 0.1f, 100.0f);
-
-
-            Matrix4 decalProjection = Matrix4.CreateOrthographic(10.0f, 10.0f, 0.1f, 100.0f);
-
-            //decalView = Camera.main.GetViewMatrix();
-            //decalProjection = Camera.main.GetProjectionMatrix(1.0f);
-
-            int countDecals = Math.Min(decals.Count, 8);
-
+            const int MAX_DECALS = 10;
+            int countDecals = Math.Min(decals.Count, MAX_DECALS);
 
             shader.SetMat4("decalView", decalView);
             shader.SetMat4("decalProjection", decalProjection);
@@ -119,7 +117,6 @@ namespace LearnOpenTK
             shader.SetInt("decalTexture", 3);
             shader.SetInt("decalSpecular", 4);
             shader.SetInt("decalNormal", 5);
-
 
             shader.SetInt("countDecals", countDecals);
 
@@ -131,9 +128,9 @@ namespace LearnOpenTK
             for (int i = 0; i < countDecals; i++)
             {
                 Matrix4 dview = Matrix4.LookAt(decals[i].position, decals[i].position + decals[i].direction, Vector3.UnitY); ;
-                
+
                 shader.SetMat4($"decals[{i}]", dview);
-          
+
             }
 
 

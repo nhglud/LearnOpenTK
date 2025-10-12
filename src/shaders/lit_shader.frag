@@ -77,8 +77,7 @@ uniform sampler2D decalSpecular;
 uniform sampler2D decalNormal;
 
 
-#define MAX_DECALS 8
-
+#define MAX_DECALS 10
 
 uniform int countDecals;
 in vec4 decalPositions[MAX_DECALS];
@@ -101,19 +100,13 @@ void main()
 	vec3 ambient = ambientStrength * ambientColor * max(0.0, dot(norm,normalize(viewPosition - fragPosition)));
 //	vec3 ambient = ambientStrength * ambientColor;
 
-
 	vec3 diffColor = vec3(texture(material.diffuseMap, texCoord));
 	vec3 specColor = vec3(texture(material.specularMap, texCoord));
-
 	vec3 normalMap = vec3(texture(material.normalMap, texCoord));
 	normalMap = normalize(normalMap * 2.0 - 1.0);
-
-
-	vec3 decalOut = vec3(0.0);
 	
-	int num = min(countDecals, MAX_DECALS);
-
-	for(int i = 0; i < num; i++)
+	int numDecals = min(countDecals, MAX_DECALS);
+	for(int i = 0; i < numDecals; i++)
 	{
 		vec2 decalTexCoord;
 		decalTexCoord.x = decalPositions[i].x / decalPositions[i].w * 0.5 + 0.5;
@@ -125,19 +118,18 @@ void main()
 			vec4 decal = texture(decalTexture, decalTexCoord);
 			vec4 decalSpec = texture(decalSpecular, decalTexCoord);
 			vec4 decaNormalMap = texture(decalNormal, decalTexCoord);
-
-				diffColor = mix(diffColor, decal.rgb, decal.a);
-				specColor = mix(specColor, decalSpec.rgb, decalSpec.a);
-				normalMap = mix(normalMap, decaNormalMap.rgb, decaNormalMap.a);
-
-//			if(decal.a == 1)
-//			{
-//			}
-
 //
-
+//			diffColor = mix(diffColor, decal.rgb, decal.a);
+//			specColor = mix(specColor, decalSpec.rgb, decalSpec.a);
+//			normalMap = mix(normalMap, decaNormalMap.rgb, decaNormalMap.a);
+//
+			if(decal.a == 1)
+			{
+				diffColor = decal.rgb;
+				specColor = decalSpec.rgb;
+				normalMap = decaNormalMap.rgb;
+			}
 		}
-
 	}
 
 
@@ -175,50 +167,13 @@ void main()
 
 
 	vec3 result = (ambient + diffuse) * diffColor  + diffuse * specular * specColor;
-
+//
 //	float rim = smoothstep(0.25, 0.0, dot(norm, normalize(viewPosition - fragPosition)));
-//
 //	result += diffuse * rim * vec3(1.0);
-//
+
 
 	outputColor = vec4(result, 1.0);
 
-		
-//	vec3 decalOut = vec3(0.0);
-//	
-//	int num = min(countDecals, MAX_DECALS);
-//
-//	for(int i = 0; i < num; i++)
-//	{
-//		vec2 decalTexCoord;
-//		decalTexCoord.x = decalPositions[i].x / decalPositions[i].w * 0.5 + 0.5;
-//		decalTexCoord.y = decalPositions[i].y / decalPositions[i].w * 0.5 + 0.5;
-//
-//		if(clamp(decalTexCoord.xy, 0.0, 1.0) == decalTexCoord)
-//		{
-//
-//			vec4 decal = texture(decalTexture, decalTexCoord);
-//
-//			if(decal.w == 1.0) 
-//			{
-//				decalOut = decal.rgb;
-//			
-//			}
-//
-//		}
-//
-//	}
-	
-//	if(decalOut != vec3(0.0))
-//	{
-//		outputColor = vec4(decalOut, 1.0);
-//	}
-//	else
-//	{
-//		outputColor = vec4(result, 1.0);
-//
-//	}
-//
 }
 
 

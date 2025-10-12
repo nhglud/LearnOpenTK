@@ -1,5 +1,5 @@
 ﻿using ImGuiNET;
-
+using OpenTK.Graphics.OpenGL4;
 
 namespace LearnOpenTK
 {
@@ -21,6 +21,9 @@ namespace LearnOpenTK
                 Texture.ApplyTextureFilter(filter);
                 Console.WriteLine(selectedIndex);
             }
+
+
+
 
         }
 

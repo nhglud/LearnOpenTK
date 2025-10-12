@@ -47,9 +47,7 @@ namespace LearnOpenTK
 
             Texture blood = new Texture(path + "assets/blood_splatter_0.png");
             Texture bloodSpecular = new Texture(path + "assets/blood_specular.png");
-
             Texture bloodNormal = new Texture(path + "assets/blood_normal.png");
-
 
 
             AddMesh("cube", ModelLoader.LoadModel(path + "assets/cube.obj"));
@@ -90,34 +88,28 @@ namespace LearnOpenTK
                 new LitMaterial(
                     GetTexture("container2_diffuse"), 
                     GetTexture("container2_specular"), 
-                    GetTexture("container2_normal")
-            ));
-
-
+                    GetTexture("container2_normal")));
 
             AddMaterial(
                 "checker", 
                 new LitMaterial(
                     GetTexture("checker"), 
                     GetTexture("white"), 
-                    GetTexture("blue")
-            ));
+                    GetTexture("blue")));
 
             AddMaterial(
                 "white", 
                 new LitMaterial(
                     GetTexture("white"), 
                     GetTexture("white"), 
-                    GetTexture("blue")
-            ));
+                    GetTexture("blue")));
             
             AddMaterial(
                 "brickwall", 
                 new LitMaterial(
                     brickwall, 
                     white, 
-                    brickwallNormal
-            ));
+                    brickwallNormal));
 
 
         }

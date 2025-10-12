@@ -34,14 +34,12 @@ uniform mat4 decalView;
 out vec4 decalViewPos;
 
 
-
-#define MAX_DECALS 8
+#define MAX_DECALS 10
 
 uniform int countDecals;
 
 uniform mat4 decals[MAX_DECALS];
 out vec4 decalPositions[MAX_DECALS];
-
 
 
 void main(void)

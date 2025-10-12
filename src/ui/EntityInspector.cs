@@ -1,5 +1,6 @@
 ﻿using ImGuiNET;
 using System.Numerics;
+using static Assimp.Metadata;
 
 
 namespace LearnOpenTK
@@ -28,23 +29,15 @@ namespace LearnOpenTK
                     DrawTransform(entity);
 
 
-                    if(entity.HasComponent(typeof(Light)))
+                    if (entity.HasComponent(typeof(PointLight)))
                     {
-                        var light = entity.GetComponent<Light>();
-
-                        if(ImGui.TreeNode($"Light ##{light.GetHashCode()}"))
-                        {
-                            ImGui.Text("Light yo");
-
-                            ImGui.TreePop();
-                        }
-
+                        DrawLight(entity);
                     }
 
-                    //DrawComponents(entity);
 
                     ImGui.TreePop();
                 }
+
                 index++;
             }
 
@@ -86,6 +79,25 @@ namespace LearnOpenTK
             }
 
 
+        }
+
+        private void DrawLight(Entity entity)
+        {
+            var light = entity.GetComponent<PointLight>();
+            var color = new Vector3(light.lightColor.R, light.lightColor.G, light.lightColor.B);
+
+            if (ImGui.TreeNode($"Light ##{light.GetHashCode()}"))
+            {
+                if (ImGui.ColorPicker3("Light color", ref color))
+                {
+                    light.lightColor.R = color.X;
+                    light.lightColor.G = color.Y;
+                    light.lightColor.B = color.Z;
+
+                }
+
+                ImGui.TreePop();
+            }
         }
 
     }
