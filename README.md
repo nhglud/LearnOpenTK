@@ -11,10 +11,11 @@ Currently supports:
 - Point lights, spotlights and directional light sources.
 - Diffuse, specular and normal maps.
 - Loading .obj files with Assimp.
-- Exstensible with a Unity like Entity Component Pattern (Not Quite an ECS though).
+- Exstensible entities with a Unity-style Entity Component Pattern (Not Quite an ECS though).
 - Viewing Multiple scenes.
 - Multiple post processing shaders.
 - Shooting bloodsplatter decals.
+- ImGui.NET UI
 
 <figure>
     <img src="BloodyScreenShot.png" alt="My Image" width="800"/>
