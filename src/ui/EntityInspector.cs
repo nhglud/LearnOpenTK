@@ -31,9 +31,18 @@ namespace LearnOpenTK
 
                     if (entity.HasComponent(typeof(PointLight)))
                     {
-                        DrawLight(entity);
+                        DrawLight<PointLight>(entity);
                     }
+                    else if (entity.HasComponent(typeof(SpotLight)))
+                    {
+                        DrawLight<SpotLight>(entity);
 
+                    }
+                    else if (entity.HasComponent(typeof(DirectionalLight)))
+                    {
+                        DrawLight<DirectionalLight>(entity);
+
+                    }
 
                     ImGui.TreePop();
                 }
@@ -81,9 +90,9 @@ namespace LearnOpenTK
 
         }
 
-        private void DrawLight(Entity entity)
+        private void DrawLight<T>(Entity entity) where T : Light
         {
-            var light = entity.GetComponent<PointLight>();
+            var light = entity.GetComponent<T>();
             var color = new Vector3(light.lightColor.R, light.lightColor.G, light.lightColor.B);
 
             if (ImGui.TreeNode($"Light ##{light.GetHashCode()}"))
