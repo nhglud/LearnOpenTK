@@ -52,6 +52,7 @@ namespace LearnOpenTK
                 foreach (var face in mesh.Faces)
                 {
                     indices.AddRange(face.Indices.Select(i => (int)i));
+                    
                 }
 
             }

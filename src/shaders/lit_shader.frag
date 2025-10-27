@@ -119,16 +119,16 @@ void main()
 			vec4 decalSpec = texture(decalSpecular, decalTexCoord);
 			vec4 decaNormalMap = texture(decalNormal, decalTexCoord);
 //
-//			diffColor = mix(diffColor, decal.rgb, decal.a);
-//			specColor = mix(specColor, decalSpec.rgb, decalSpec.a);
-//			normalMap = mix(normalMap, decaNormalMap.rgb, decaNormalMap.a);
+			diffColor = mix(diffColor, decal.rgb, decal.a);
+			specColor = mix(specColor, decalSpec.rgb, decalSpec.a);
+			normalMap = mix(normalMap, decaNormalMap.rgb, decaNormalMap.a);
 //
-			if(decal.a == 1)
-			{
-				diffColor = decal.rgb;
-				specColor = decalSpec.rgb;
-				normalMap = decaNormalMap.rgb;
-			}
+//			if(decal.a == 1)
+//			{
+//				diffColor = decal.rgb;
+//				specColor = decalSpec.rgb;
+//				normalMap = decaNormalMap.rgb;
+//			}
 		}
 	}
 

@@ -1,4 +1,5 @@
 ﻿using ImGuiNET;
+using LearnOpenTK.src.levels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,9 @@ namespace LearnOpenTK
 
             if (ImGui.Button("Level 3"))
                 game.ChangeLevel(new LevelThree(game));
+
+            if (ImGui.Button("Terrain"))
+                game.ChangeLevel(new TerrainLevel1(game));
 
         }
 

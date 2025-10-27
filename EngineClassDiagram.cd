@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="LearnOpenTK.FirstLevel">
+  <Class Name="LearnOpenTK.FirstLevel" Collapsed="true">
     <Position X="28" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIAAAAAAAAAAAAFAAAABAAAAQAAAAAAAQA=</HashCode>
@@ -17,7 +17,7 @@
       <Field Name="entities" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="LearnOpenTK.LevelTwo">
+  <Class Name="LearnOpenTK.LevelTwo" Collapsed="true">
     <Position X="30.25" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIAAAAAAAAAAAAFAAAABAAAAQAAAAAAAQA=</HashCode>
@@ -95,9 +95,9 @@
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="currentLevel" />
-      <Field Name="uiManager" />
-      <Field Name="postProcessor" />
       <Field Name="framebuffer" />
+      <Field Name="postProcessor" />
+      <Field Name="uiManager" />
     </ShowAsAssociation>
   </Class>
   <Class Name="LearnOpenTK.Light">
@@ -186,8 +186,8 @@
       <FileName>src\components\Renderer.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="material" />
       <Field Name="mesh" />
+      <Field Name="material" />
     </ShowAsAssociation>
   </Class>
   <Class Name="LearnOpenTK.RenderingSystem">
@@ -247,8 +247,8 @@
       <FileName>src\ui\UIManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="mainPanel" />
       <Field Name="uiController" />
+      <Field Name="mainPanel" />
     </ShowAsAssociation>
   </Class>
   <Class Name="LearnOpenTK.UIPanel">
@@ -276,7 +276,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="LearnOpenTK.LevelThree">
+  <Class Name="LearnOpenTK.LevelThree" Collapsed="true">
     <Position X="25.75" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIAAAAAAAAAAAAFAAAABAAAAQAAAAAAAQA=</HashCode>
