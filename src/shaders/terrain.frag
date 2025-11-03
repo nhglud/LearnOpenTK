@@ -6,7 +6,7 @@ out vec4 outputColor;
 in vec2 texCoord;
 in float height;
 in vec3 norm;
-uniform vec3 color;
+
 
 uniform sampler2D noiseMap;
 
@@ -31,7 +31,6 @@ void main()
         col = vec3(0.24, 0.25, 0.26);
     }
     
-
 
     if(height > 0.4 + 0.1 * noise)
     {

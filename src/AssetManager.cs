@@ -7,7 +7,7 @@ namespace LearnOpenTK
 {
     public static class AssetManager
     {
-        private static string path = "";
+        public static string path = "";
 
 
         private static Dictionary<string, Mesh> meshes = new Dictionary<string, Mesh>();

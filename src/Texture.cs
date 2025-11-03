@@ -9,7 +9,7 @@ namespace LearnOpenTK
 
         public int width;
         public int height;
-        public ImageResult image;
+        //public ImageResult image;
   
 
         private int handle;
@@ -31,7 +31,7 @@ namespace LearnOpenTK
         {
             StbImage.stbi_set_flip_vertically_on_load(1);
 
-            image = ImageResult.FromStream(File.OpenRead(path), ColorComponents.RedGreenBlueAlpha);
+            ImageResult image = ImageResult.FromStream(File.OpenRead(path), ColorComponents.RedGreenBlueAlpha);
 
             
             width = image.Width;

@@ -1,7 +1,5 @@
 ﻿using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
-
-
 using OpenTK.Graphics.OpenGL4;
 
 namespace LearnOpenTK.src.levels
@@ -47,7 +45,7 @@ namespace LearnOpenTK.src.levels
 
             Entity terrain = new Entity();
             terrain.name = "Terrain";
-            terrain.transform = new Transform(new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 0.0f, 0.0f), new Vector3(1.2f * 5, 1, 5));
+            terrain.transform = new Transform(new Vector3(0.0f, -1.0f, 0.0f), new Vector3(0.0f, 0.0f, 0.0f), new Vector3(1.2f * 5, 1, 5));
             terrain.AddComponent(terrainGenerator.GetMesh());
 
             var heightmap = new Texture(path + "assets/iceland_heightmap.png");

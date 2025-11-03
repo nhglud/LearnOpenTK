@@ -1,5 +1,6 @@
 ﻿
 
+using LearnOpenTK.src;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
@@ -9,7 +10,7 @@ namespace LearnOpenTK
 {
     public class LevelThree : Level
     {
-
+        private SkyBox skyBox;
         private LightingSystem lightingSystem;
         private RenderingSystem renderingSystem;
         private UpdateSystem updateSystem;
@@ -78,6 +79,18 @@ namespace LearnOpenTK
             player.AddComponent(new CharacterController(game.KeyboardState, game.MouseState));
 
 
+            List<string> cubemapFaces = new List<string>()
+            {
+    AssetManager.path + "assets/skybox/right.jpg",   // +X
+    AssetManager.path + "assets/skybox/left.jpg",    // -X
+    AssetManager.path + "assets/skybox/top.jpg",     // +Y
+    AssetManager.path + "assets/skybox/bottom.jpg",  // -Y
+    AssetManager.path + "assets/skybox/front.jpg",   // +Z
+    AssetManager.path + "assets/skybox/back.jpg"     // -Z
+};
+
+            skyBox = new SkyBox(cubemapFaces);
+
             lightingSystem = new LightingSystem(entities);
             renderingSystem = new RenderingSystem(entities);
             updateSystem = new UpdateSystem(entities);
@@ -109,6 +122,10 @@ namespace LearnOpenTK
 
             LitMaterial.UpdateStaticProperties();
             renderingSystem.Render();
+
+            
+            skyBox.draw();
+            
 
             framebuffer.Unbind(game.ClientSize.X, game.ClientSize.Y);
             framebuffer.BindTexture();
