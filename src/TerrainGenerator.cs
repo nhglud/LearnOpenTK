@@ -18,13 +18,29 @@ namespace LearnOpenTK.src
         private List<float> vertices;
         private List<int> indices;
 
+        private List<Vector2> uvs;
+
         private Mesh plane;
+        private Texture heightmap;
 
 
         public TerrainGenerator() 
         {
-            
+            vertices = new List<float>();
+            indices = new List<int>();
+            uvs = new List<Vector2>();
+
         }
+
+        public TerrainGenerator(Texture heightmap)
+        {
+            vertices = new List<float>();
+            indices = new List<int>();
+            uvs = new List<Vector2>();
+            this.heightmap = heightmap;
+        }
+
+
 
 
         public Mesh GetMesh()
@@ -34,9 +50,6 @@ namespace LearnOpenTK.src
 
         public void CreatePlane(float width, float depth, int divX, int divZ, float u, float v)
         {
-            
-            vertices = new List<float>();
-            indices = new List<int>();
 
             float w = width * 0.5f;
             float d = depth * 0.5f;
@@ -66,13 +79,11 @@ namespace LearnOpenTK.src
                     v1.tangent = tangent;
                     v1.binormal = binormal;
 
-
                     v2.position = new Vector3(-w + sw * (x + 1), 0, -d + sd * (z + 0));
                     v2.normal = normal;
                     v2.uv = new Vector2(-tu * (x + 1), tv * (z + 0));
                     v2.tangent = tangent;
                     v2.binormal = binormal;
-
 
                     v3.position = new Vector3(-w + sw * (x + 0), 0, -d + sd * (z + 0));
                     v3.normal = normal;
@@ -80,27 +91,52 @@ namespace LearnOpenTK.src
                     v3.tangent = tangent;
                     v3.binormal = binormal;
 
-
                     v4.position = new Vector3(-w + sw * (x + 0), 0, -d + sd * (z + 1));
                     v4.normal = normal;
                     v4.uv = new Vector2(-tu * (x + 0), tv * (z + 1));
                     v4.tangent = tangent;
                     v4.binormal = binormal;
 
-
                     CreateQuad(v1, v2, v3, v4);
                 }
 
 
             }
-
-
-
+      
+            //UpdateHeight(heightmap, 14, 100);
+      
             plane = new Mesh(vertices.ToArray(), indices.ToArray());
         }
 
         public void UpdateHeight(Texture heightmap, int vertexSize, float height)
         {
+            int vertexCount = vertices.Count / vertexSize;
+
+            Console.WriteLine(heightmap.image.Data.Length);
+            Console.WriteLine(vertexCount);
+
+            for (int i = 0; i < vertexCount; i++)
+            {
+                float u = vertices[i * vertexSize + 6];
+                float v = vertices[i * vertexSize + 7];
+
+                int px = (int)(u * (heightmap.width - 1));
+                int py = (int)(v * (heightmap.height - 1));
+                px = Math.Clamp(px, 0, heightmap.width - 1);
+                py = Math.Clamp(py, 0, heightmap.height - 1);
+
+                int pixelIndex = (py * heightmap.width + px) * 4;
+
+                byte r = heightmap.image.Data[pixelIndex]; // red channel as height
+                Console.WriteLine(r);
+                float h = r / 255f; // normalized 0–1
+                Console.WriteLine(h);
+                // Apply displacement on Y
+                int yIndex = i * vertexSize + 1; // Y is the second component in position (x,y,z)
+                vertices[yIndex] += h * height;
+            }
+
+
 
         }
 
@@ -150,12 +186,9 @@ namespace LearnOpenTK.src
 
             indices.Add(indices.Count);
 
+            uvs.Add(uv);
+
         }
-
-
-
-
-
 
 
 

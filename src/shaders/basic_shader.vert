@@ -6,14 +6,11 @@ layout(location = 2) in vec2 aTexCoord;
 layout(location = 3) in vec3 aTangent;
 layout(location = 4) in vec3 aBinormal;
 
-
 out vec3 normal;
 out vec2 texCoord;
 out vec3 tangent;
 out vec3 binormal;
 out mat3 tbn;
-
-
 
 out vec3 fragPosition;
 out vec3 viewPosition;
@@ -59,7 +56,6 @@ void main(void)
     gl_Position =  projection * view * model * vec4(aPosition, 1.0);
 
     decalViewPos = decalProjection * decalView * model * vec4(aPosition, 1.0);
-
 
 
     for(int i = 0; i < countDecals; i++)

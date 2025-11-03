@@ -6,6 +6,12 @@ namespace LearnOpenTK
 {
     public class Texture
     {
+
+        public int width;
+        public int height;
+        public ImageResult image;
+  
+
         private int handle;
 
         private string path;
@@ -25,7 +31,12 @@ namespace LearnOpenTK
         {
             StbImage.stbi_set_flip_vertically_on_load(1);
 
-            ImageResult image = ImageResult.FromStream(File.OpenRead(path), ColorComponents.RedGreenBlueAlpha);
+            image = ImageResult.FromStream(File.OpenRead(path), ColorComponents.RedGreenBlueAlpha);
+
+            
+            width = image.Width;
+            height = image.Height;
+      
             
            
             GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, image.Width, image.Height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, image.Data);
