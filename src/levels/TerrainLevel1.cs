@@ -41,23 +41,21 @@ namespace LearnOpenTK.src.levels
 
             string path = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\"));
 
-            TerrainGenerator terrainGenerator = new TerrainGenerator(new Texture(path + "assets/heightmap.png"));
-            terrainGenerator.CreatePlane(10, 10, 500, 500, 1, 1);
+            PlaneGenerator terrainGenerator = new PlaneGenerator();
+            terrainGenerator.CreatePlane(10, 10, 1000, 1000, 1, 1);
 
-            //terrainGenerator.UpdateHeight(new Texture(path + "assets/heightmap.png"), 1, 1);
 
             Entity terrain = new Entity();
             terrain.name = "Terrain";
-            terrain.transform = new Transform(new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 0.0f, 0.0f), Vector3.One);
+            terrain.transform = new Transform(new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 0.0f, 0.0f), new Vector3(1.2f * 5, 1, 5));
             terrain.AddComponent(terrainGenerator.GetMesh());
 
             var heightmap = new Texture(path + "assets/iceland_heightmap.png");
+            var perlin  = new Texture(path + "assets/perlin.png");
             var terrianShader = new Shader(path + "src/shaders/terrain.vert", path + "src/shaders/terrain.frag");
-            var terrainMat = new TerrainMaterial(heightmap, terrianShader);
-
+            var terrainMat = new TerrainMaterial(heightmap, terrianShader, perlin);
 
             terrain.AddComponent(new Renderer(terrainMat));
-
 
 
             Entity player = new Entity();
@@ -66,7 +64,6 @@ namespace LearnOpenTK.src.levels
 
             player.AddComponent(new Camera());
             player.AddComponent(new CharacterController(game.KeyboardState, game.MouseState));
-
 
 
             lightingSystem = new LightingSystem(entities);

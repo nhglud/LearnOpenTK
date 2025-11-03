@@ -32,12 +32,18 @@ uniform sampler2D heightmap;
 out float height;
 out vec3 norm;
 
+in float heightScale;
+
 void main(void)
 {
     texCoord = aTexCoord;
 
 
-    vec4 h = texture(heightmap, aTexCoord);
+    height = texture(heightmap, aTexCoord).r;
+
+    vec3 pos = aPosition;
+    pos.y = pos.y + height;
+
 
     float delta = 1.0 / 512.0;
 
@@ -47,14 +53,9 @@ void main(void)
     float hD = texture(heightmap, aTexCoord + vec2(0.0, -delta)).r;
 
     vec3 dx = vec3(2.0*delta, (hR - hL), 0.0); // tangent along x
-    vec3 dz = vec3(0.0, (hU - hD), 2.0*delta); // tangent along z
+    vec3 dz = vec3(0.0, (hU - hD), 2.0 * delta); // tangent along z
     norm = normalize(cross(dz, dx));
 
-    height = h.r;
-
-
-    vec3 pos = aPosition;
-    pos.y = pos.y + height;
 
     viewPosition = cameraPosition.xyz;
 

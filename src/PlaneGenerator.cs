@@ -3,7 +3,7 @@ using OpenTK.Mathematics;
 
 namespace LearnOpenTK.src
 {
-    public  class TerrainGenerator
+    public  class PlaneGenerator
     {
         private struct Vertex
         {
@@ -21,23 +21,14 @@ namespace LearnOpenTK.src
         private List<Vector2> uvs;
 
         private Mesh plane;
-        private Texture heightmap;
 
 
-        public TerrainGenerator() 
+        public PlaneGenerator() 
         {
             vertices = new List<float>();
             indices = new List<int>();
             uvs = new List<Vector2>();
 
-        }
-
-        public TerrainGenerator(Texture heightmap)
-        {
-            vertices = new List<float>();
-            indices = new List<int>();
-            uvs = new List<Vector2>();
-            this.heightmap = heightmap;
         }
 
 
@@ -102,44 +93,11 @@ namespace LearnOpenTK.src
 
 
             }
-      
-            //UpdateHeight(heightmap, 14, 100);
-      
+            
             plane = new Mesh(vertices.ToArray(), indices.ToArray());
         }
 
-        public void UpdateHeight(Texture heightmap, int vertexSize, float height)
-        {
-            int vertexCount = vertices.Count / vertexSize;
-
-            Console.WriteLine(heightmap.image.Data.Length);
-            Console.WriteLine(vertexCount);
-
-            for (int i = 0; i < vertexCount; i++)
-            {
-                float u = vertices[i * vertexSize + 6];
-                float v = vertices[i * vertexSize + 7];
-
-                int px = (int)(u * (heightmap.width - 1));
-                int py = (int)(v * (heightmap.height - 1));
-                px = Math.Clamp(px, 0, heightmap.width - 1);
-                py = Math.Clamp(py, 0, heightmap.height - 1);
-
-                int pixelIndex = (py * heightmap.width + px) * 4;
-
-                byte r = heightmap.image.Data[pixelIndex]; // red channel as height
-                Console.WriteLine(r);
-                float h = r / 255f; // normalized 0–1
-                Console.WriteLine(h);
-                // Apply displacement on Y
-                int yIndex = i * vertexSize + 1; // Y is the second component in position (x,y,z)
-                vertices[yIndex] += h * height;
-            }
-
-
-
-        }
-
+       
 
         private void CreateQuad(Vertex v1, Vertex v2 , Vertex v3, Vertex v4)
         {
