@@ -81,20 +81,20 @@ namespace LearnOpenTK
 
             List<string> cubemapFaces = new List<string>()
             {
-    AssetManager.path + "assets/skybox/right.jpg",   // +X
-    AssetManager.path + "assets/skybox/left.jpg",    // -X
-    AssetManager.path + "assets/skybox/top.jpg",     // +Y
-    AssetManager.path + "assets/skybox/bottom.jpg",  // -Y
-    AssetManager.path + "assets/skybox/front.jpg",   // +Z
-    AssetManager.path + "assets/skybox/back.jpg"     // -Z
-};
+                AssetManager.path + "assets/skybox/right.jpg",   // +X
+                AssetManager.path + "assets/skybox/left.jpg",    // -X
+                AssetManager.path + "assets/skybox/top.jpg",     // +Y
+                AssetManager.path + "assets/skybox/bottom.jpg",  // -Y
+                AssetManager.path + "assets/skybox/front.jpg",   // +Z
+                AssetManager.path + "assets/skybox/back.jpg"     // -Z
+            };
 
             skyBox = new SkyBox(cubemapFaces);
 
             lightingSystem = new LightingSystem(entities);
             renderingSystem = new RenderingSystem(entities);
             updateSystem = new UpdateSystem(entities);
-            framebuffer = new Framebuffer(game.ClientSize.X, game.ClientSize.Y);            
+            framebuffer = new Framebuffer(game.ClientSize.X, game.ClientSize.Y);
         }
 
 
@@ -123,9 +123,9 @@ namespace LearnOpenTK
             LitMaterial.UpdateStaticProperties();
             renderingSystem.Render();
 
-            
+
             skyBox.draw();
-            
+
 
             framebuffer.Unbind(game.ClientSize.X, game.ClientSize.Y);
             framebuffer.BindTexture();

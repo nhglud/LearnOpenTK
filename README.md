@@ -16,12 +16,21 @@ Currently supports:
 - Multiple post processing shaders.
 - Shooting bloodsplatter decals.
 - ImGui.NET UI
+- Skyboxes
+- Generating terrain with a heightmap
 
 <figure>
     <img src="BloodyScreenShot.png" alt="My Image" width="800"/>
     <figcaption>This is a beautiful scenery.</figcaption>
 </figure>
 
+<figure>
+    <img src="skybox.png" alt="My Image" width="800"/>
+    <figcaption>Scene with skybox.</figcaption>
+</figure>
 
-
+<figure>
+    <img src="terrain.png" alt="My Image" width="800"/>
+    <figcaption>Generated terrain.</figcaption>
+</figure>
 

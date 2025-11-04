@@ -1,6 +1,4 @@
 ﻿using OpenTK.Graphics.OpenGL4;
-using System.Drawing;
-
 
 namespace LearnOpenTK.src
 {
