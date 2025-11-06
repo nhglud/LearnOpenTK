@@ -5,16 +5,7 @@ namespace LearnOpenTK.src
 {
     public  class PlaneGenerator
     {
-        private struct Vertex
-        {
-            public Vector3 position;
-            public Vector3 normal;
-            public Vector2 uv;
-            public Vector3 tangent;
-            public Vector3 binormal;
-
-        }
-
+       
         private List<float> vertices;
         private List<int> indices;
 

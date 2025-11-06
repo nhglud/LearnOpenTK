@@ -11,7 +11,6 @@ using ImGuiNET;
 
 namespace LearnOpenTK
 {
-
     public class Game : GameWindow
     {
 

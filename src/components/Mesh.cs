@@ -1,10 +1,23 @@
 ﻿
 
 using OpenTK.Graphics.OpenGL4;
+using OpenTK.Mathematics;
 
 
 namespace LearnOpenTK
 {
+
+    public struct Vertex
+    {
+        public Vector3 position;
+        public Vector3 normal;
+        public Vector2 uv;
+        public Vector3 tangent;
+        public Vector3 binormal;
+
+    }
+
+
     public class Mesh : Component
     {
         private float[] vertices;
