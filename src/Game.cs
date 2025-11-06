@@ -15,7 +15,7 @@ namespace LearnOpenTK
     {
 
         public Level currentLevel;
-        private Framebuffer framebuffer;
+        //private Framebuffer framebuffer;
         public PostProcessor postProcessor;
         private UIManager uiManager;
 
@@ -37,7 +37,7 @@ namespace LearnOpenTK
             currentLevel = new FirstLevel(this);
             currentLevel.LoadLevel();
 
-            framebuffer = new Framebuffer(ClientSize.X, ClientSize.Y);
+            //framebuffer = new Framebuffer(ClientSize.X, ClientSize.Y);
             postProcessor = new PostProcessor(AssetManager.GetShader("post_processing"), this);
 
 

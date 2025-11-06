@@ -34,3 +34,9 @@ Currently supports:
     <figcaption>Generated terrain.</figcaption>
 </figure>
 
+<figure>
+    <img src="filters.png" alt="My Image" width="800"/>
+    <figcaption>Post processing filters.</figcaption>
+</figure>
+
+

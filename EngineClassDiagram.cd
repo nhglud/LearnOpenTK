@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="LearnOpenTK.FirstLevel" Collapsed="true">
-    <Position X="18.25" Y="16.75" Width="1.5" />
+    <Position X="12" Y="21.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIAAAAAgAAAAAAFAAAABAAAAQAAAAAAAQA=</HashCode>
       <FileName>src\levels\FirstLevel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.Level">
-    <Position X="19.25" Y="13.25" Width="1.5" />
+    <Position X="13" Y="17.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAEAAAAAAEAAAABQAIAYAAAABAAAA=</HashCode>
       <FileName>src\levels\Level.cs</FileName>
@@ -18,35 +18,35 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="LearnOpenTK.LevelTwo" Collapsed="true">
-    <Position X="20.5" Y="16.75" Width="1.5" />
+    <Position X="14.25" Y="21.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIAAAAAgAAAAAAFAAAABAAAAQAAAAAAAQA=</HashCode>
       <FileName>src\levels\LevelTwo.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.UpdateSystem">
-    <Position X="21.5" Y="20" Width="1.5" />
+    <Position X="15.25" Y="24.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
       <FileName>src\levels\UpdateSystem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.AssetManager" Collapsed="true">
-    <Position X="37.25" Y="0.5" Width="1.5" />
+    <Position X="35.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAEACIEABAAAAACACAAAAgAAAAAACAARAAAhAAAA=</HashCode>
       <FileName>src\AssetManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.Camera">
-    <Position X="25.5" Y="9" Width="1.75" />
+    <Position X="19.25" Y="13.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>ACGAAAAAARAAAAAAAAAgAAAAACAAAEgAAAAAAsAAiAQ=</HashCode>
       <FileName>src\components\Camera.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.CharacterController">
-    <Position X="16.25" Y="9" Width="1.75" />
+    <Position X="10" Y="13.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>IAQAAAIAEAASAAEAAAAAgAAAAAAAAIAAAAAAACAAAAA=</HashCode>
       <FileName>src\components\CharacterController.cs</FileName>
@@ -54,21 +54,21 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="LearnOpenTK.Component">
-    <Position X="23" Y="6.25" Width="2.25" />
+    <Position X="16.75" Y="10.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAEAAAAAAACAAAAAAA=</HashCode>
       <FileName>src\components\Component.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.DirectionalLight" Collapsed="true">
-    <Position X="21" Y="11" Width="1.5" />
+    <Position X="14.75" Y="15.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>src\light\DirectionalLight.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.Entity">
-    <Position X="13.25" Y="9.25" Width="2" />
+    <Position X="16" Y="17" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAQAAAAAAAIAAAAAACABAAAAAAEAAAEACAQAABAAAA=</HashCode>
       <FileName>src\Entity.cs</FileName>
@@ -81,48 +81,47 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="LearnOpenTK.Framebuffer" Collapsed="true">
-    <Position X="15.5" Y="13.75" Width="1.5" />
+    <Position X="16.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAgAAAAAAABAAAACAAAAAAAAAAAAAAAAIEAAEAAAA=</HashCode>
       <FileName>src\Framebuffer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.Game">
-    <Position X="22.5" Y="12.5" Width="1.75" />
+    <Position X="19.25" Y="6.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAAAACAAAAEAAAAgACAQAAACAABAAAAAAAAAE=</HashCode>
+      <HashCode>AAABAAAAAAACAAAAAAAAAgACAQAAACAABAAAAAAAAAE=</HashCode>
       <FileName>src\Game.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="currentLevel" />
-      <Field Name="framebuffer" />
       <Field Name="postProcessor" />
       <Field Name="uiManager" />
     </ShowAsAssociation>
   </Class>
   <Class Name="LearnOpenTK.Light">
-    <Position X="21" Y="9" Width="1.5" />
+    <Position X="14.75" Y="13.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>src\light\Light.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.LightingSystem">
-    <Position X="18.5" Y="20" Width="2.25" />
+    <Position X="12.25" Y="24.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAQgAQAAACAAAAAAAAAAAAAAgAAAAAAAAAAAAAJIAAA=</HashCode>
       <FileName>src\systems\LightSystem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.LitMaterial">
-    <Position X="26" Y="16.25" Width="2.25" />
+    <Position X="19.75" Y="20.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AABAAAgAgBAAAAEBAAAACAEABIAcAACAQAAEQAEgAAA=</HashCode>
       <FileName>src\LitMaterial.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.Material">
-    <Position X="28.5" Y="14.25" Width="1.5" />
+    <Position X="22.25" Y="18.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAEAAAAA=</HashCode>
       <FileName>src\Material.cs</FileName>
@@ -132,28 +131,31 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="LearnOpenTK.Mesh">
-    <Position X="28" Y="9" Width="1.75" />
+    <Position X="21.75" Y="13.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAgQAAAAAAAAgAAAAAAAAAAAAAQAAAAAAAAAAAEAAA=</HashCode>
       <FileName>src\components\Mesh.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="vertices" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="LearnOpenTK.ModelLoader" Collapsed="true">
-    <Position X="39" Y="0.5" Width="1.5" />
+    <Position X="37.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>src\ModelLoader.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.PointLight" Collapsed="true">
-    <Position X="18.75" Y="11" Width="1.5" />
+    <Position X="12.5" Y="15.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>src\light\PointLight.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.PostProcessingFilter">
-    <Position X="22.5" Y="23" Width="1.5" />
+    <Position X="16.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAABAAEABAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>src\PostProcessingFilter.cs</FileName>
@@ -163,7 +165,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="LearnOpenTK.PostProcessor">
-    <Position X="29.5" Y="19.75" Width="1.5" />
+    <Position X="19.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAIQAACAAEAAABAIIAAAAAEAAAA=</HashCode>
       <FileName>src\PostProcessor.cs</FileName>
@@ -173,14 +175,14 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="LearnOpenTK.Program" Collapsed="true">
-    <Position X="37.25" Y="1.5" Width="1.5" />
+    <Position X="35.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>src\Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.Renderer">
-    <Position X="30.5" Y="9" Width="1.5" />
+    <Position X="24.25" Y="13.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAABACIABAAIA=</HashCode>
       <FileName>src\components\Renderer.cs</FileName>
@@ -191,14 +193,14 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="LearnOpenTK.RenderingSystem">
-    <Position X="16" Y="20" Width="1.75" />
+    <Position X="9.75" Y="24.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAgAA=</HashCode>
       <FileName>src\systems\RenderingSystem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.Shader" BaseTypeListCollapsed="true">
-    <Position X="31" Y="0.5" Width="2" />
+    <Position X="27" Y="15.5" Width="2" />
     <TypeIdentifier>
       <HashCode>ABAAAAgAACAAAgAICAAAAAAAAAAEAAIDAAgAAgAAAAA=</HashCode>
       <FileName>src\Shader.cs</FileName>
@@ -206,42 +208,42 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="LearnOpenTK.SpotLight" Collapsed="true">
-    <Position X="23.25" Y="11" Width="1.5" />
+    <Position X="17" Y="15.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAgAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>src\light\SpotLight.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.System">
-    <Position X="18.75" Y="18.25" Width="1.5" />
+    <Position X="12.5" Y="22.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
       <FileName>src\systems\System.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.Texture" Collapsed="true">
-    <Position X="39" Y="1.5" Width="1.5" />
+    <Position X="37.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAAAAAAAQAQAACEAAAAAAEAAAAAAACEAAAgAA=</HashCode>
       <FileName>src\Texture.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.Transform">
-    <Position X="9.75" Y="9.75" Width="1.75" />
+    <Position X="23.75" Y="23.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAACAIAACAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>src\components\Transform.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.UIComponent">
-    <Position X="21" Y="3.25" Width="1.5" />
+    <Position X="14.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
       <FileName>src\ui\UIComponent.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.UIManager">
-    <Position X="31.75" Y="5.5" Width="1.5" />
+    <Position X="25.5" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAIAAAAAAAAAAAAAAAAAAAAAAAAAAIABIAAAEAAAA=</HashCode>
       <FileName>src\ui\UIManager.cs</FileName>
@@ -252,7 +254,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="LearnOpenTK.UIPanel">
-    <Position X="28.75" Y="3.25" Width="1.5" />
+    <Position X="22.5" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAQAAAAAAAAACAAAAAAAAAAABIAAAAAAAAAAA=</HashCode>
       <FileName>src\ui\UIPanel.cs</FileName>
@@ -262,14 +264,14 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="LearnOpenTK.UnlitMaterial">
-    <Position X="29" Y="16.25" Width="1.5" />
+    <Position X="22.75" Y="20.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAACAAAAAAAAAAAA=</HashCode>
       <FileName>src\UnlitMaterial.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="goo.ImGuiController" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="34.75" Y="6.25" Width="1.5" />
+    <Position X="25.5" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IDwACAABgOiIACAAAAAAGCAqABIAQgEaARAQAAAAAQA=</HashCode>
       <FileName>src\ui\ImGuiController.cs</FileName>
@@ -277,56 +279,56 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="LearnOpenTK.LevelThree" Collapsed="true">
-    <Position X="16" Y="16.75" Width="1.5" />
+    <Position X="9.75" Y="21.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIAAAAAgAAAAAAFAAAABAAAAQAAAAAAAQA=</HashCode>
       <FileName>src\levels\LevelThree.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.MainPanel">
-    <Position X="28.75" Y="6" Width="1.5" />
+    <Position X="22.5" Y="10.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>src\ui\MainPanel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.TextureSettings" Collapsed="true">
-    <Position X="18.5" Y="5" Width="1.5" />
+    <Position X="12.25" Y="9.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAA=</HashCode>
       <FileName>src\ui\TextureSettings.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.PostProcessingSettings" Collapsed="true">
-    <Position X="20.75" Y="5" Width="2" />
+    <Position X="14.5" Y="9.5" Width="2" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAAAAAAAgAAAACAAAEEAAAAIABAAAAEABgg=</HashCode>
       <FileName>src\ui\PostProcessingSettings.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.EntityInspector" Collapsed="true">
-    <Position X="25.75" Y="5" Width="1.5" />
+    <Position X="19.5" Y="9.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAAAAAAAABAAAAAAAAAAAIABAAAAAAAAA=</HashCode>
       <FileName>src\ui\EntityInspector.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.LevelSelector" Collapsed="true">
-    <Position X="16.25" Y="5" Width="1.5" />
+    <Position X="10" Y="9.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAAAAAAAAA=</HashCode>
       <FileName>src\ui\LevelSelector.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.src.ui.DecalShooter" Collapsed="true">
-    <Position X="23.5" Y="5" Width="1.5" />
+    <Position X="17.25" Y="9.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
       <FileName>src\ui\DecalShooter.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.src.SkyBox">
-    <Position X="24" Y="2" Width="1.5" />
+    <Position X="30.25" Y="16.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAJAAAAAAAEAAAAIAAAAAAAAAAAAAAAIAAEAAAAA=</HashCode>
       <FileName>src\levels\SkyBox.cs</FileName>
@@ -337,56 +339,56 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="LearnOpenTK.src.CubeMap">
-    <Position X="18" Y="1.5" Width="1.5" />
+    <Position X="33.25" Y="16.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAEAAAgAAACAAAAAAA=</HashCode>
       <FileName>src\CubeMap.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.src.PlaneGenerator" Collapsed="true">
-    <Position X="40.75" Y="0.5" Width="1.5" />
+    <Position X="39.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgQAAAAAABAAAAAAAQAAAAAAAQAgAAAQAAAAEAAgA=</HashCode>
       <FileName>src\PlaneGenerator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.src.TerrainMaterial">
-    <Position X="31.25" Y="16.25" Width="1.5" />
+    <Position X="25" Y="20.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQAAAAAAAAAAAAAAAAAAAQAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>src\TerrainMaterial.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LearnOpenTK.src.levels.TerrainLevel1" Collapsed="true">
-    <Position X="22.75" Y="16.75" Width="1.5" />
+    <Position X="16.5" Y="21.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIAAAAAAAAAAAAFAAAABAAAAQAAAAAAAQA=</HashCode>
       <FileName>src\levels\TerrainLevel1.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="Decal" Collapsed="true">
-    <Position X="37.25" Y="2.75" Width="1.5" />
+    <Position X="35.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>src\LitMaterial.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Struct Name="LearnOpenTK.Vertex" Collapsed="true">
-    <Position X="39" Y="2.75" Width="1.5" />
+    <Position X="22" Y="17.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAgAAAAAAAAgAAAAAgAAAgA=</HashCode>
       <FileName>src\components\Mesh.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Interface Name="LearnOpenTK.IUpdateable" Collapsed="true">
-    <Position X="37.25" Y="4" Width="1.5" />
+    <Position X="35.75" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>src\IUpdateable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="LearnOpenTK.TextureFilter" Collapsed="true">
-    <Position X="37.25" Y="5" Width="1.5" />
+    <Position X="35.75" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAABAAAAAAAAAAAACAAAACAAAAAAAAAAAAAA=</HashCode>
       <FileName>src\Texture.cs</FileName>
