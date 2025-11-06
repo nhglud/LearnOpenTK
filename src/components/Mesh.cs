@@ -2,11 +2,12 @@
 
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
+using System.Runtime.InteropServices;
 
 
 namespace LearnOpenTK
 {
-
+    [StructLayout(LayoutKind.Sequential)]
     public struct Vertex
     {
         public Vector3 position;
@@ -20,11 +21,11 @@ namespace LearnOpenTK
 
     public class Mesh : Component
     {
-        private float[] vertices;
+        private List<Vertex> vertices = new List<Vertex>();
         private int[] indices;
         private int VertexArrayObject;
 
-        public Mesh(float[] vertices, int[] indices) : base()
+        public Mesh(List<Vertex> vertices, int[] indices) : base()
         { 
             this.vertices = vertices;
             this.indices = indices;
@@ -38,47 +39,38 @@ namespace LearnOpenTK
             int VertexBufferObject = GL.GenBuffer();
             int ElementBufferObject = GL.GenBuffer();
 
+            int size = Marshal.SizeOf<Vertex>();
+
             // Bind buffers
             GL.BindVertexArray(VertexArrayObject);
 
             GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
-            GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
+            GL.BufferData(BufferTarget.ArrayBuffer, vertices.Count * size, vertices.ToArray(), BufferUsageHint.StaticDraw);
 
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, ElementBufferObject);
             GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(uint), indices, BufferUsageHint.StaticDraw);
 
             // Set vertex attributes
 
-            // position + normal + uv + tangent + binormal
-            int size = 3 + 3 + 2 + 3 + 3;
-            size *= sizeof(float);
-
-
             // Positions
-            int offset = 0;
-            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, size, offset);
+            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, size, Marshal.OffsetOf<Vertex>("position"));
             GL.EnableVertexAttribArray(0);
 
             // Normals
-            offset += 3 * sizeof(float);
-            GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, size, offset);
+            GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, size, Marshal.OffsetOf<Vertex>("normal"));
             GL.EnableVertexAttribArray(1);
 
             // UVs
-            offset += 3 * sizeof(float);
-            GL.VertexAttribPointer(2, 2, VertexAttribPointerType.Float, false, size, offset);
+            GL.VertexAttribPointer(2, 2, VertexAttribPointerType.Float, false, size, Marshal.OffsetOf<Vertex>("uv"));
             GL.EnableVertexAttribArray(2);
 
             //Tangents
-            offset += 2 * sizeof(float);
-            GL.VertexAttribPointer(3, 3, VertexAttribPointerType.Float, false, size, offset);
+            GL.VertexAttribPointer(3, 3, VertexAttribPointerType.Float, false, size, Marshal.OffsetOf<Vertex>("tangent"));
             GL.EnableVertexAttribArray(3);
 
             // Binormals
-            offset += 3 * sizeof(float);
-            GL.VertexAttribPointer(4, 3, VertexAttribPointerType.Float, false, size, offset);
+            GL.VertexAttribPointer(4, 3, VertexAttribPointerType.Float, false, size, Marshal.OffsetOf<Vertex>("binormal"));
             GL.EnableVertexAttribArray(4);
-
 
 
             GL.BindVertexArray(0);

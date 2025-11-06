@@ -6,7 +6,7 @@ namespace LearnOpenTK.src
     public  class PlaneGenerator
     {
        
-        private List<float> vertices;
+        private List<Vertex> vertices;
         private List<int> indices;
 
         private List<Vector2> uvs;
@@ -16,7 +16,7 @@ namespace LearnOpenTK.src
 
         public PlaneGenerator() 
         {
-            vertices = new List<float>();
+            vertices = new List<Vertex>();
             indices = new List<int>();
             uvs = new List<Vector2>();
 
@@ -85,7 +85,7 @@ namespace LearnOpenTK.src
 
             }
             
-            plane = new Mesh(vertices.ToArray(), indices.ToArray());
+            plane = new Mesh(vertices, indices.ToArray());
         }
 
        
@@ -113,25 +113,14 @@ namespace LearnOpenTK.src
 
         private void CreateVertex(Vector3 position, Vector3 normal, Vector2 uv, Vector3 tangent, Vector3 binormal)
         {
+            var vertex = new Vertex();
+            vertex.position = position;
+            vertex.normal = normal;
+            vertex.uv = uv;
+            vertex.tangent = tangent;
+            vertex.binormal = binormal;
 
-            vertices.Add(position.X);
-            vertices.Add(position.Y);
-            vertices.Add(position.Z);
-
-            vertices.Add(normal.X);
-            vertices.Add(normal.Y);
-            vertices.Add(normal.Z);
-
-            vertices.Add(uv.X);
-            vertices.Add(uv.Y);
-
-            vertices.Add(tangent.X);
-            vertices.Add(tangent.Y);
-            vertices.Add(tangent.Z);
-
-            vertices.Add(binormal.X);
-            vertices.Add(binormal.Y);
-            vertices.Add(binormal.Z);
+            vertices.Add(vertex);
 
             indices.Add(indices.Count);
 

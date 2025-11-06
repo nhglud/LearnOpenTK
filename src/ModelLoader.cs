@@ -10,7 +10,7 @@ namespace LearnOpenTK
 
         public static Mesh LoadModel(string path)
         {
-            List<float> vertices = new List<float>();
+            List<Vertex> vertices = new List<Vertex>();
             List<int> indices = new List<int>();
 
             var importer = new AssimpContext();
@@ -20,6 +20,7 @@ namespace LearnOpenTK
             {
                 for (int i = 0; i < mesh.VertexCount; i++)
                 {
+                    var vert = new Vertex();
 
                     var vertex = mesh.Vertices[i];
                     var normal = mesh.Normals[i];
@@ -27,24 +28,14 @@ namespace LearnOpenTK
                     var tangent = mesh.Tangents[i];
                     var bitangent = mesh.BiTangents[i];
 
-                    vertices.Add(vertex.X);
-                    vertices.Add(vertex.Y);
-                    vertices.Add(vertex.Z);
+                    vert.position = new OpenTK.Mathematics.Vector3(vertex.X, vertex.Y, vertex.Z);
+                    vert.normal = new OpenTK.Mathematics.Vector3(normal.X, normal.Y, normal.Z);
+                    vert.uv = new OpenTK.Mathematics.Vector2(uv.X, uv.Y);
+                    vert.tangent = new OpenTK.Mathematics.Vector3(tangent.X, tangent.Y, tangent.Z);
+                    vert.binormal = new OpenTK.Mathematics.Vector3(bitangent.X, bitangent.Y, bitangent.Z);
 
-                    vertices.Add(normal.X);
-                    vertices.Add(normal.Y);
-                    vertices.Add(normal.Z);
+                    vertices.Add(vert);
 
-                    vertices.Add(uv.X);
-                    vertices.Add(uv.Y);
-
-                    vertices.Add(tangent.X);
-                    vertices.Add(tangent.Y);
-                    vertices.Add(tangent.Z);
-
-                    vertices.Add(bitangent.X);
-                    vertices.Add(bitangent.Y);
-                    vertices.Add(bitangent.Z);
 
                 }
 
@@ -57,7 +48,7 @@ namespace LearnOpenTK
 
             }
 
-            return new Mesh(vertices.ToArray(), indices.ToArray());
+            return new Mesh(vertices, indices.ToArray());
         }
 
     }
