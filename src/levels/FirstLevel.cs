@@ -80,9 +80,9 @@ namespace LearnOpenTK
 
             Entity entity2 = new Entity();
             entity2.name = "Sphere";
-            entity2.transform = new Transform(new Vector3(0.5f, 0.0f, -5.0f), new Vector3(0.0f, -30.0f, 0.0f), Vector3.One);
+            entity2.transform = new Transform(new Vector3(5.5f, 0.0f, 15.0f), new Vector3(0.0f, -30.0f, 0.0f), 5 * Vector3.One);
             entity2.AddComponent(AssetManager.GetMesh("sphere"));
-            entity2.AddComponent(new Renderer(AssetManager.GetMaterial("checker")));
+            entity2.AddComponent(new Renderer(AssetManager.GetMaterial("white")));
 
 
             Entity entity3 = new Entity();
@@ -141,6 +141,11 @@ namespace LearnOpenTK
             updateSystem = new UpdateSystem(entities);
 
             framebuffer = new Framebuffer(game.ClientSize.X, game.ClientSize.Y);
+
+            var white = AssetManager.GetMaterial("white") as LitMaterial;
+
+            white.SetEnvironmentMap(skyBox.GetCubeMap());
+            white.reflectivity = 1;
         }
 
 

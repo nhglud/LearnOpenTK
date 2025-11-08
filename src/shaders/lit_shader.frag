@@ -83,6 +83,11 @@ uniform int countDecals;
 in vec4 decalPositions[MAX_DECALS];
 
 
+// envMap
+
+uniform float reflectivity;
+uniform samplerCube environmentMap;
+
 // function definitions
 
 vec3 CalculateDiffuseLight(vec3 lightPos, vec4 lightCol, vec3 norm);
@@ -118,17 +123,10 @@ void main()
 			vec4 decal = texture(decalTexture, decalTexCoord);
 			vec4 decalSpec = texture(decalSpecular, decalTexCoord);
 			vec4 decaNormalMap = texture(decalNormal, decalTexCoord);
-//
 			diffColor = mix(diffColor, decal.rgb, decal.a);
 			specColor = mix(specColor, decalSpec.rgb, decalSpec.a);
 			normalMap = mix(normalMap, decaNormalMap.rgb, decaNormalMap.a);
-//
-//			if(decal.a == 1)
-//			{
-//				diffColor = decal.rgb;
-//				specColor = decalSpec.rgb;
-//				normalMap = decaNormalMap.rgb;
-//			}
+
 		}
 	}
 
@@ -167,13 +165,21 @@ void main()
 
 
 	vec3 result = (ambient + diffuse) * diffColor  + diffuse * specular * specColor;
+
+	vec3 I = normalize(fragPosition - viewPosition);
+	vec3 R = reflect(I, norm);
+	vec3 envColor = texture(environmentMap, R).rgb;
+
+	vec3 one = vec3(1.0);
+
+	vec3 reflectionColor = mix(one, envColor, reflectivity);
 //
 //	float rim = smoothstep(0.25, 0.0, dot(norm, normalize(viewPosition - fragPosition)));
 //	result += diffuse * rim * vec3(1.0);
 
+	result *= reflectionColor;
 
 	outputColor = vec4(result, 1.0);
-
 }
 
 

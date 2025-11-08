@@ -29,7 +29,7 @@ namespace LearnOpenTK
         private Texture decalNormal;
 
         private CubeMap environmentMap;
-        private float reflectivity = 0;
+        public float reflectivity = 0;
 
         public static List<Decal> decals;
 
@@ -37,7 +37,7 @@ namespace LearnOpenTK
         //Matrix4 decalView;
         //Matrix4 decalProjection;
 
-        public float Reflectivity => reflectivity;
+      
 
         public LitMaterial(Color4 color) : base()  
         {
@@ -102,7 +102,7 @@ namespace LearnOpenTK
 
             shader.SetFloat("reflectivity", reflectivity);
             shader.SetInt("environmentMap", 3);
-            environmentMap.Use(TextureUnit.Texture3);
+            environmentMap?.Use(TextureUnit.Texture3);
 
         }
 
