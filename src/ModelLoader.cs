@@ -35,15 +35,13 @@ namespace LearnOpenTK
                     vert.binormal = new OpenTK.Mathematics.Vector3(bitangent.X, bitangent.Y, bitangent.Z);
 
                     vertices.Add(vert);
-
-
                 }
 
 
                 foreach (var face in mesh.Faces)
                 {
                     indices.AddRange(face.Indices.Select(i => (int)i));
-                    
+
                 }
 
             }

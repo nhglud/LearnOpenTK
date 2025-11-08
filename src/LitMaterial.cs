@@ -1,5 +1,6 @@
 ﻿
 using Assimp;
+using LearnOpenTK.src;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 
@@ -21,20 +22,22 @@ namespace LearnOpenTK
         private Texture specularMap;
         private Texture normalMap;
 
-
         public bool useTexture = true;
-
 
         private Texture decalTexture;
         private Texture decalSpecular;
         private Texture decalNormal;
 
-
+        private CubeMap environmentMap;
+        private float reflectivity = 0;
 
         public static List<Decal> decals;
 
+
         //Matrix4 decalView;
         //Matrix4 decalProjection;
+
+        public float Reflectivity => reflectivity;
 
         public LitMaterial(Color4 color) : base()  
         {
@@ -69,13 +72,11 @@ namespace LearnOpenTK
             this.specularMap = specularMap;
             this.normalMap = normalMap;
 
-
             decals = new List<Decal>();
             decalTexture = AssetManager.GetTexture("blood");
             decalSpecular = AssetManager.GetTexture("blood_specular");
             decalNormal = AssetManager.GetTexture("blood_normal");
         }
-
 
 
         public override void Use(Matrix4 model)
@@ -98,6 +99,10 @@ namespace LearnOpenTK
             diffuseMap.Use(TextureUnit.Texture0);
             specularMap.Use(TextureUnit.Texture1);
             normalMap.Use(TextureUnit.Texture2);
+
+            shader.SetFloat("reflectivity", reflectivity);
+            shader.SetInt("environmentMap", 3);
+            environmentMap.Use(TextureUnit.Texture3);
 
         }
 
@@ -158,6 +163,11 @@ namespace LearnOpenTK
             lightPosition = position;
             lightColor = color;
 
+        }
+
+        public void SetEnvironmentMap(CubeMap map)
+        {
+            environmentMap = map;
         }
 
 

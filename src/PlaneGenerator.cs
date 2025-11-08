@@ -5,25 +5,16 @@ namespace LearnOpenTK.src
 {
     public  class PlaneGenerator
     {
-       
+      
         private List<Vertex> vertices;
         private List<int> indices;
-
-        private List<Vector2> uvs;
-
         private Mesh plane;
-
 
         public PlaneGenerator() 
         {
             vertices = new List<Vertex>();
             indices = new List<int>();
-            uvs = new List<Vector2>();
-
         }
-
-
-
 
         public Mesh GetMesh()
         {
@@ -82,13 +73,10 @@ namespace LearnOpenTK.src
                     CreateQuad(v1, v2, v3, v4);
                 }
 
-
             }
             
             plane = new Mesh(vertices, indices.ToArray());
         }
-
-       
 
         private void CreateQuad(Vertex v1, Vertex v2 , Vertex v3, Vertex v4)
         {
@@ -106,29 +94,9 @@ namespace LearnOpenTK.src
 
         private void CreateVertex(Vertex v)
         {
-            CreateVertex(v.position, v.normal, v.uv, v.tangent, v.binormal);
-        }
-
-
-
-        private void CreateVertex(Vector3 position, Vector3 normal, Vector2 uv, Vector3 tangent, Vector3 binormal)
-        {
-            var vertex = new Vertex();
-            vertex.position = position;
-            vertex.normal = normal;
-            vertex.uv = uv;
-            vertex.tangent = tangent;
-            vertex.binormal = binormal;
-
-            vertices.Add(vertex);
-
+            vertices.Add(v);
             indices.Add(indices.Count);
-
-            uvs.Add(uv);
-
         }
-
-
 
     }
 }

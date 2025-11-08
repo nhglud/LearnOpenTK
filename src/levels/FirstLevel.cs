@@ -170,6 +170,7 @@ namespace LearnOpenTK
             LitMaterial.UpdateStaticProperties();
             renderingSystem.Render();
             skyBox.draw();
+            
 
             framebuffer.Unbind(game.ClientSize.X, game.ClientSize.Y);
             framebuffer.BindTexture();

@@ -8,7 +8,7 @@ namespace LearnOpenTK.src
         private Shader shader;
         private int vao;
         private int vbo;
-        private float[] skyboxVertices = {          
+        private float[] skyboxVertices = {
              -1.0f,  1.0f, -1.0f,
              -1.0f, -1.0f, -1.0f,
               1.0f, -1.0f, -1.0f,
@@ -61,8 +61,12 @@ namespace LearnOpenTK.src
             cubeMap = new CubeMap(faces);
             shader.Use();
             shader.SetInt("skybox", 0);
-           
+            BindBuffer();
 
+        }
+
+        private void BindBuffer()
+        {
             vao = GL.GenVertexArray();
             vbo = GL.GenBuffer();
             GL.BindVertexArray(vao);
@@ -72,12 +76,11 @@ namespace LearnOpenTK.src
             GL.BufferData(BufferTarget.ArrayBuffer, skyboxVertices.Length * sizeof(float), skyboxVertices, BufferUsageHint.StaticDraw);
             GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
             GL.EnableVertexAttribArray(0);
-
         }
 
         public void draw()
         {
-            GL.DepthFunc(DepthFunction.Lequal); 
+            GL.DepthFunc(DepthFunction.Lequal);
             GL.DepthMask(false);
             shader.Use();
 
@@ -87,6 +90,11 @@ namespace LearnOpenTK.src
 
             GL.DepthMask(true);
             GL.DepthFunc(DepthFunction.Less);
+        }
+
+        public CubeMap GetCubeMap()
+        {
+            return cubeMap;
         }
 
     }
