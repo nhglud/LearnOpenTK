@@ -146,6 +146,8 @@ namespace LearnOpenTK
 
             white.SetEnvironmentMap(skyBox.GetCubeMap());
             white.reflectivity = 1;
+
+
         }
 
 

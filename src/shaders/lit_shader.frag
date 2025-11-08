@@ -96,7 +96,7 @@ vec3 CalculateDiffuseLightDirectional(vec4 lightCol, vec3 direction, vec3 norm);
 vec3 CalculateSpecularLightDirectional(vec4 lightCol, vec3 direction, vec3 norm);
 vec3 CalculateDiffuseSpotLight(SpotLight spotlight, vec3 norm);
 vec3 CalculateSpecularSpotLight(SpotLight spotlight, vec3 norm);
-
+float Attenuation(vec3 lightPos, vec3 pos);
 
 void main()
 {
@@ -147,8 +147,9 @@ void main()
 	// point lights
 	for (int i = 0; i < numLights; i++)
 	{
-		diffuse += CalculateDiffuseLight(lights[i].position, lights[i].color, norm);
-		specular += CalculateSpecularLight(lights[i].position, lights[i].color, norm);
+		diffuse += Attenuation(lights[i].position, fragPosition) * CalculateDiffuseLight(lights[i].position, lights[i].color, norm);
+		specular += Attenuation(lights[i].position, fragPosition) * CalculateSpecularLight(lights[i].position, lights[i].color, norm);
+
 	}
 
 	for (int i = 0; i < numDirectionalLights; i++)
@@ -163,21 +164,23 @@ void main()
 		specular += CalculateSpecularSpotLight(spotLights[i], norm);
 	}
 
-
-	vec3 result = (ambient + diffuse) * diffColor  + diffuse * specular * specColor;
-
 	vec3 I = normalize(fragPosition - viewPosition);
 	vec3 R = reflect(I, norm);
 	vec3 envColor = texture(environmentMap, R).rgb;
 
-	vec3 one = vec3(1.0);
+	vec3 one = vec3(0.0);
 
 	vec3 reflectionColor = mix(one, envColor, reflectivity);
+
+
+
+	vec3 result = (ambient + diffuse) * diffColor  +  specular * specColor + reflectivity * envColor;
+
 //
 //	float rim = smoothstep(0.25, 0.0, dot(norm, normalize(viewPosition - fragPosition)));
 //	result += diffuse * rim * vec3(1.0);
 
-	result *= reflectionColor;
+//	result *= reflectionColor;
 
 	outputColor = vec4(result, 1.0);
 }
@@ -265,4 +268,16 @@ vec3 CalculateSpecularSpotLight(SpotLight spotlight, vec3 norm)
 	float intensity = clamp((theta -  spotlight.outerRadius) / epsilon, 0.0, 1.0);   
 
 	return specular * intensity;
+}
+
+float Attenuation(vec3 lightPos, vec3 pos) {
+	
+	float d = distance(lightPos, pos);
+	
+	float kc = 1.0;
+	float kl = 0.09;
+	float kq = 0.032;
+
+	return 1 / (kc + kl * d + kq * d * d);
+
 }

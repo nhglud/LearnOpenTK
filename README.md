@@ -17,6 +17,7 @@ Currently supports:
 - Shooting bloodsplatter decals.
 - ImGui.NET UI
 - Skyboxes
+- environment reflections based on skybox
 - Generating terrain with a heightmap
 
 <figure>
