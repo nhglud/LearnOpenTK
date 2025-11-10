@@ -14,12 +14,14 @@ namespace LearnOpenTK
         public Shader(string vertexPath, string fragmentPath)
         {
             SetUpShader(vertexPath, fragmentPath);
+            Use();
 
         }
 
         public Shader(string vertexPath, string geometryPath, string fragmentPath)
         {
             SetUpShader(vertexPath, geometryPath, fragmentPath);
+            Use();
         }
 
         ~Shader()

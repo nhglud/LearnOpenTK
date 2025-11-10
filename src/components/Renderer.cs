@@ -6,14 +6,24 @@ namespace LearnOpenTK
         
         private Mesh mesh;
         public Material material;
-
+        public List<Material> materials = new List<Material>(); 
         
         private static event Action? OnRender;
 
         public Renderer(Material material) : base()
         {
             this.material = material;
+            materials.Add(material);
+
             OnRender += Render;
+        }
+
+
+        public Renderer(List<Material> materials) : base()
+        {
+            this.materials = materials;
+            OnRender += Render;
+
         }
 
 
@@ -25,8 +35,14 @@ namespace LearnOpenTK
 
         public void Render()
         {
-            material.Use(transform.GetTransformMatrix());
-            mesh.Draw();
+            foreach (var mat in materials)
+            {
+                mat.Use(transform.GetTransformMatrix());
+                mesh.Draw();
+            }
+
+            //material.Use(transform.GetTransformMatrix());
+            //mesh.Draw();
         }
 
 
