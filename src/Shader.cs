@@ -4,7 +4,6 @@ using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 
 
-
 namespace LearnOpenTK
 {
     public class Shader : IDisposable
@@ -16,6 +15,11 @@ namespace LearnOpenTK
         {
             SetUpShader(vertexPath, fragmentPath);
 
+        }
+
+        public Shader(string vertexPath, string geometryPath, string fragmentPath)
+        {
+            SetUpShader(vertexPath, geometryPath, fragmentPath);
         }
 
         ~Shader()
@@ -34,7 +38,6 @@ namespace LearnOpenTK
             int VertexShader = CreateShader(VertexShaderSource, ShaderType.VertexShader);
             int FragmentShader = CreateShader(FragmentShaderSource, ShaderType.FragmentShader);
 
-
             Handle = GL.CreateProgram();
 
             GL.AttachShader(Handle, VertexShader);
@@ -48,13 +51,40 @@ namespace LearnOpenTK
             GL.DeleteShader(VertexShader);
         }
 
+        private void SetUpShader(string vertexPath, string geometryPath, string fragmentPath)
+        {
+            string VertexShaderSource = File.ReadAllText(vertexPath);
+            string GeometryShaderSource = File.ReadAllText(geometryPath);
+            string FragmentShaderSource = File.ReadAllText(fragmentPath);
+
+            int VertexShader = CreateShader(VertexShaderSource, ShaderType.VertexShader);
+            int GeometryShader = CreateShader(GeometryShaderSource, ShaderType.GeometryShader);
+            int FragmentShader = CreateShader(FragmentShaderSource, ShaderType.FragmentShader);
+
+            Handle = GL.CreateProgram();
+
+            GL.AttachShader(Handle, VertexShader);
+            GL.AttachShader(Handle, GeometryShader);
+            GL.AttachShader(Handle, FragmentShader);
+
+            LinkProgram();
+
+            GL.DetachShader(Handle, VertexShader);
+            GL.DetachShader(Handle, FragmentShader);
+            GL.DetachShader(Handle, GeometryShader);
+
+            GL.DeleteShader(FragmentShader);
+            GL.DeleteShader(GeometryShader);
+            GL.DeleteShader(VertexShader);
+        }
+
+
         private int CreateShader(string shaderSource, ShaderType shaderType)
         {
             int shader = GL.CreateShader(shaderType);
 
             GL.ShaderSource(shader, shaderSource);
             GL.CompileShader(shader);
-
             GL.GetShader(shader, ShaderParameter.CompileStatus, out int succes);
             if (succes == 0)
             {
