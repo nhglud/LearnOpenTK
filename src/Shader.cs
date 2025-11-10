@@ -31,39 +31,45 @@ namespace LearnOpenTK
             string VertexShaderSource = File.ReadAllText(vertexPath);
             string FragmentShaderSource = File.ReadAllText(fragmentPath);
 
-            int VertexShader = GL.CreateShader(ShaderType.VertexShader);
-            GL.ShaderSource(VertexShader, VertexShaderSource);
+            int VertexShader = CreateShader(VertexShaderSource, ShaderType.VertexShader);
+            int FragmentShader = CreateShader(FragmentShaderSource, ShaderType.FragmentShader);
 
-            int FragmentShader = GL.CreateShader(ShaderType.FragmentShader);
-            GL.ShaderSource(FragmentShader, FragmentShaderSource);
-
-            GL.CompileShader(VertexShader);
-
-            GL.GetShader(VertexShader, ShaderParameter.CompileStatus, out int success);
-            if (success == 0)
-            {
-                string infoLog = GL.GetShaderInfoLog(VertexShader);
-                Console.WriteLine(infoLog);
-            }
-
-            GL.CompileShader(FragmentShader);
-
-            GL.GetShader(FragmentShader, ShaderParameter.CompileStatus, out success);
-            if (success == 0)
-            {
-                string infoLog = GL.GetShaderInfoLog(FragmentShader);
-                Console.WriteLine(infoLog);
-            }
 
             Handle = GL.CreateProgram();
-
 
             GL.AttachShader(Handle, VertexShader);
             GL.AttachShader(Handle, FragmentShader);
 
+            LinkProgram();
+
+            GL.DetachShader(Handle, VertexShader);
+            GL.DetachShader(Handle, FragmentShader);
+            GL.DeleteShader(FragmentShader);
+            GL.DeleteShader(VertexShader);
+        }
+
+        private int CreateShader(string shaderSource, ShaderType shaderType)
+        {
+            int shader = GL.CreateShader(shaderType);
+
+            GL.ShaderSource(shader, shaderSource);
+            GL.CompileShader(shader);
+
+            GL.GetShader(shader, ShaderParameter.CompileStatus, out int succes);
+            if (succes == 0)
+            {
+                string infoLog = GL.GetShaderInfoLog(shader);
+                Console.WriteLine(infoLog);
+            }
+
+            return shader;
+        } 
+
+        private void LinkProgram()
+        {
             GL.LinkProgram(Handle);
 
-            GL.GetProgram(Handle, GetProgramParameterName.LinkStatus, out success);
+            GL.GetProgram(Handle, GetProgramParameterName.LinkStatus, out int success);
             if (success == 0)
             {
                 string infoLog = GL.GetProgramInfoLog(Handle);
@@ -73,13 +79,8 @@ namespace LearnOpenTK
 
             int blockIndex = GL.GetUniformBlockIndex(Handle, "CameraData");
             GL.UniformBlockBinding(Handle, blockIndex, 0);
-
-
-            GL.DetachShader(Handle, VertexShader);
-            GL.DetachShader(Handle, FragmentShader);
-            GL.DeleteShader(FragmentShader);
-            GL.DeleteShader(VertexShader);
         }
+
 
         public void Use()
         {

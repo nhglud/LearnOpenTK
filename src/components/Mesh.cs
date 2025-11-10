@@ -15,7 +15,6 @@ namespace LearnOpenTK
         public Vector2 uv;
         public Vector3 tangent;
         public Vector3 binormal;
-
     }
 
 

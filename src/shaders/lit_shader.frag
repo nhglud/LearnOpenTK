@@ -110,6 +110,7 @@ void main()
 	vec3 normalMap = vec3(texture(material.normalMap, texCoord));
 	normalMap = normalize(normalMap * 2.0 - 1.0);
 	
+	bool useDecal = false;
 	int numDecals = min(countDecals, MAX_DECALS);
 	for(int i = 0; i < numDecals; i++)
 	{
@@ -126,6 +127,8 @@ void main()
 			diffColor = mix(diffColor, decal.rgb, decal.a);
 			specColor = mix(specColor, decalSpec.rgb, decalSpec.a);
 			normalMap = mix(normalMap, decaNormalMap.rgb, decaNormalMap.a);
+			useDecal = true;
+
 
 		}
 	}
@@ -168,19 +171,13 @@ void main()
 	vec3 R = reflect(I, norm);
 	vec3 envColor = texture(environmentMap, R).rgb;
 
-	vec3 one = vec3(0.0);
 
-	vec3 reflectionColor = mix(one, envColor, reflectivity);
+	vec3 rim = smoothstep(0.25, 0.0, dot(norm, normalize(viewPosition - fragPosition))) * vec3(1.0);
+	float rimIntensity = 0.1;
 
 
+	vec3 result = (ambient + diffuse) * diffColor  +  specular * specColor + reflectivity * envColor + rimIntensity * rim;
 
-	vec3 result = (ambient + diffuse) * diffColor  +  specular * specColor + reflectivity * envColor;
-
-//
-//	float rim = smoothstep(0.25, 0.0, dot(norm, normalize(viewPosition - fragPosition)));
-//	result += diffuse * rim * vec3(1.0);
-
-//	result *= reflectionColor;
 
 	outputColor = vec4(result, 1.0);
 }

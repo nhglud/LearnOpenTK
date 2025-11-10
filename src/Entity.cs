@@ -4,13 +4,9 @@ namespace LearnOpenTK
     public class Entity
     {
         public string name; 
-
         public Transform transform; 
-
         public Dictionary<Type, Component> components = new Dictionary<Type, Component>();
-
         public static event Action<Entity> EntityCreated;
-
         public static event Action<Entity> EntityRemoved;
 
         public Entity()

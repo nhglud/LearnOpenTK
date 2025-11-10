@@ -23,7 +23,6 @@ namespace LearnOpenTK
         {
             base.LoadLevel();
 
-
             Mesh mesh = AssetManager.GetMesh("cube");
             Mesh monke = AssetManager.GetMesh("monke");
 
@@ -32,7 +31,6 @@ namespace LearnOpenTK
 
             Vector3 lightPosition = new Vector3(0.0f, 4.0f, 2.0f);
             Vector3 lightColor = new Vector3(1.0f, 1.0f, 1.0f);
-
 
             LitMaterial.SetAmbient(ambientColor, ambientStrength);
             LitMaterial.SetDiffuse(lightPosition, lightColor);
@@ -113,8 +111,6 @@ namespace LearnOpenTK
             entity6.AddComponent(new Renderer(AssetManager.GetMaterial("brickwall")));
 
 
-
-
             Entity player = new Entity();
             player.name = "Camera";
             player.transform = new Transform(new Vector3(0.0f, 0.0f, 3.0f), new Vector3(0.0f), new Vector3(1.0f));
@@ -146,11 +142,7 @@ namespace LearnOpenTK
 
             white.SetEnvironmentMap(skyBox.GetCubeMap());
             white.reflectivity = 1;
-
-
         }
-
-
 
 
         public override void UpdateLevel(FrameEventArgs e)
@@ -170,7 +162,6 @@ namespace LearnOpenTK
             framebuffer.Bind(game.ClientSize.X, game.ClientSize.Y);
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-
             Camera.main.UpdateUBO(game.ClientSize.X, game.ClientSize.Y);
             lightingSystem.Update();
 
@@ -178,11 +169,8 @@ namespace LearnOpenTK
             renderingSystem.Render();
             skyBox.draw();
             
-
             framebuffer.Unbind(game.ClientSize.X, game.ClientSize.Y);
             framebuffer.BindTexture();
-
-
         }
 
 
