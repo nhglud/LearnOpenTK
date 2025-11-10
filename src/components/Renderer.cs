@@ -3,11 +3,11 @@ namespace LearnOpenTK
 {
     public class Renderer : Component
     {
-        
+
         private Mesh mesh;
         public Material material;
-        public List<Material> materials = new List<Material>(); 
-        
+        public List<Material> materials = new List<Material>();
+
         private static event Action? OnRender;
 
         public Renderer(Material material) : base()
@@ -46,10 +46,18 @@ namespace LearnOpenTK
         }
 
 
+        public void AddMaterial(Material mat)
+        {
+            materials.Add(mat);
+        }
+
         public static void UpdateRenderers()
         {
             OnRender?.Invoke();
         }
+
+
+
 
     }
 }
