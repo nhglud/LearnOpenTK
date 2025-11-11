@@ -16,8 +16,7 @@ layout(std140, binding = 0) uniform CameraData
 
 void GenerateLine(int index)
 {
-
-	float normSize = 0.2; // adjust to taste
+	float normSize = 0.2; 
 
     vec3 start = fragPosition[index];
     vec3 end = start + normalize(normal[index]) * normSize;

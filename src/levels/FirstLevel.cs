@@ -92,21 +92,34 @@ namespace LearnOpenTK
                 AssetManager.path + "src/shaders/wireframe.geom", 
                 AssetManager.path + "src/shaders/wireframe.frag"
                 );
-            var normalVizMat = new Material(wireframeShader);
+
+
+            var normalShader = new Shader(
+                AssetManager.path + "src/shaders/basic_shader.vert",
+                AssetManager.path + "src/shaders/visualize_normals.geom",
+                AssetManager.path + "src/shaders/visualize_normals.frag"
+                );
+
+            var wireframeMat = new Material(wireframeShader);
+            var normalMat = new Material(normalShader);
+
             var mats = new List<Material>();
             mats.Add(AssetManager.GetMaterial("white"));
-            mats.Add(normalVizMat);
+            mats.Add(wireframeMat);
+        
             var monkeRenderer = new Renderer(mats);
             entity3.AddComponent(monkeRenderer);
-            
+
+
+            entity.GetComponent<Renderer>().AddMaterial(normalMat);
 
             Entity entity4 = new Entity();
             entity4.name = "Floor";
             entity4.transform = new Transform(new Vector3(0.0f, -2.0f, 0.0f), new Vector3(0.0f, 0.0f, 0.0f), new Vector3(8.0f, 1.0f, 8.0f));
             entity4.AddComponent(AssetManager.GetMesh("quad"));
             entity4.AddComponent(new Renderer(AssetManager.GetMaterial("checker")));
-
-
+            
+            
 
             Entity entity5 = new Entity();
             entity5.name = "Cube";
