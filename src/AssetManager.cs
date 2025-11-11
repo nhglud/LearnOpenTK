@@ -1,14 +1,10 @@
 ﻿
-using OpenTK.Mathematics;
-
-using System.IO;
 
 namespace LearnOpenTK
 {
     public static class AssetManager
     {
-        public static string path = "";
-
+        public static string path { get; private set; } = ""; 
 
         private static Dictionary<string, Mesh> meshes = new Dictionary<string, Mesh>();
         private static Dictionary<string, Shader> shaders = new Dictionary<string, Shader>();
@@ -81,7 +77,7 @@ namespace LearnOpenTK
             AddTexture("blood_specular", bloodSpecular);
             AddTexture("blood_normal", bloodNormal);
 
-
+            
 
             AddMaterial(
                 "container2_mat", 

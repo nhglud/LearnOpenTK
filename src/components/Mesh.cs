@@ -79,9 +79,6 @@ namespace LearnOpenTK
         {
             GL.BindVertexArray(VertexArrayObject);
             GL.DrawElements(PrimitiveType.Triangles, indices.Length, DrawElementsType.UnsignedInt, 0);
-            //GL.DrawElements(PrimitiveType.Lines, indices.Length, DrawElementsType.UnsignedInt, 0);
-
-
         }
 
     }

@@ -33,11 +33,8 @@ namespace LearnOpenTK
 
         public static List<Decal> decals;
 
-
         //Matrix4 decalView;
         //Matrix4 decalProjection;
-
-      
 
         public LitMaterial(Color4 color) : base()  
         {
@@ -137,8 +134,6 @@ namespace LearnOpenTK
                 shader.SetMat4($"decals[{i}]", dview);
 
             }
-
-
         }
 
         public static void UpdateStaticProperties()

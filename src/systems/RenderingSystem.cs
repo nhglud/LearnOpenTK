@@ -18,11 +18,11 @@
 
         public void Render()
         {
-
             foreach (var r in renderers)
             {
                 r.Render();
             }
+
         }
     }
 }

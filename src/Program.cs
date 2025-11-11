@@ -6,7 +6,9 @@ namespace LearnOpenTK
     {
         static void Main(string[] args)
         {
-            new Game(1200, 1000, "OpenTKWindow").Run();
+            new Game(1600, 1200, "OpenTKWindow").Run();
+
+            
         }
     }
 }
