@@ -87,12 +87,12 @@ namespace LearnOpenTK
             entity3.name = "Monke";
             entity3.transform = new Transform(new Vector3(3.5f, 0.0f, 2.0f), new Vector3(0.0f, -30.0f, 0.0f), new Vector3(1.5f, 1.5f, 1.5f));
             entity3.AddComponent(monke);
-            var normalVizShader = new Shader(
+            var wireframeShader = new Shader(
                 AssetManager.path + "src/shaders/basic_shader.vert",
-                AssetManager.path + "src/shaders/visualize_normals.geom", 
-                AssetManager.path + "src/shaders/visualize_normals.frag"
+                AssetManager.path + "src/shaders/wireframe.geom", 
+                AssetManager.path + "src/shaders/wireframe.frag"
                 );
-            var normalVizMat = new Material(normalVizShader);
+            var normalVizMat = new Material(wireframeShader);
             var mats = new List<Material>();
             mats.Add(AssetManager.GetMaterial("white"));
             mats.Add(normalVizMat);
