@@ -38,19 +38,20 @@ void main(void)
 {
     texCoord = aTexCoord;
 
+    float heightScale = 60.0;
 
-    height = texture(heightmap, aTexCoord).r;
+    height =  heightScale * texture(heightmap, aTexCoord).r;
 
     vec3 pos = aPosition;
-    pos.y = pos.y + height;
+    pos.y = pos.y + height ;
 
 
     float delta = 1.0 / 512.0;
 
-    float hL = texture(heightmap, aTexCoord + vec2(-delta, 0.0)).r;
-    float hR = texture(heightmap, aTexCoord + vec2(delta, 0.0)).r;
-    float hU = texture(heightmap, aTexCoord + vec2(0.0, delta)).r;
-    float hD = texture(heightmap, aTexCoord + vec2(0.0, -delta)).r;
+    float hL = heightScale * texture(heightmap, aTexCoord + vec2(-delta, 0.0)).r;
+    float hR = heightScale * texture(heightmap, aTexCoord + vec2(delta, 0.0)).r;
+    float hU = heightScale * texture(heightmap, aTexCoord + vec2(0.0, delta)).r;
+    float hD = heightScale * texture(heightmap, aTexCoord + vec2(0.0, -delta)).r;
 
     vec3 dx = vec3(2.0*delta, (hR - hL), 0.0); // tangent along x
     vec3 dz = vec3(0.0, (hU - hD), 2.0 * delta); // tangent along z

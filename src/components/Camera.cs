@@ -30,7 +30,7 @@ namespace LearnOpenTK
 
             fov = 45.0f;
             near = 0.1f;
-            far = 100.0f;
+            far = 1000.0f;
             InitUBO();
         }
 

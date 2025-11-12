@@ -40,7 +40,7 @@ namespace LearnOpenTK.src.levels
             string path = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\"));
 
             PlaneGenerator terrainGenerator = new PlaneGenerator();
-            terrainGenerator.CreatePlane(10, 10, 1000, 1000, 1, 1);
+            terrainGenerator.CreatePlane(50, 50, 1000, 1000, 1, 1);
 
 
             Entity terrain = new Entity();
@@ -48,7 +48,7 @@ namespace LearnOpenTK.src.levels
             terrain.transform = new Transform(new Vector3(0.0f, -1.0f, 0.0f), new Vector3(0.0f, 0.0f, 0.0f), new Vector3(1.2f * 5, 1, 5));
             terrain.AddComponent(terrainGenerator.GetMesh());
 
-            var heightmap = new Texture(path + "assets/iceland_heightmap.png");
+            var heightmap = new Texture(path + "assets/hills_heightmap.png");
             var perlin  = new Texture(path + "assets/perlin.png");
             var terrianShader = new Shader(path + "src/shaders/terrain.vert", path + "src/shaders/terrain.frag");
             var terrainMat = new TerrainMaterial(heightmap, terrianShader, perlin);
