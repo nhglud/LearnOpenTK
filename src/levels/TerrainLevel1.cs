@@ -1,6 +1,7 @@
 ﻿using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Graphics.OpenGL4;
+using LearnOpenTK.src.shaders;
 
 namespace LearnOpenTK.src.levels
 {
@@ -40,7 +41,7 @@ namespace LearnOpenTK.src.levels
             string path = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\"));
 
             PlaneGenerator terrainGenerator = new PlaneGenerator();
-            terrainGenerator.CreatePlane(50, 50, 1000, 1000, 1, 1);
+            terrainGenerator.CreatePlane(40, 40, 600, 600, 1, 1);
 
 
             Entity terrain = new Entity();
@@ -54,6 +55,9 @@ namespace LearnOpenTK.src.levels
             var terrainMat = new TerrainMaterial(heightmap, terrianShader, perlin);
 
             terrain.AddComponent(new Renderer(terrainMat));
+
+            //var billboardMat = new TerrainBillboardMaterial(heightmap, new Texture(AssetManager.path + "assets/grass.png"), 60.0f);
+            //terrain.GetComponent<Renderer>().AddMaterial(billboardMat);
 
 
             Entity player = new Entity();

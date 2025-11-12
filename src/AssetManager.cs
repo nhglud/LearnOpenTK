@@ -21,6 +21,10 @@ namespace LearnOpenTK
             Shader singleColorShader = new Shader(path + "src/shaders/basic_shader.vert", path + "src/shaders/single_color.frag");
             Shader litShader = new Shader(path + "src/shaders/basic_shader.vert", path + "src/shaders/lit_shader.frag");
 
+
+            var terrianShader = new Shader(path + "src/shaders/terrain.vert", path + "src/shaders/terrain.frag");
+
+
             var wireframeShader = new Shader(
                     path + "src/shaders/basic_shader.vert",
                     path + "src/shaders/wireframe.geom",
@@ -70,6 +74,8 @@ namespace LearnOpenTK
             AddShader("basic", shader);
             AddShader("single_color", singleColorShader);
             AddShader("lit", litShader);
+
+            AddShader("terrain", terrianShader);
 
             AddShader("wireframe", wireframeShader);
 

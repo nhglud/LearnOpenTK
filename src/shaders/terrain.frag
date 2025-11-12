@@ -8,8 +8,8 @@ in float height;
 in vec3 norm;
 
 
+uniform sampler2D diffuseMap;
 uniform sampler2D noiseMap;
-
 
 
 void main()
