@@ -50,9 +50,9 @@ namespace LearnOpenTK.src.levels
             terrain.AddComponent(terrainGenerator.GetMesh());
 
             var heightmap = new Texture(path + "assets/hills_heightmap.png");
-            var perlin  = new Texture(path + "assets/perlin.png");
+            var terrainDiffuse  = new Texture(path + "assets/hills_diffuse.png");
             var terrianShader = new Shader(path + "src/shaders/terrain.vert", path + "src/shaders/terrain.frag");
-            var terrainMat = new TerrainMaterial(heightmap, terrianShader, perlin);
+            var terrainMat = new TerrainMaterial(heightmap, terrianShader, terrainDiffuse);
 
             terrain.AddComponent(new Renderer(terrainMat));
 

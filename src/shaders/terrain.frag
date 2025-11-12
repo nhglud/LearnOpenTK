@@ -9,18 +9,19 @@ in vec3 norm;
 
 
 uniform sampler2D diffuseMap;
-uniform sampler2D noiseMap;
+//uniform sampler2D noiseMap;
 
 
 void main()
 {
     vec3 lightDir = vec3(0.5, -1, 0);
     
-    float noise = texture(noiseMap, 20 * texCoord).r;
+//    float noise = texture(noiseMap, 20 * texCoord).r;
 
     float intensity = max(dot(lightDir, norm), 0) + 0.2;
+    intensity = 1.0;
 
-    vec3 col = vec3(0.4, 0.6, 0.45);;
+    vec3 col = texture(diffuseMap, texCoord).rgb;
 
     
 

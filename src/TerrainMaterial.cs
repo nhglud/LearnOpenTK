@@ -8,13 +8,13 @@ namespace LearnOpenTK.src
     public class TerrainMaterial : Material
     {
         private Texture heightmap;
-        private Texture noisemap;
+        private Texture diffuseMap;
 
-        public TerrainMaterial(Texture heightmap, Shader terrainShader, Texture noisemap) : base()
+        public TerrainMaterial(Texture heightmap, Shader terrainShader, Texture diffuseMap) : base()
         {
             this.heightmap = heightmap;
             shader = terrainShader;
-            this.noisemap = noisemap;
+            this.diffuseMap = diffuseMap;
         }
 
 
@@ -26,8 +26,8 @@ namespace LearnOpenTK.src
             shader.SetInt("heightmap", 0);
             heightmap.Use();
 
-            shader.SetInt("noiseMap", 1);
-            noisemap.Use(TextureUnit.Texture1);
+            shader.SetInt("diffuseMap", 1);
+            diffuseMap.Use(TextureUnit.Texture1);
 
 
         }
