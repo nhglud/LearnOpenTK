@@ -4,7 +4,16 @@ in vec2 TexCoord;
 
 out vec4 FragColor;
 
+
+uniform sampler2D billboardTexture;
+
 void main()
 {
-	FragColor = vec4(0.0, 1.0, 0.0, 1.0);
+	vec4 col = texture(billboardTexture, TexCoord);
+
+	if(col.a < 0.1) {
+		discard;
+	}
+
+	FragColor = vec4(col.rgb, 1.0);
 }

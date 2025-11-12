@@ -42,12 +42,14 @@ namespace LearnOpenTK.src.levels
             AssetManager.GetMaterial("checker");
 
 
-            var billboardShader = new Shader(
-                AssetManager.path + "src/shaders/billboard.vert",
-                AssetManager.path + "src/shaders/billboard.geom",
-                AssetManager.path + "src/shaders/billboard.frag");
+            //var billboardShader = new Shader(
+            //    AssetManager.path + "src/shaders/billboard.vert",
+            //    AssetManager.path + "src/shaders/billboard.geom",
+            //    AssetManager.path + "src/shaders/billboard.frag");
 
-            var billboardMat = new Material(billboardShader);
+
+            Texture grassTexture = new Texture(AssetManager.path + "assets/grass.png");
+            var billboardMat = new BillboardMaterial(grassTexture);
             
 
             terrain.AddComponent(new Renderer(AssetManager.GetMaterial("checker")));
