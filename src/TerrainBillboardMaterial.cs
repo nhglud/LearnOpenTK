@@ -65,7 +65,7 @@ namespace LearnOpenTK.src.shaders
         {
             base.Use(model);
 
-            shader.SetFloat("heighScale", heightScale);
+            shader.SetFloat("heightScale", heightScale);
             shader.SetInt("billboardTexture", 0);
             billboardTexture.Use();
 

@@ -52,11 +52,13 @@ namespace LearnOpenTK.src.levels
             var heightmap = new Texture(path + "assets/hills_heightmap.png");
             var terrainDiffuse  = new Texture(path + "assets/hills_diffuse.png");
             var terrianShader = new Shader(path + "src/shaders/terrain.vert", path + "src/shaders/terrain.frag");
-            var terrainMat = new TerrainMaterial(heightmap, terrianShader, terrainDiffuse);
+
+            float heightScale = 100.0f;
+            var terrainMat = new TerrainMaterial(heightmap, terrianShader, terrainDiffuse, heightScale);
 
             terrain.AddComponent(new Renderer(terrainMat));
 
-            var billboardMat = new TerrainBillboardMaterial(heightmap, new Texture(AssetManager.path + "assets/grass.png"), 60.0f);
+            var billboardMat = new TerrainBillboardMaterial(heightmap, new Texture(AssetManager.path + "assets/grass.png"), heightScale);
             terrain.GetComponent<Renderer>().AddMaterial(billboardMat);
 
 

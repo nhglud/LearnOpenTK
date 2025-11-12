@@ -32,13 +32,13 @@ uniform sampler2D heightmap;
 out float height;
 out vec3 norm;
 
-in float heightScale;
+uniform float heightScale;
 
 void main(void)
 {
     texCoord = aTexCoord;
 
-    float heightScale = 60.0;
+//    float heightScale = 60.0;
 
     height =  heightScale * texture(heightmap, aTexCoord).r;
 

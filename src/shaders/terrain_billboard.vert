@@ -7,12 +7,12 @@ layout(location = 2) in vec2 aTexCoord;
 
 uniform mat4 model;
 uniform sampler2D heightmap;
-
+uniform float heightScale;
 
 void main()
 {
 
-	float heightScale = 60.0;
+//	float heightScale = 60.0;
 
 	float height =  heightScale * texture(heightmap, aTexCoord).r;
 
