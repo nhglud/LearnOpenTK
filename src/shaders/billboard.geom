@@ -1,7 +1,7 @@
 ﻿#version 430 core
 layout (triangles) in;
 layout (triangle_strip) out;
-layout (max_vertices = 4) out;
+layout (max_vertices = 8) out;
 
 
 layout(std140, binding = 0) uniform CameraData
@@ -16,14 +16,11 @@ uniform mat4 model;
 
 out vec2 TexCoord;
 
-void main()
-{
+void CreateQuad(vec3 pos, vec3 right) {
 
-    vec3 pos = (model * gl_in[0].gl_Position).xyz;
-
-    vec3 cameraDir = normalize(cameraPosition.xyz - pos);
     vec3 up = vec3(0.0, 1.0, 0.0);
-    vec3 right = normalize(cross(cameraDir, up));
+
+//    vec3 right = normalize(cross(cameraDir, up));
 
     gl_Position = projection * view * vec4(pos, 1.0);
     TexCoord = vec2(0.0, 0.0);
@@ -48,4 +45,51 @@ void main()
     EmitVertex();
     EndPrimitive();
 
+
+}
+
+
+
+void main()
+{
+
+    vec3 pos = 0.33 * ((model * gl_in[0].gl_Position).xyz + (model * gl_in[2].gl_Position).xyz + (model * gl_in[2].gl_Position).xyz);
+
+    vec3 cameraDir = normalize(cameraPosition.xyz - pos);
+    vec3 up = vec3(0.0, 1.0, 0.0);
+    vec3 right = vec3(1.0, 0.0, 0.0);
+
+    CreateQuad(pos, right);
+
+    pos += 0.5 * right;
+    right = vec3(0.0, 0.0, 1.0);
+    pos -= 0.5 * right;
+    CreateQuad(pos, right);
+
+
+//    vec3 right = normalize(cross(cameraDir, up));
+
+//    gl_Position = projection * view * vec4(pos, 1.0);
+//    TexCoord = vec2(0.0, 0.0);
+//    EmitVertex();
+//
+//
+//    pos.y += 1.0;
+//    gl_Position = projection * view * vec4(pos, 1.0);
+//    TexCoord = vec2(0.0, 1.0);
+//    EmitVertex();
+//
+//    pos.y -= 1.0;
+//    pos += right;
+//    gl_Position = projection * view * vec4(pos, 1.0);
+//    TexCoord = vec2(1.0, 0.0);
+//    EmitVertex();
+//
+//
+//    pos.y += 1.0;
+//    gl_Position = projection * view * vec4(pos, 1.0);
+//    TexCoord = vec2(1.0, 1.0);
+//    EmitVertex();
+//    EndPrimitive();
+//
 }
