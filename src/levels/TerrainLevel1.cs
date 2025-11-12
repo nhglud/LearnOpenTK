@@ -41,7 +41,7 @@ namespace LearnOpenTK.src.levels
             string path = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\"));
 
             PlaneGenerator terrainGenerator = new PlaneGenerator();
-            terrainGenerator.CreatePlane(40, 40, 600, 600, 1, 1);
+            terrainGenerator.CreatePlane(20, 20, 100, 100, 1, 1);
 
 
             Entity terrain = new Entity();

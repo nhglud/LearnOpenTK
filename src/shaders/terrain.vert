@@ -66,7 +66,8 @@ void main(void)
 
     tbn = mat3(tangent, binormal, normal);
     
-    fragPosition = vec3(model * vec4(pos, 1.0));
+    fragPosition = pos;
+//    fragPosition = vec3(model * vec4(pos, 1.0));
 
   
 

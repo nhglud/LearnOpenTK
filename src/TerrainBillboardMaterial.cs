@@ -50,8 +50,8 @@ namespace LearnOpenTK.src.shaders
         public TerrainBillboardMaterial(Texture heightMap, Texture billboardTexture, float heightScale) : base()
         {
             shader = new Shader(
-               AssetManager.path + "src/shaders/terrain.vert",
-               AssetManager.path + "src/shaders/terrain.geom",
+               AssetManager.path + "src/shaders/terrain_billboard.vert",
+               AssetManager.path + "src/shaders/billboard.geom",
                AssetManager.path + "src/shaders/billboard.frag");
 
             this.heightMap = heightMap;
@@ -69,7 +69,7 @@ namespace LearnOpenTK.src.shaders
             shader.SetInt("billboardTexture", 0);
             billboardTexture.Use();
 
-            shader.SetInt("heightMap", 1);
+            shader.SetInt("heightmap", 1);
             heightMap.Use(TextureUnit.Texture1);
 
             //shader.SetInt("billboardTexture", 2);
