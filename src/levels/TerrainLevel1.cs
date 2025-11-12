@@ -56,8 +56,8 @@ namespace LearnOpenTK.src.levels
 
             terrain.AddComponent(new Renderer(terrainMat));
 
-            //var billboardMat = new TerrainBillboardMaterial(heightmap, new Texture(AssetManager.path + "assets/grass.png"), 60.0f);
-            //terrain.GetComponent<Renderer>().AddMaterial(billboardMat);
+            var billboardMat = new TerrainBillboardMaterial(heightmap, new Texture(AssetManager.path + "assets/grass.png"), 60.0f);
+            terrain.GetComponent<Renderer>().AddMaterial(billboardMat);
 
 
             Entity player = new Entity();
