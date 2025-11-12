@@ -1,6 +1,5 @@
 ﻿using ImGuiNET;
 using System.Numerics;
-using static Assimp.Metadata;
 
 
 namespace LearnOpenTK
@@ -10,6 +9,8 @@ namespace LearnOpenTK
 
         private Game game;
 
+        private bool wireframeOn = false;
+        private bool normalVizOn = false;
 
         public EntityInspector(Game game)
         {
@@ -20,10 +21,25 @@ namespace LearnOpenTK
         {
             base.Render();
 
+            if (ImGui.Checkbox("Wireframe", ref wireframeOn))
+            {
+                
+            }
+
+            if (ImGui.Checkbox("Visualize Normals", ref normalVizOn))
+            {
+
+            }
 
             int index = 0;
             foreach (var entity in game.currentLevel.entities)
             {
+
+                if (entity.HasComponent(typeof(Renderer)))
+                {
+                    ToggleRenderer(entity.GetComponent<Renderer>());
+                }
+
                 if (ImGui.TreeNode($"{entity.name} ##entity{index}"))
                 {
                     DrawTransform(entity);
@@ -43,6 +59,10 @@ namespace LearnOpenTK
                         DrawLight<DirectionalLight>(entity);
 
                     }
+
+
+                 
+
 
                     ImGui.TreePop();
                 }
@@ -108,6 +128,23 @@ namespace LearnOpenTK
                 ImGui.TreePop();
             }
         }
+
+        private void ToggleRenderer(Renderer renderer)
+        {
+            if (wireframeOn && !renderer.materials.Contains(AssetManager.GetMaterial("wireframe")))
+            {
+                renderer.AddMaterial(AssetManager.GetMaterial("wireframe"));
+
+            }
+            else if (!wireframeOn && renderer.materials.Contains(AssetManager.GetMaterial("wireframe")))
+            {
+                renderer.RemoveMaterial(AssetManager.GetMaterial("wireframe"));
+
+            }
+
+
+        }
+
 
     }
 

@@ -51,6 +51,14 @@ namespace LearnOpenTK
             materials.Add(mat);
         }
 
+        public void RemoveMaterial(Material mat)
+        {
+            materials.Remove(mat);
+        }
+
+
+
+
         public static void UpdateRenderers()
         {
             OnRender?.Invoke();

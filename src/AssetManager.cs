@@ -11,7 +11,6 @@ namespace LearnOpenTK
         private static Dictionary<string, Texture> textures = new Dictionary<string, Texture>();
         private static Dictionary<string, Material> materials = new Dictionary<string, Material>();
 
-
         public static void LoadAssets()
         {
 
@@ -21,6 +20,14 @@ namespace LearnOpenTK
             Shader shader = new Shader(path + "src/shaders/basic_shader.vert", path + "src/shaders/basic_shader.frag");
             Shader singleColorShader = new Shader(path + "src/shaders/basic_shader.vert", path + "src/shaders/single_color.frag");
             Shader litShader = new Shader(path + "src/shaders/basic_shader.vert", path + "src/shaders/lit_shader.frag");
+
+            var wireframeShader = new Shader(
+                    path + "src/shaders/basic_shader.vert",
+                    path + "src/shaders/wireframe.geom",
+                    path + "src/shaders/wireframe.frag"
+            );
+
+
             Shader postPorcessingShader = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/post_processing_shader.frag");
             Shader negativeFilter = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/negative_filter.frag");
             Shader bnwFilter = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/bnw_filter.frag");
@@ -56,6 +63,11 @@ namespace LearnOpenTK
             AddShader("basic", shader);
             AddShader("single_color", singleColorShader);
             AddShader("lit", litShader);
+
+            AddShader("wireframe", wireframeShader);
+
+
+
             AddShader("post_processing", postPorcessingShader);
             AddShader("negative_filter", negativeFilter);
             AddShader("bnw_filter", bnwFilter);
@@ -106,6 +118,8 @@ namespace LearnOpenTK
                     brickwall, 
                     white, 
                     brickwallNormal));
+
+            AddMaterial("wireframe", new Material(wireframeShader));
 
 
         }
