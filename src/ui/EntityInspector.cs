@@ -21,6 +21,9 @@ namespace LearnOpenTK
         {
             base.Render();
 
+            ImGui.Text("Debug Visualization");
+
+
             if (ImGui.Checkbox("Wireframe", ref wireframeOn))
             {
                 
@@ -30,6 +33,8 @@ namespace LearnOpenTK
             {
 
             }
+
+            ImGui.Text("Entity Inspector");
 
             int index = 0;
             foreach (var entity in game.currentLevel.entities)
@@ -141,6 +146,18 @@ namespace LearnOpenTK
                 renderer.RemoveMaterial(AssetManager.GetMaterial("wireframe"));
 
             }
+
+            if (normalVizOn && !renderer.materials.Contains(AssetManager.GetMaterial("normal")))
+            {
+                renderer.AddMaterial(AssetManager.GetMaterial("normal"));
+
+            }
+            else if (!normalVizOn && renderer.materials.Contains(AssetManager.GetMaterial("normal")))
+            {
+                renderer.RemoveMaterial(AssetManager.GetMaterial("normal"));
+
+            }
+
 
 
         }

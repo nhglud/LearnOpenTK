@@ -4,7 +4,7 @@ namespace LearnOpenTK
 {
     public static class AssetManager
     {
-        public static string path { get; private set; } = ""; 
+        public static string path { get; private set; } = "";
 
         private static Dictionary<string, Mesh> meshes = new Dictionary<string, Mesh>();
         private static Dictionary<string, Shader> shaders = new Dictionary<string, Shader>();
@@ -16,7 +16,7 @@ namespace LearnOpenTK
 
             path = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\"));
 
-  
+
             Shader shader = new Shader(path + "src/shaders/basic_shader.vert", path + "src/shaders/basic_shader.frag");
             Shader singleColorShader = new Shader(path + "src/shaders/basic_shader.vert", path + "src/shaders/single_color.frag");
             Shader litShader = new Shader(path + "src/shaders/basic_shader.vert", path + "src/shaders/lit_shader.frag");
@@ -26,6 +26,13 @@ namespace LearnOpenTK
                     path + "src/shaders/wireframe.geom",
                     path + "src/shaders/wireframe.frag"
             );
+
+            var normalShader = new Shader(
+                path + "src/shaders/basic_shader.vert",
+                path + "src/shaders/visualize_normals.geom",
+                path + "src/shaders/visualize_normals.frag"
+            );
+
 
 
             Shader postPorcessingShader = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/post_processing_shader.frag");
@@ -89,37 +96,38 @@ namespace LearnOpenTK
             AddTexture("blood_specular", bloodSpecular);
             AddTexture("blood_normal", bloodNormal);
 
-            
+
 
             AddMaterial(
-                "container2_mat", 
+                "container2_mat",
                 new LitMaterial(
-                    GetTexture("container2_diffuse"), 
-                    GetTexture("container2_specular"), 
+                    GetTexture("container2_diffuse"),
+                    GetTexture("container2_specular"),
                     GetTexture("container2_normal")));
 
             AddMaterial(
-                "checker", 
+                "checker",
                 new LitMaterial(
-                    GetTexture("checker"), 
-                    GetTexture("white"), 
+                    GetTexture("checker"),
+                    GetTexture("white"),
                     GetTexture("blue")));
 
             AddMaterial(
-                "white", 
+                "white",
                 new LitMaterial(
-                    GetTexture("white"), 
-                    GetTexture("white"), 
+                    GetTexture("white"),
+                    GetTexture("white"),
                     GetTexture("blue")));
-            
+
             AddMaterial(
-                "brickwall", 
+                "brickwall",
                 new LitMaterial(
-                    brickwall, 
-                    white, 
+                    brickwall,
+                    white,
                     brickwallNormal));
 
             AddMaterial("wireframe", new Material(wireframeShader));
+            AddMaterial("normal", new Material(normalShader));
 
 
         }
