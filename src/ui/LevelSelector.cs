@@ -38,6 +38,10 @@ namespace LearnOpenTK
             if (ImGui.Button("Terrain"))
                 game.ChangeLevel(new TerrainLevel1(game));
 
+            if (ImGui.Button("Billboard"))
+                game.ChangeLevel(new BillboardLevel(game));
+
+
         }
 
     }

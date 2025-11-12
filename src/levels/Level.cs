@@ -1,6 +1,11 @@
 ﻿using OpenTK.Windowing.Common;
 using System.Security.Principal;
 
+using LearnOpenTK.src;
+using OpenTK.Graphics.OpenGL4;
+using OpenTK.Mathematics;
+using OpenTK.Windowing.Common;
+
 namespace LearnOpenTK
 {
     public abstract class Level

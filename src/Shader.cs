@@ -108,7 +108,6 @@ namespace LearnOpenTK
                 Console.WriteLine(infoLog);
             }
 
-
             int blockIndex = GL.GetUniformBlockIndex(Handle, "CameraData");
             GL.UniformBlockBinding(Handle, blockIndex, 0);
         }
