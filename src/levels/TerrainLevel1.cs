@@ -2,6 +2,7 @@
 using OpenTK.Windowing.Common;
 using OpenTK.Graphics.OpenGL4;
 using LearnOpenTK.src.shaders;
+using LearnOpenTK.src.components;
 
 namespace LearnOpenTK.src.levels
 {
@@ -11,6 +12,7 @@ namespace LearnOpenTK.src.levels
         private LightingSystem lightingSystem;
         private RenderingSystem renderingSystem;
         private UpdateSystem updateSystem;
+        private SkyBox skyBox;
 
         public TerrainLevel1(Game game) : base(game)
         {
@@ -70,6 +72,28 @@ namespace LearnOpenTK.src.levels
             player.AddComponent(new CharacterController(game.KeyboardState, game.MouseState));
 
 
+            Entity entity = new Entity();
+            entity.name = "Torus";
+            entity.transform = new Transform(new Vector3(0.0f, 20.0f, 0.0f), new Vector3(0.0f, 32.0f, 54.0f), 5.0f * Vector3.One);
+            entity.AddComponent(AssetManager.GetMesh("torus"));
+            entity.AddComponent(new Rotator());
+
+            entity.AddComponent(new Renderer(AssetManager.GetMaterial("white")));
+
+
+            List<string> cubemapFaces = new List<string>()
+            {
+                AssetManager.path + "assets/skybox/right.jpg",   // +X
+                AssetManager.path + "assets/skybox/left.jpg",    // -X
+                AssetManager.path + "assets/skybox/top.jpg",     // +Y
+                AssetManager.path + "assets/skybox/bottom.jpg",  // -Y
+                AssetManager.path + "assets/skybox/front.jpg",   // +Z
+                AssetManager.path + "assets/skybox/back.jpg"     // -Z
+            };
+
+            skyBox = new SkyBox(cubemapFaces);
+
+
             lightingSystem = new LightingSystem(entities);
             renderingSystem = new RenderingSystem(entities);
             updateSystem = new UpdateSystem(entities);
@@ -101,6 +125,7 @@ namespace LearnOpenTK.src.levels
 
             LitMaterial.UpdateStaticProperties();
             renderingSystem.Render();
+            skyBox.draw();
 
             framebuffer.Unbind(game.ClientSize.X, game.ClientSize.Y);
             framebuffer.BindTexture();

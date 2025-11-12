@@ -4,39 +4,6 @@ using OpenTK.Mathematics;
 
 namespace LearnOpenTK.src.shaders
 {
-    //public class TerrainMaterial : Material
-    //{
-    //    private float heightScale = 60.0f;
-    //    private Texture heightMap;
-    //    private Texture diffuseMap;
-
-
-    //    public TerrainMaterial(Texture heightMap, Texture diffuseMap, float heightScale) : base()
-    //    {
-    //        shader = AssetManager.GetShader("terrain");
-
-    //        this.heightMap = heightMap;
-    //        this.diffuseMap = diffuseMap;
-    //        this.heightScale = heightScale;
-
-    //    }
-
-
-    //    public override void Use(Matrix4 model)
-    //    {
-    //        base.Use(model);
-
-    //        shader.SetFloat("heighScale", heightScale);
-    //        shader.SetInt("diffuseMap", 0);
-    //        diffuseMap.Use();
-
-    //        shader.SetInt("heightMap", 1);
-    //        heightMap.Use(TextureUnit.Texture1);
-
-    //    }
-
-
-    //}
 
     public class TerrainBillboardMaterial : Material
     {
