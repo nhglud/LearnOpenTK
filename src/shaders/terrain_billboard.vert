@@ -9,6 +9,8 @@ uniform mat4 model;
 uniform sampler2D heightmap;
 uniform float heightScale;
 
+out vec2 uv;
+
 void main()
 {
 
@@ -18,6 +20,8 @@ void main()
 
 	vec3 pos = aPosition;
 	pos.y = pos.y + height ;
+
+	uv = aTexCoord;
 
 	gl_Position = vec4(pos, 1.0);
 }

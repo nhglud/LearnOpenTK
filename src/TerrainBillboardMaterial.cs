@@ -11,6 +11,9 @@ namespace LearnOpenTK.src.shaders
         private Texture heightMap;
         private Texture billboardTexture;
         private Texture noiseMap;
+
+        public float noiseScale { get; set; } = 1.0f;
+        public float noiseThreshold { get; set; } = 0.5f;
         //private Texture billboardTexture;
 
 
@@ -44,7 +47,12 @@ namespace LearnOpenTK.src.shaders
 
 
             shader.SetInt("noisemap", 2);
-            heightMap.Use(TextureUnit.Texture2);
+            shader.SetFloat("noiseScale", noiseScale);
+            shader.SetFloat("noiseThreshold", noiseThreshold);
+
+            noiseMap.Use(TextureUnit.Texture2);
+
+
 
 
             //shader.SetInt("billboardTexture", 2);

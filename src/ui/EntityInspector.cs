@@ -15,6 +15,9 @@ namespace LearnOpenTK
         private bool normalVizOn = false;
 
         private float heightScale = 1.0f;
+        private float noiseScale = 1.0f;
+        private float noiseThreshold = 1.0f;
+
 
 
         private TerrainMaterial? tmat = null;
@@ -106,6 +109,21 @@ namespace LearnOpenTK
                                 tbmat.heightScale = heightScale;
 
                             }
+
+                            if (ImGui.SliderFloat("NoiseScale", ref noiseScale, 0, 100.0f))
+                            {
+
+                                tbmat.noiseScale = noiseScale;
+
+                            }
+
+                            if (ImGui.SliderFloat("NoiseThreshold", ref noiseThreshold, 0, 1.0f))
+                            {
+
+                                tbmat.noiseThreshold = noiseThreshold;
+
+                            }
+
 
                         }
 
