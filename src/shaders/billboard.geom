@@ -13,6 +13,7 @@ layout(std140, binding = 0) uniform CameraData
 
 uniform mat4 model;
 
+uniform sampler2D noisemap;
 
 out vec2 TexCoord;
 
@@ -47,6 +48,9 @@ void CreateQuad(vec3 pos, vec3 right) {
 
 void main()
 {
+
+    
+
     vec3 pos = 0.33 * ((model * gl_in[0].gl_Position).xyz + (model * gl_in[2].gl_Position).xyz + (model * gl_in[2].gl_Position).xyz);
 
     vec3 up = vec3(0.0, 1.0, 0.0);

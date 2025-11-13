@@ -9,7 +9,7 @@ namespace LearnOpenTK.src
     {
         private Texture heightmap;
         private Texture diffuseMap;
-        private float heightScale = 60.0f;
+        public float heightScale { get; set; } = 60.0f;
 
         public TerrainMaterial(Texture heightmap, Shader terrainShader, Texture diffuseMap) : base()
         {

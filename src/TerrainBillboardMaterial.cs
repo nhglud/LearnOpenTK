@@ -7,9 +7,10 @@ namespace LearnOpenTK.src.shaders
 
     public class TerrainBillboardMaterial : Material
     {
-        private float heightScale = 60.0f;
+        public float heightScale { get; set; } = 60.0f;
         private Texture heightMap;
         private Texture billboardTexture;
+        private Texture noiseMap;
         //private Texture billboardTexture;
 
 
@@ -24,6 +25,8 @@ namespace LearnOpenTK.src.shaders
             this.heightMap = heightMap;
             this.billboardTexture = billboardTexture;
             this.heightScale = heightScale;
+
+            noiseMap = new Texture(AssetManager.path + "assets/perlin.png");
             //this.billboardTexture = billboardTexture;
         }
 
@@ -38,6 +41,11 @@ namespace LearnOpenTK.src.shaders
 
             shader.SetInt("heightmap", 1);
             heightMap.Use(TextureUnit.Texture1);
+
+
+            shader.SetInt("noisemap", 2);
+            heightMap.Use(TextureUnit.Texture2);
+
 
             //shader.SetInt("billboardTexture", 2);
             //billboardTexture.Use(TextureUnit.Texture2);

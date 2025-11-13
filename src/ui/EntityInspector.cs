@@ -1,4 +1,6 @@
 ﻿using ImGuiNET;
+using LearnOpenTK.src;
+using LearnOpenTK.src.shaders;
 using System.Numerics;
 
 
@@ -11,6 +13,12 @@ namespace LearnOpenTK
 
         private bool wireframeOn = false;
         private bool normalVizOn = false;
+
+        private float heightScale = 1.0f;
+
+
+        private TerrainMaterial? tmat = null;
+        private TerrainBillboardMaterial? tbmat = null;
 
         public EntityInspector(Game game)
         {
@@ -42,7 +50,7 @@ namespace LearnOpenTK
 
                 if (entity.HasComponent(typeof(Renderer)))
                 {
-                    ToggleRenderer(entity.GetComponent<Renderer>());
+                    ToggleDebugViz(entity.GetComponent<Renderer>());
                 }
 
                 if (ImGui.TreeNode($"{entity.name} ##entity{index}"))
@@ -65,8 +73,44 @@ namespace LearnOpenTK
 
                     }
 
+                    if(entity.HasComponent(typeof(Renderer)))
+                    {
+                        // Terrain Editor
+                        var renderer = entity.GetComponent<Renderer>();
 
-                 
+                        TerrainMaterial? tmat = null;
+                        TerrainBillboardMaterial? tbmat =  null;
+
+                        foreach (var mat in renderer.materials)
+                        {
+                            if (mat.GetType() == typeof(TerrainMaterial))
+                            {
+                                tmat = (TerrainMaterial)mat;
+                                //heightScale = tmat.heightScale;
+                                ImGui.Text("Terrain");
+
+                            }
+                            else if (mat.GetType() == typeof(TerrainBillboardMaterial))
+                            {
+                                tbmat = (TerrainBillboardMaterial)mat;
+                            }
+
+                        }
+
+
+                        if(tmat != null && tbmat != null)
+                        {
+                            if(ImGui.DragFloat("HeightScale", ref heightScale))
+                            {
+                                tmat.heightScale = heightScale;
+                                tbmat.heightScale = heightScale;
+
+                            }
+
+                        }
+
+
+                    }
 
 
                     ImGui.TreePop();
@@ -134,7 +178,7 @@ namespace LearnOpenTK
             }
         }
 
-        private void ToggleRenderer(Renderer renderer)
+        private void ToggleDebugViz(Renderer renderer)
         {
             if (wireframeOn && !renderer.materials.Contains(AssetManager.GetMaterial("wireframe")))
             {
@@ -161,6 +205,9 @@ namespace LearnOpenTK
 
 
         }
+
+
+
 
 
     }
