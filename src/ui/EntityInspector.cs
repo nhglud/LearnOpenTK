@@ -39,7 +39,7 @@ namespace LearnOpenTK
 
             if (ImGui.Checkbox("Wireframe", ref wireframeOn))
             {
-                
+
             }
 
             if (ImGui.Checkbox("Visualize Normals", ref normalVizOn))
@@ -78,73 +78,12 @@ namespace LearnOpenTK
 
                     }
 
-                    if(entity.HasComponent(typeof(Renderer)))
+                    if (entity.HasComponent(typeof(Renderer)))
                     {
-                        // Terrain Editor
+
                         var renderer = entity.GetComponent<Renderer>();
 
-                        TerrainMaterial? tmat = null;
-                        TerrainBillboardMaterial? tbmat =  null;
-
-                        foreach (var mat in renderer.materials)
-                        {
-                            if (mat.GetType() == typeof(TerrainMaterial))
-                            {
-                                tmat = (TerrainMaterial)mat;
-                                //heightScale = tmat.heightScale;
-                                ImGui.Text("Terrain");
-
-                            }
-                            else if (mat.GetType() == typeof(TerrainBillboardMaterial))
-                            {
-                                tbmat = (TerrainBillboardMaterial)mat;
-                            }
-
-                        }
-
-
-                        if(tmat != null && tbmat != null)
-                        {
-                            if(ImGui.DragFloat("HeightScale", ref heightScale))
-                            {
-                                tmat.heightScale = heightScale;
-                                tbmat.heightScale = heightScale;
-
-                            }
-
-                            if (ImGui.SliderFloat("NoiseScale", ref noiseScale, 0, 100.0f))
-                            {
-
-                                tbmat.noiseScale = noiseScale;
-
-                            }
-
-                            if (ImGui.SliderFloat("NoiseThreshold", ref noiseThreshold, 0, 1.0f))
-                            {
-
-                                tbmat.noiseThreshold = noiseThreshold;
-
-                            }
-
-                            if (ImGui.SliderFloat("windSpeed", ref windSpeed, 0, 0.2f))
-                            {
-
-                                tbmat.windSpeed = windSpeed;
-
-                            }
-
-
-                            if (ImGui.SliderFloat("windForce", ref windForce, 0, 1.0f))
-                            {
-
-                                tbmat.windForce = windForce;
-
-                            }
-
-
-                        }
-
-
+                        DrawTerrain(renderer);                   
                     }
 
 
@@ -236,13 +175,74 @@ namespace LearnOpenTK
                 renderer.RemoveMaterial(AssetManager.GetMaterial("normal"));
 
             }
+        }
 
+        private void DrawTerrain(Renderer renderer)
+        {
+
+
+            if (tmat == null)
+            {
+                foreach (var mat in renderer.materials)
+                {
+                    if (mat.GetType() == typeof(TerrainMaterial))
+                    {
+                        tmat = (TerrainMaterial)mat;
+                        //heightScale = tmat.heightScale;
+                        ImGui.Text("Terrain");
+
+                    }
+                    else if (mat.GetType() == typeof(TerrainBillboardMaterial))
+                    {
+                        tbmat = (TerrainBillboardMaterial)mat;
+                    }
+
+                }
+
+            }
+
+            if (tmat != null && tbmat != null)
+            {
+                if (ImGui.DragFloat("HeightScale", ref heightScale))
+                {
+                    tmat.heightScale = heightScale;
+                    tbmat.heightScale = heightScale;
+
+                }
+
+                if (ImGui.SliderFloat("NoiseScale", ref noiseScale, 0, 100.0f))
+                {
+
+                    tbmat.noiseScale = noiseScale;
+
+                }
+
+                if (ImGui.SliderFloat("NoiseThreshold", ref noiseThreshold, 0, 1.0f))
+                {
+
+                    tbmat.noiseThreshold = noiseThreshold;
+
+                }
+
+                if (ImGui.SliderFloat("windSpeed", ref windSpeed, 0, 0.2f))
+                {
+
+                    tbmat.windSpeed = windSpeed;
+
+                }
+
+
+                if (ImGui.SliderFloat("windForce", ref windForce, 0, 1.0f))
+                {
+
+                    tbmat.windForce = windForce;
+
+                }
+
+            }
 
 
         }
-
-
-
 
 
     }
