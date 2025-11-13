@@ -15,6 +15,9 @@ namespace LearnOpenTK.src.shaders
         public float noiseScale { get; set; } = 1.0f;
         public float noiseThreshold { get; set; } = 0.5f;
         public static float time { get; set; } = 0;
+        public float windSpeed { get; set; } = 0.1f;
+        public float windForce { get; set; } = 0.3f;
+
         //private Texture billboardTexture;
 
 
@@ -34,7 +37,7 @@ namespace LearnOpenTK.src.shaders
             //this.billboardTexture = billboardTexture;
         }
 
-        
+
 
 
         public override void Use(Matrix4 model)
@@ -56,6 +59,8 @@ namespace LearnOpenTK.src.shaders
 
             noiseMap.Use(TextureUnit.Texture2);
 
+            shader.SetFloat("windSpeed", windSpeed);
+            shader.SetFloat("windForce", windForce);
 
 
 

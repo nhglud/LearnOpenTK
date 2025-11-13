@@ -19,38 +19,10 @@ uniform sampler2D noisemap;
 uniform float noiseScale;
 uniform float noiseThreshold;
 uniform float time;
+uniform float windSpeed;
+uniform float windForce;
 
 out vec2 TexCoord;
-
-void CreateQuad(vec3 pos, vec3 right) {
-
-    float noise = 2 * 3.14 * texture(noisemap, uv[0] + vec2(cos(0.1 * time), sin(0.1 * time)) + 0.5).r;
-    vec4 wind =  0.3 * vec4(cos(noise), 0.0 , sin(noise), 0.0);
-    vec3 up = vec3(0.0, 1.0, 0.0);
-
-    gl_Position = projection * view * vec4(pos, 1.0);
-    TexCoord = vec2(0.0, 0.0);
-    EmitVertex();
-
-    pos.y += 1.0;
-    gl_Position = projection * view * (vec4(pos, 1.0) + wind);
-    TexCoord = vec2(0.0, 1.0);
-    EmitVertex();
-
-    pos.y -= 1.0;
-    pos += right;
-    gl_Position = projection * view * vec4(pos, 1.0);
-    TexCoord = vec2(1.0, 0.0);
-    EmitVertex();
-
-
-    pos.y += 1.0;
-    gl_Position = projection * view * (vec4(pos, 1.0) + wind);
-    TexCoord = vec2(1.0, 1.0);
-    EmitVertex();
-    EndPrimitive();
-
-}
 
 
 vec3 rotate(float angle, vec3 vector) {
@@ -67,6 +39,41 @@ vec3 rotate(float angle, vec3 vector) {
 float rand(vec2 co){
     return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5453);
 }
+
+
+
+
+void CreateQuad(vec3 pos, vec3 right) {
+
+    float noise = 2 * 3.14 * texture(noisemap, uv[0] + vec2(cos(windSpeed * time), sin(windSpeed * time)) + 0.5).r;
+    vec4 wind =  windForce * vec4(cos(noise), 0.0 , sin(noise), 0.0);
+    vec3 up = vec3(0.0, 1.0, 0.0);
+
+    gl_Position = projection * view * vec4(pos, 1.0);
+    TexCoord = vec2(0.0, 0.0);
+    EmitVertex();
+
+    float grassHeight = 1.0 + 0.8 * rand(uv[0]); 
+    pos.y += grassHeight;
+    gl_Position = projection * view * (vec4(pos, 1.0) + wind);
+    TexCoord = vec2(0.0, 1.0);
+    EmitVertex();
+
+    pos.y -= grassHeight;
+    pos += right;
+    gl_Position = projection * view * vec4(pos, 1.0);
+    TexCoord = vec2(1.0, 0.0);
+    EmitVertex();
+
+
+    pos.y += grassHeight;
+    gl_Position = projection * view * (vec4(pos, 1.0) + wind);
+    TexCoord = vec2(1.0, 1.0);
+    EmitVertex();
+    EndPrimitive();
+
+}
+
 
 
 void main()

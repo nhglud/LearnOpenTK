@@ -18,6 +18,8 @@ namespace LearnOpenTK
         private float noiseScale = 1.0f;
         private float noiseThreshold = 0.5f;
 
+        private float windSpeed = 0.5f;
+        private float windForce = 0.5f;
 
 
         private TerrainMaterial? tmat = null;
@@ -121,6 +123,21 @@ namespace LearnOpenTK
                             {
 
                                 tbmat.noiseThreshold = noiseThreshold;
+
+                            }
+
+                            if (ImGui.SliderFloat("windSpeed", ref windSpeed, 0, 0.2f))
+                            {
+
+                                tbmat.windSpeed = windSpeed;
+
+                            }
+
+
+                            if (ImGui.SliderFloat("windForce", ref windForce, 0, 1.0f))
+                            {
+
+                                tbmat.windForce = windForce;
 
                             }
 
