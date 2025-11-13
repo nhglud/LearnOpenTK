@@ -14,6 +14,7 @@ namespace LearnOpenTK.src.shaders
 
         public float noiseScale { get; set; } = 1.0f;
         public float noiseThreshold { get; set; } = 0.5f;
+        public static float time { get; set; } = 0;
         //private Texture billboardTexture;
 
 
@@ -33,10 +34,13 @@ namespace LearnOpenTK.src.shaders
             //this.billboardTexture = billboardTexture;
         }
 
+        
+
 
         public override void Use(Matrix4 model)
         {
             base.Use(model);
+            shader.SetFloat("time", time);
 
             shader.SetFloat("heightScale", heightScale);
             shader.SetInt("billboardTexture", 0);

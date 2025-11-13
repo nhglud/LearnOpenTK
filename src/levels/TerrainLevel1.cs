@@ -13,7 +13,7 @@ namespace LearnOpenTK.src.levels
         private RenderingSystem renderingSystem;
         private UpdateSystem updateSystem;
         private SkyBox skyBox;
-
+        private float time;
         public TerrainLevel1(Game game) : base(game)
         {
 
@@ -119,6 +119,8 @@ namespace LearnOpenTK.src.levels
             framebuffer.Bind(game.ClientSize.X, game.ClientSize.Y);
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
+            time += (float)e.Time;
+            TerrainBillboardMaterial.time = time;
 
             Camera.main.UpdateUBO(game.ClientSize.X, game.ClientSize.Y);
             lightingSystem.Update();

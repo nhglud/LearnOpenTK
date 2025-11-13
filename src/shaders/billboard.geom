@@ -18,11 +18,14 @@ uniform mat4 model;
 uniform sampler2D noisemap;
 uniform float noiseScale;
 uniform float noiseThreshold;
+uniform float time;
 
 out vec2 TexCoord;
 
 void CreateQuad(vec3 pos, vec3 right) {
 
+    float noise = 2 * 3.14 * texture(noisemap, uv[0] + vec2(cos(0.1 * time), sin(0.1 * time)) + 0.5).r;
+    vec4 wind =  0.3 * vec4(cos(noise), 0.0 , sin(noise), 0.0);
     vec3 up = vec3(0.0, 1.0, 0.0);
 
     gl_Position = projection * view * vec4(pos, 1.0);
@@ -30,7 +33,7 @@ void CreateQuad(vec3 pos, vec3 right) {
     EmitVertex();
 
     pos.y += 1.0;
-    gl_Position = projection * view * vec4(pos, 1.0);
+    gl_Position = projection * view * (vec4(pos, 1.0) + wind);
     TexCoord = vec2(0.0, 1.0);
     EmitVertex();
 
@@ -42,7 +45,7 @@ void CreateQuad(vec3 pos, vec3 right) {
 
 
     pos.y += 1.0;
-    gl_Position = projection * view * vec4(pos, 1.0);
+    gl_Position = projection * view * (vec4(pos, 1.0) + wind);
     TexCoord = vec2(1.0, 1.0);
     EmitVertex();
     EndPrimitive();
@@ -69,10 +72,8 @@ float rand(vec2 co){
 void main()
 {
     float noise = texture(noisemap, noiseScale * uv[0]).r;
-//    float angle = 2 * 3.14 * texture(noisemap, 20 * uv[1]).r;
 
     float angle = 2 * 3.14 * rand(10.0 * uv[0]);
-
 
 
     if(noise > noiseThreshold) { 

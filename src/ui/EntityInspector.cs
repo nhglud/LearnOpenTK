@@ -14,9 +14,9 @@ namespace LearnOpenTK
         private bool wireframeOn = false;
         private bool normalVizOn = false;
 
-        private float heightScale = 1.0f;
+        private float heightScale = 60.0f;
         private float noiseScale = 1.0f;
-        private float noiseThreshold = 1.0f;
+        private float noiseThreshold = 0.5f;
 
 
 
