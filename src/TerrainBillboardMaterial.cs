@@ -10,6 +10,7 @@ namespace LearnOpenTK.src.shaders
         public float heightScale { get; set; } = 60.0f;
         private Texture heightMap;
         private Texture billboardTexture;
+
         private Texture noiseMap;
 
         public float noiseScale { get; set; } = 1.0f;
@@ -17,6 +18,8 @@ namespace LearnOpenTK.src.shaders
         public static float time { get; set; } = 0;
         public float windSpeed { get; set; } = 0.1f;
         public float windForce { get; set; } = 0.3f;
+        public float windScale { get; set; } = 1.0f;
+
 
         //private Texture billboardTexture;
 
@@ -34,6 +37,7 @@ namespace LearnOpenTK.src.shaders
             this.heightScale = heightScale;
 
             noiseMap = new Texture(AssetManager.path + "assets/perlin.png");
+
             //this.billboardTexture = billboardTexture;
         }
 
@@ -58,10 +62,10 @@ namespace LearnOpenTK.src.shaders
             shader.SetFloat("noiseThreshold", noiseThreshold);
 
             noiseMap.Use(TextureUnit.Texture2);
-
+            
             shader.SetFloat("windSpeed", windSpeed);
             shader.SetFloat("windForce", windForce);
-
+            shader.SetFloat("windScale", windScale);
 
 
             //shader.SetInt("billboardTexture", 2);

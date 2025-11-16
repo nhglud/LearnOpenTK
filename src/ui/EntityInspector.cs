@@ -20,6 +20,7 @@ namespace LearnOpenTK
 
         private float windSpeed = 0.5f;
         private float windForce = 0.5f;
+        private float windScale = 1.0f;
 
 
         private TerrainMaterial? tmat = null;
@@ -224,7 +225,7 @@ namespace LearnOpenTK
 
                 }
 
-                if (ImGui.SliderFloat("windSpeed", ref windSpeed, 0, 0.2f))
+                if (ImGui.SliderFloat("windSpeed", ref windSpeed, 0, 1.0f))
                 {
 
                     tbmat.windSpeed = windSpeed;
@@ -236,6 +237,14 @@ namespace LearnOpenTK
                 {
 
                     tbmat.windForce = windForce;
+
+                }
+
+
+                if (ImGui.SliderFloat("windScale", ref windScale, 0, 10.0f))
+                {
+
+                    tbmat.windScale = windScale;
 
                 }
 

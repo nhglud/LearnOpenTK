@@ -21,9 +21,10 @@ uniform float noiseThreshold;
 uniform float time;
 uniform float windSpeed;
 uniform float windForce;
+uniform float windScale;
 
 out vec2 TexCoord;
-
+out vec2 UV;
 
 vec3 rotate(float angle, vec3 vector) {
     float sina = sin(angle);
@@ -45,7 +46,7 @@ float rand(vec2 co){
 
 void CreateQuad(vec3 pos, vec3 right) {
 
-    float noise = 2 * 3.14 * texture(noisemap, uv[0] + vec2(cos(windSpeed * time), sin(windSpeed * time)) + 0.5).r;
+    float noise = 2 * 3.14 * texture(noisemap, windScale * ( uv[0] + vec2(cos(windSpeed * time), sin(windSpeed * time)) + 0.5)).r;
     vec4 wind =  windForce * vec4(cos(noise), 0.0 , sin(noise), 0.0);
     vec3 up = vec3(0.0, 1.0, 0.0);
 
@@ -96,6 +97,8 @@ void main()
         right = rotate(angle, right);
         pos -= 0.5 * right;
         CreateQuad(pos, right);
+
+        UV = uv[0];
     
     }
 
