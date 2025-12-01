@@ -15,6 +15,7 @@ namespace LearnOpenTK
         private bool applyToonFilter = false;
         private bool applyPixelFilter = false;
         private bool applyWavyFilter = false;
+        private bool applyEdgeFilter = false;
 
 
 
@@ -23,6 +24,8 @@ namespace LearnOpenTK
         private PostProcessingFilter toonFilter;
         private PostProcessingFilter pixelFilter;
         private PostProcessingFilter wavyFilter;
+        private PostProcessingFilter edgeFilter;
+
 
         private float pixelSize = 6.0f;
 
@@ -110,6 +113,20 @@ namespace LearnOpenTK
             else
             {
                 game.postProcessor.RemoveFilter("wavy");
+
+            }
+
+            ImGui.Checkbox("Edge filter", ref applyEdgeFilter);
+            if (applyEdgeFilter)
+            {
+                if (edgeFilter == null)
+                    edgeFilter = new PostProcessingFilter(AssetManager.GetShader("edge_filter"), game.ClientSize.X, game.ClientSize.Y);
+
+                game.postProcessor.AddFilter("edge", edgeFilter);
+            }
+            else
+            {
+                game.postProcessor.RemoveFilter("edge");
 
             }
 

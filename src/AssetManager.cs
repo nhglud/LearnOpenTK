@@ -45,6 +45,7 @@ namespace LearnOpenTK
             Shader toonFilter = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/toon_filter.frag");
             Shader pixelateFilter = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/pixelate_filter.frag");
             Shader wavyFilter = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/wavy_filter.frag");
+            Shader edgeFilter = new Shader(path + "src/shaders/post_processing_shader.vert", path + "src/shaders/edge_filter.frag");
 
 
             Texture texture = new Texture(path + "assets/container.jpg");
@@ -88,6 +89,7 @@ namespace LearnOpenTK
             AddShader("toon_filter", toonFilter);
             AddShader("pixelate_filter", pixelateFilter);
             AddShader("wavy_filter", wavyFilter);
+            AddShader("edge_filter", edgeFilter);
 
 
             AddTexture("container", texture);
