@@ -32,6 +32,7 @@ namespace LearnOpenTK
             {
                 filter.Apply(width, height);
                 filter.filterShader.SetVector2("resolution", new Vector2(game.ClientSize.X, game.ClientSize.Y));
+                filter.filterShader.SetFloat("time", game.elapsedTime);
             }
 
             GL.Clear(ClearBufferMask.ColorBufferBit);

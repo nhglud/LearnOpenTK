@@ -13,7 +13,7 @@ namespace LearnOpenTK
 {
     public class Game : GameWindow
     {
-
+        public float elapsedTime = 0;
         public Level currentLevel;
         //private Framebuffer framebuffer;
         public PostProcessor postProcessor;
@@ -47,7 +47,7 @@ namespace LearnOpenTK
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
             base.OnUpdateFrame(e);
-
+            elapsedTime += (float)e.Time;
             // HANDLE INPUTS
 
             if (KeyboardState.IsKeyDown(Keys.Escape))

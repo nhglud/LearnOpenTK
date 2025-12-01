@@ -82,14 +82,11 @@ uniform sampler2D decalNormal;
 uniform int countDecals;
 in vec4 decalPositions[MAX_DECALS];
 
-
 // envMap
-
 uniform float reflectivity;
 uniform samplerCube environmentMap;
 
-// function definitions
-
+// function declarations
 vec3 CalculateDiffuseLight(vec3 lightPos, vec4 lightCol, vec3 norm);
 vec3 CalculateSpecularLight(vec3 lightPos, vec4 lightCol, vec3 norm);
 vec3 CalculateDiffuseLightDirectional(vec4 lightCol, vec3 direction, vec3 norm);
@@ -128,8 +125,6 @@ void main()
 			specColor = mix(specColor, decalSpec.rgb, decalSpec.a);
 			normalMap = mix(normalMap, decaNormalMap.rgb, decaNormalMap.a);
 			useDecal = true;
-
-
 		}
 	}
 
@@ -152,7 +147,6 @@ void main()
 	{
 		diffuse += Attenuation(lights[i].position, fragPosition) * CalculateDiffuseLight(lights[i].position, lights[i].color, norm);
 		specular += Attenuation(lights[i].position, fragPosition) * CalculateSpecularLight(lights[i].position, lights[i].color, norm);
-
 	}
 
 	for (int i = 0; i < numDirectionalLights; i++)
@@ -267,8 +261,8 @@ vec3 CalculateSpecularSpotLight(SpotLight spotlight, vec3 norm)
 	return specular * intensity;
 }
 
-float Attenuation(vec3 lightPos, vec3 pos) {
-	
+float Attenuation(vec3 lightPos, vec3 pos) 
+{	
 	float d = distance(lightPos, pos);
 	
 	float kc = 1.0;

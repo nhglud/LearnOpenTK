@@ -305,7 +305,7 @@
   <Class Name="LearnOpenTK.EntityInspector" Collapsed="true">
     <Position X="31.75" Y="11.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAAAAAAAAAAABAAAAAAAgAAAIQBCAAAAAAAA=</HashCode>
+      <HashCode>QAAgCBAAAAAAAAAAAAABAQCACAAgBAAYQJAAAAAAAAA=</HashCode>
       <FileName>src\ui\EntityInspector.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -357,7 +357,7 @@
   <Class Name="LearnOpenTK.src.levels.TerrainLevel1" Collapsed="true">
     <Position X="16.75" Y="13.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAAAAAgAAAAAAFAAAABAAAAQAAAAAAAQA=</HashCode>
+      <HashCode>AAABAAAAAAIAAAAAgAAAAAAFAAAABAAAAQAAAAAAAQA=</HashCode>
       <FileName>src\levels\TerrainLevel1.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -386,7 +386,7 @@
   <Class Name="LearnOpenTK.src.shaders.TerrainBillboardMaterial">
     <Position X="32" Y="14.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAIAAEEAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAxCBAAAAAAAAAAAAAAAACAIAAEFAAAAAAAAAAAAAA=</HashCode>
       <FileName>src\TerrainBillboardMaterial.cs</FileName>
     </TypeIdentifier>
   </Class>

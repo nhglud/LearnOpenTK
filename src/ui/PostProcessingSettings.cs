@@ -14,6 +14,7 @@ namespace LearnOpenTK
         private bool applyBnwFilter = false;
         private bool applyToonFilter = false;
         private bool applyPixelFilter = false;
+        private bool applyWavyFilter = false;
 
 
 
@@ -21,6 +22,7 @@ namespace LearnOpenTK
         private PostProcessingFilter bnwFilter;
         private PostProcessingFilter toonFilter;
         private PostProcessingFilter pixelFilter;
+        private PostProcessingFilter wavyFilter;
 
         private float pixelSize = 6.0f;
 
@@ -94,6 +96,20 @@ namespace LearnOpenTK
             else
             {
                 game.postProcessor.RemoveFilter("pixel");
+
+            }
+
+            ImGui.Checkbox("Wavy filter", ref applyWavyFilter);
+            if (applyWavyFilter)
+            {
+                if (wavyFilter == null)
+                    wavyFilter = new PostProcessingFilter(AssetManager.GetShader("wavy_filter"), game.ClientSize.X, game.ClientSize.Y);
+
+                game.postProcessor.AddFilter("wavy", wavyFilter);
+            }
+            else
+            {
+                game.postProcessor.RemoveFilter("wavy");
 
             }
 
