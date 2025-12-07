@@ -157,8 +157,8 @@ void main()
 
 	for (int i = 0; i < numSpotLights; i++)
 	{
-		diffuse += CalculateDiffuseSpotLight(spotLights[i], norm);
-		specular += CalculateSpecularSpotLight(spotLights[i], norm);
+		diffuse += Attenuation(spotLights[i].position, fragPosition) * CalculateDiffuseSpotLight(spotLights[i], norm);
+		specular += Attenuation(spotLights[i].position, fragPosition) * CalculateSpecularSpotLight(spotLights[i], norm);
 	}
 
 	vec3 I = normalize(fragPosition - viewPosition);

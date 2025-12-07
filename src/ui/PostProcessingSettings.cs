@@ -27,8 +27,6 @@ namespace LearnOpenTK
         private PostProcessingFilter edgeFilter;
 
 
-        private float pixelSize = 6.0f;
-
         private Game game;
 
 
@@ -87,7 +85,6 @@ namespace LearnOpenTK
 
 
             ImGui.Checkbox("Pixel Filter", ref applyPixelFilter);
-            ImGui.SliderFloat("pixelSize", ref pixelSize, 1.0f, 50.0f);
             if (applyPixelFilter)
             {
                 if (pixelFilter == null)
