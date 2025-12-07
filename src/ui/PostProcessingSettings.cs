@@ -18,7 +18,6 @@ namespace LearnOpenTK
         private bool applyEdgeFilter = false;
 
 
-
         private PostProcessingFilter negativeFilter;
         private PostProcessingFilter bnwFilter;
         private PostProcessingFilter toonFilter;
@@ -126,8 +125,6 @@ namespace LearnOpenTK
                 game.postProcessor.RemoveFilter("edge");
 
             }
-
-
 
 
 

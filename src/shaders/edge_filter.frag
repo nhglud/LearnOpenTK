@@ -5,7 +5,7 @@ in vec2 texCoord;
 out vec4 outputColor;
 
 uniform sampler2D screenTexture;
-uniform float time;
+
 
 
 void main()
